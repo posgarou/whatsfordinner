@@ -1,8 +1,13 @@
 module.exports = (config) ->
   config.set
+    basePath: '.',
     files: [
       'public/js/vendor.min.js',
       'public/js/all.min.js',
+      {
+        pattern: 'public/views/**/*.html',
+        included: true
+      },
       {
         pattern: 'test/unit/**/*.coffee',
         included: true
@@ -21,6 +26,7 @@ module.exports = (config) ->
     plugins: [
       'karma-coffee-preprocessor',
       'karma-chrome-launcher',
+      'karma-ng-html2js-preprocessor',
       'karma-jasmine',
       'karma-jasmine-jquery',
       'karma-jasmine-matchers'
@@ -28,16 +34,11 @@ module.exports = (config) ->
 
     preprocessors: {
       'test/**/*.coffee': ['coffee'],
-      '**/*.html': ['html2js']
+      'public/**/*.html': ['ng-html2js']
     }
 
-#    coffeePreprocessor: {
-#      # options passed to the coffee compiler
-#      options: {
-#        bare: true,
-#        sourceMap: false
-#      },
-#      # transforming the filenames
-#      transformPath: (path) ->
-#        return path.replace('.js', '.coffee')
-#    }
+
+    ngHtml2JsPreprocessor: {
+      stripPrefix: 'public/',
+      moduleName: 'whatsForDinnerApp'
+    }

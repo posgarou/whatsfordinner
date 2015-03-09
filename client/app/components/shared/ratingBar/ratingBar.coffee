@@ -4,5 +4,5 @@ angular.module('whatsForDinnerApp').directive 'ratingBar', ->
     scope: {
       currentRating: '='
     },
-    templateUrl: 'app/shared/ratingBar/ratingBarView.html'
+    templateUrl: 'views/shared/ratingBarView.html'
   }
