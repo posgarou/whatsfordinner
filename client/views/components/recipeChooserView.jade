@@ -1,0 +1,7 @@
+.recipe-chooser(ng-class='theme')
+    .header
+        .meal-name {{ theme }}
+        h1 {{headerText()}}
+    .recipe-preview(ng-repeat='recipe in recipes')
+        h1 {{ recipe.title }}
+        p {{ recipe.description }}

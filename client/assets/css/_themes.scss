@@ -1,0 +1,56 @@
+// THEME MIXINS
+
+@mixin theme($name, $theme) {
+  $off-white: nth($theme, 1);
+  $light: nth($theme, 2);
+  $med: nth($theme, 3);
+  $dark: nth($theme, 4);
+
+  // RECIPE THEME
+
+  %main-content.#{$name} {
+
+    border-color: $dark;
+    background: transparentize($off-white, 0.04);
+
+    .header {
+      background: $dark;
+      color: $light;
+
+      .meal-name {
+        color: $med;
+      }
+    }
+
+    .quick-info {
+      color: $dark;
+      font-size: 120%;
+
+      > div {
+        border-color: $dark;
+      }
+    }
+
+    .middle-instructions {
+      border-color: $dark;
+    }
+
+    .circled-star-list li:before, .circled-number-list li:before {
+      background: $med;
+      color: $dark;
+      border-color: $light;
+    }
+
+    aside {
+      border-color: $dark;
+    }
+  }  // end .recipe
+}
+
+// THEME DEFINITIONS
+
+@include theme(base-theme, $red-theme);
+@include theme(breakfast, $blue-green-theme);
+@include theme(lunch, $green-theme);
+@include theme(snack, $purple-theme);
+@include theme(dinner, $red-theme);

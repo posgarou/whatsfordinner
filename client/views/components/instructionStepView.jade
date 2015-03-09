@@ -1,0 +1,4 @@
+aside(ng-if="step.tip || step.optional")
+    span.optional-text(ng-if="step.optional") — optional —
+    | {{ step.tip }}
+li {{ step.text }}

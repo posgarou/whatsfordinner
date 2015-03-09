@@ -1,0 +1,9 @@
+.ratingBar
+    icon(name='dislike', ng-if="currentRating == 'dislike'")
+    icon(name='dislike-no', ng-if="currentRating != 'dislike'")
+
+    icon(name='meh', ng-if="currentRating == 'meh'")
+    icon(name='meh-no', ng-if="currentRating != 'meh'")
+
+    icon(name='like', ng-if="currentRating == 'like'")
+    icon(name='like-no', ng-if="currentRating != 'like'")

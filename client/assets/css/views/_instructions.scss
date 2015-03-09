@@ -1,0 +1,134 @@
+.recipe {
+  @extend %main-content;
+
+  .header {
+
+    .preference {
+      font-size: 2.5em;
+      display: inline-block;
+      text-align: center;
+      position: absolute;
+      top: 1.3em;
+      right: 0.6em;
+    }
+  } // end .header
+
+  .quick-info {
+    padding: 1em 0;
+    text-align: center;
+
+    > div {
+      display: inline-block;
+      padding: 0.2em 1em;
+      border-right: 1px solid black;
+
+      &:last-child {
+        border-right-width: 0;
+      }
+    }
+  } // end .quick-info
+
+  .recipe-info-box {
+    text-align: center;
+  }
+
+  .recipe-description {
+    max-width: 40em;
+    margin: 0 auto;
+    padding: 2em 0.2em;
+  }
+
+  .instructions-content-box {
+    padding: 1em 3vw;
+  }
+
+  .difficulty {
+
+    &.easy {
+      background: green;
+    }
+    &.medium {
+      background: cornflowerblue;
+    }
+    &.hard {
+      background: darkred;
+    }
+  }
+
+  .cuisines, .tags, .mealtimes {
+    display: inline-block;
+  }
+
+  .tag, .cuisine, .difficulty {
+    @extend .label;
+    @extend .round;
+    padding: 0.8em 1.4em;
+    margin: 0.1em 0.2em;
+  }
+
+  .middle-instructions {
+    @extend .row;
+    text-align: center;
+
+    margin: 3em 0.5em;
+    padding: 1em;
+    border: 2px solid black;
+    border-width: 2px 0;
+  }
+
+  .ingredients-list {
+    @extend .small-12;
+    @extend .medium-6;
+    @extend .columns;
+
+    // Used normally
+    ul:not(.columnized) {
+      padding: 0 10%;
+      text-align: center;
+    }
+
+    // Used when there are lots of ingredients
+    .columnized {
+      columns: 2;
+    }
+  }
+
+  .timeframe-and-serve-with {
+    @extend .small-12;
+    @extend .medium-6;
+    @extend .columns;
+  }
+
+  .step-list {
+    @extend .small-12;
+    @extend .medium-10;
+    @extend .large-8;
+
+    margin: 0 auto;
+
+    aside {
+      width: 50%;
+      float: right;
+      padding: 0.5em 0 0.5em 1em;
+      margin: 0.5em 0 0.5em 0.5em;
+      border-width: 1px 0 1px 1px;
+      border-style: solid;
+      border-radius: 4px;
+      font-size: 70%;
+      clear: both;
+
+      .optional-text {
+        display: block;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        font-weight: 100;
+        margin-bottom: 0.2em;
+      }
+    }
+  }
+
+  .serve-with ul {
+    @extend %circled-star-list;
+  }
+}

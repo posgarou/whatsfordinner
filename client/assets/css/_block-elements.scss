@@ -1,0 +1,60 @@
+
+
+body {
+  background: url(../images/oatmeal.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+}
+
+%main-content {
+  @extend .small-12;
+  @extend .medium-10;
+
+  margin: 1em auto;
+
+  border: 0.2em solid black;
+  border-radius: 4px;
+
+  .header {
+    margin: 0 0 2em 0;
+    padding: 3em 3.5em 3em;
+    position: relative;
+
+    .meal-name {
+      display: inline-block;
+      text-align: center;
+      width: 8em;
+      transform: rotate(-90deg);
+      transform-origin: left center;
+      text-transform: uppercase;
+      font-weight: 100;
+      position: absolute;
+      color: black;
+      letter-spacing: 0.33em;
+      top: 8.5em;
+      left: 2em;
+    }
+
+    h1 {
+      color: inherit;
+      text-transform: uppercase;
+      font-weight: 100;
+      letter-spacing: 0.1em;
+    }
+  } // end .header
+}
