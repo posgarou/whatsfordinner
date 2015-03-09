@@ -1,7 +1,7 @@
 require_relative 'spec_helper'
 
 describe 'The front page', type: :feature, js: true do
-  
+
   it 'loads the test page successfully' do
     visit '/'
     expect(page).to have_content 'Hi there'

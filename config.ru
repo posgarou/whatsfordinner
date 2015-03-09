@@ -1,20 +1,38 @@
 # This config file loads the Rails and Sinatra apps and then cascades them.
 # The Rails app includes the Grape API.
-# All other Rails assets are under either the admin/ or admin_assets/ routes.
 
 require 'rubygems'
 require 'bundler'
 
-Bundler.require(:default)
+##########################
+#      ENV VARIABLES     #
+##########################
 
-# Load the Rails app
-# Note that the Rails app is allowed to manage its own gems.
+# We need to set this here so it is not overridden inside server/config/boot.rb
+ENV['BUNDLE_GEMFILE'] ||= 'Gemfile'
+
+# Default to the dev environment
+ENV['RACK_ENV'] ||= 'development'
+
+##########################
+#         BUNDLER        #
+##########################
+
+# Load the default gemset, as well as those particular to the current environment
+Bundler.require(:default, ENV['RACK_ENV'].to_sym)
+
+##########################
+#       APP LOADING      #
+##########################
+
 require_relative 'server/config/environment'
-
-# Initialize the Rails application.
-# Rails.application.initialize!
 
 require_relative 'client/app'
 
+##########################
+#         CASCADE        #
+##########################
 
+# Rack::Cascade sends all routes to the first Rack app, and if it responds with a 404
+# Rack passes the request on to the next Rack app.
 run Rack::Cascade.new [WFDinnerApp, WFDinnerServer::Application]
