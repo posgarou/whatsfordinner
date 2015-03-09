@@ -83,6 +83,7 @@ gulp.task("bower-files", function() {
     return gulp.src(mainBowerFiles()).pipe(gulp.dest(paths.lib));
 });
 
+// Uglify and concat everything in lib and save it to public/js as vendor.min.js
 gulp.task('vendor-concat', function() {
     return gulp.src(libraries)
         .pipe(uglify())
@@ -93,6 +94,7 @@ gulp.task('vendor-concat', function() {
 // Run bower-install and bower-files
 gulp.task('bower', ['bower-install', 'bower-files', 'vendor-concat']);
 
+// Whenever any assets or the bower.json file change, run the appropriate tasks
 gulp.task('watch', function() {
     gulp.watch(paths.views, ['compile-jade']);
     gulp.watch(paths.scripts, ['scripts']);
