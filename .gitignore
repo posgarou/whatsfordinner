@@ -1,0 +1,4 @@
+# Most ignores are handled in client/ and server/ .gitignores
+
+.DS_Store
+.idea
