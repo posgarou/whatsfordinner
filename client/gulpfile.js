@@ -34,7 +34,8 @@ var libraries = [
     paths.lib + 'jquery.js',
     'bower_components/underscore/underscore.js',
     paths.lib + 'angular.js',
-    paths.lib + '**/*.js'
+    paths.lib + '**/*.js',
+    paths.lib + '*.js'
 ];
 
 // Compile, minify, and concatenate all of the coffeescript files. Place in public/js/all.min.js
