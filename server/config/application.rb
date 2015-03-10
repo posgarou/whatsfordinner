@@ -12,7 +12,7 @@ require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(*Rails.groups)
+Bundler.require(*Rails.groups, :authorization)
 
 module WFDinnerServer
   class Application < Rails::Application
@@ -28,12 +28,13 @@ module WFDinnerServer
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-
-    # Change the default asset pipeline prefix
-    config.assets.prefix = "/admin_assets"
-
     # Add the Grape engine files to the autoload paths
     config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
+
+    Rails.application.config.middleware.use OmniAuth::Builder do
+      provider :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_SECRET']
+      provider :google, ENV['GOOGLE_APP_ID'], ENV['GOOGLE_SECRET']
+    end
   end
 end

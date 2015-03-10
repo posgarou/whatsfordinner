@@ -4,6 +4,11 @@ Rails.application.routes.draw do
 
   mount WhatsForDinner::API => '/'
 
+
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/failure', to: 'sessions#failure'
+  get 'signout', to: 'sessions#destroy', as: 'signout'
+
   namespace :admin do
 
   end
