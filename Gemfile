@@ -19,10 +19,11 @@ group :test do
   gem 'selenium-webdriver'
 end
 
+CURRENT_PATH = File.expand_path(File.dirname(__FILE__))
 
 # Include the client and server gemfiles
-CLIENT_GEMFILE_PATH = './client/Gemfile'
-SERVER_GEMFILE_PATH = './server/Gemfile'
+CLIENT_GEMFILE_PATH = File.join(CURRENT_PATH, 'client', 'Gemfile')
+SERVER_GEMFILE_PATH = File.join(CURRENT_PATH, 'server', 'Gemfile')
 
 eval(IO.read(CLIENT_GEMFILE_PATH), binding)
 eval(IO.read(SERVER_GEMFILE_PATH), binding)
