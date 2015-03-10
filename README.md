@@ -26,3 +26,57 @@ Note: Client assets need to be compiled via Gulp in some fashion before running 
 2. Alternatively, you can manually `$ cd client` and compile the assets.  After the assets have been compiled, you can simply run `$ bundle exec rackup`.
   * `$ gulp` will download prerequisite libraries and compile the assets.
   * `$ gulp watch` will watch for changes in dependencies or libraries and recompile asset files as needed.
+
+# Setting the App Up on Production
+
+Setup an Amazon ec2 instance.  Remember, while setting it up, to open up port 80 to HTTP.
+
+1. `$ sudo yum install git`
+2. `$ gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3` (to get the rvm key)
+3. `$ curl -L get.rvm.io | bash -s stable`
+4. Run `$ source /home/ec2-user/.rvm/scripts/rvm`
+5. Finally, run `$ export rvmsudo_secure_path=1`
+
+Next, install the prerequisites for getting and setting up node.js:
+
+1. `$ sudo yum install gcc-c++ make`
+2. `$ sudo yum install openssl-devel`
+3. `$ sudo yum install libcurl-devel`
+4. `$ git clone git://github.com/joyent/node.git`
+5. `$ cd node`
+6. `$ git checkout v0.12.0`
+7. `$ ./configure`
+8. `$ make`.  This will take about 30 min.
+9. `$ sudo make install`
+
+Now enter the sudo terminal (`$ sudo su`), open `/etc/sudoers`, and add `/usr/local/bin` to the default `secure_path`.  :wq! and exit su.
+
+To install npm:
+
+1. `$ git clone https://github.com/isaacs/npm.git`
+2. `$ cd npm`
+3. `$ sudo make install`
+
+To setup the Ruby environment further:
+
+1. Go into `~/whatsfordinner`.  RVM will prompt the installation of the correct Ruby version.  Follow the command it gives.  (Remember to `$ cd .` afterwards.)
+2. `$ gem install bundler`
+
+To setup the frontend:
+1. `$ cd client`
+2. `$ npm install`
+3. `$ sudo npm install -g gulp-cli karma-cli`
+
+Clone the repo: `$ git clone https://github.com/posgarou/whatsfordinner.git`
+
+Next, you need to setup Passenger and nginx.  Passenger should be included via the Gemfile.
+
+In the terminal run: `$ rvmsudo passenger-install-nginx-module`
+
+To finish this installation, you need to set up a swap file.
+
+1. `$ sudo dd if=/dev/zero of=/swap bs=1M count=1024`
+2. `$ sudo mkswap /swap`
+3. `$ sudo swapon /swap`
+
+To run nginx, run `$ /opt/nginx/sbin/nginx`.
