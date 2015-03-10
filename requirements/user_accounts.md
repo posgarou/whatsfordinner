@@ -74,7 +74,7 @@ Need a Facebook app API key.
 
 **Time**: 30 min
 
-**STATUS**: **INCOMPLETE**
+**STATUS**: **COMPLETE**
 
 ###### GOOGLE
 
@@ -82,7 +82,7 @@ Need a Google app API key.
 
 **Time**: 30 min
 
-**STATUS**: **INCOMPLETE**
+**STATUS**: **COMPLETE**
 
 ##### RAILS CONFIG
 
@@ -90,7 +90,7 @@ There should be configuration for Facebook and Google Omniauth.
 
 **DETAILS**: Add and configure: omniauth, omniauth-facebook, omniauth-google-oauth2. Use keys from previous step.
 
-**STATUS**: **INCOMPLETE**
+**STATUS**: **COMPLETE**
 
 ##### RAILS ROUTES
 
@@ -98,7 +98,7 @@ There should be `session/` routes.
 
 **Time**: 30 min
 
-**STATUS**: **INCOMPLETE**
+**STATUS**: **COMPLETE**
 
 ##### RAILS CONTROLLER
 

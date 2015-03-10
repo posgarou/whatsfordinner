@@ -54,7 +54,7 @@ Initialize a new Rails app.
 
 **TIME**: 10 min
 
-**STATUS**: **INCOMPLETE**
+**STATUS**: **COMPLETE**
 
 #### GRAPE SETUP
 
@@ -110,7 +110,7 @@ Setup E2E testing at the Cascade level using RSpec/Capybara and Rack::Test.
 
 **Time**: 45 min
 
-**STATUS**: **INCOMPLETE**
+**STATUS**: **COMPLETE**
 
 ## Production
 
@@ -140,6 +140,14 @@ Need:
 **STATUS**: **COMPLETE**
 
 **COMPLETION NOTE**: This took _much_ longer than I was expecting.
+
+### SETUP MONGODB ON AMAZON BOX
+
+MongoDB needs to be installed on the ec2 instance.
+
+**Time**: 2 hours
+
+**STATUS**: **COMPLETE**
 
 ### PRODUCTION SHELL SCRIPT
 
