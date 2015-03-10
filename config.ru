@@ -3,10 +3,13 @@
 
 require 'rubygems'
 require 'bundler'
+require 'dotenv'
 
 ##########################
 #      ENV VARIABLES     #
 ##########################
+
+Dotenv.load
 
 # We need to set this here so it is not overridden inside server/config/boot.rb
 ENV['BUNDLE_GEMFILE'] ||= 'Gemfile'

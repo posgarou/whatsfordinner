@@ -37,6 +37,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.0)
+    awesome_print (1.6.1)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
@@ -76,6 +77,7 @@ GEM
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.2.5)
+    dotenv (2.0.0)
     equalizer (0.0.9)
     erubis (2.7.0)
     execjs (2.4.0)
@@ -111,6 +113,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    method_source (0.8.2)
     mime-types (2.4.3)
     mini_portile (0.6.2)
     minitest (5.5.1)
@@ -119,6 +122,10 @@ GEM
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     power_assert (0.2.3)
+    pry (0.10.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
     rack (1.6.0)
     rack-accept (0.4.5)
       rack (>= 0.4)
@@ -128,6 +135,9 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
+    racksh (1.0.0)
+      rack (>= 1.0)
+      rack-test (>= 0.5)
     rails (4.2.0)
       actionmailer (= 4.2.0)
       actionpack (= 4.2.0)
@@ -220,18 +230,22 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_print
   better_errors!
   binding_of_caller!
   byebug!
   capybara
   coffee-rails (~> 4.1.0)!
+  dotenv
   grape!
   hashie_rails!
   jbuilder (~> 2.0)!
   jquery-rails!
+  pry
   rack
   rack-mount
   rack-test
+  racksh
   rails (= 4.2.0)!
   rspec
   sass-rails (~> 5.0)!
