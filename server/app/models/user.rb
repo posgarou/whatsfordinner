@@ -10,19 +10,9 @@ class User
   # Omniauth info
   field :provider, type: String
   field :uid, type: String
+  field :image_url, type: String
   field :oauth_token, type: String
   field :oauth_expires_at, type: Time
-
-  def self.from_omniauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.name ||= auth.info.name
-      user.oauth_token = auth.credentials.token
-      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-      user.save!
-    end
-  end
 
   # Will also expire the oauth_token (wipe it clean) if it is expired.
   #

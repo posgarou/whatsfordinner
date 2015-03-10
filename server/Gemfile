@@ -35,6 +35,7 @@ source 'https://rubygems.org' do
 
   group :development do
     gem 'guard-rspec', require: false
+    gem 'zeus', require: false
   end
 
   group :development, :test do
@@ -50,10 +51,14 @@ source 'https://rubygems.org' do
 
   group :test do
     gem 'rspec-its'
+    gem 'database_cleaner'
   end
 
   # API
   gem 'grape'
+
+  # Organize business logic
+  gem 'interactor'
 
   # Play nice with Grape's parameter validation
   gem 'hashie_rails'

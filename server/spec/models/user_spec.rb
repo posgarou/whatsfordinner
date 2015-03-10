@@ -1,5 +1,3 @@
-require_relative '../rails_helper'
-
 describe User, type: :model do
   subject { FactoryGirl.build(:user) }
 
