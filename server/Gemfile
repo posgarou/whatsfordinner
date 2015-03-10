@@ -11,6 +11,7 @@ source 'https://rubygems.org' do
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+  # Templating
   gem 'slim-rails'
 
 # Use jquery as the JavaScript library
@@ -21,7 +22,6 @@ source 'https://rubygems.org' do
   gem 'sdoc', '~> 0.4.0', group: :doc
 
   # DB
-
   gem 'mongoid'
 
 # Use ActiveModel has_secure_password
@@ -33,12 +33,23 @@ source 'https://rubygems.org' do
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+  group :development do
+    gem 'guard-rspec', require: false
+  end
+
   group :development, :test do
     # Call 'byebug' anywhere in the code to stop execution and get a debugger console
     gem 'byebug'
 
     gem 'better_errors'
     gem 'binding_of_caller'
+
+    gem 'rspec-rails'
+    gem 'factory_girl_rails'
+  end
+
+  group :test do
+    gem 'rspec-its'
   end
 
   # API
