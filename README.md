@@ -42,7 +42,7 @@ Next, install the prerequisites for getting and setting up node.js:
 1. `$ sudo yum install gcc-c++ make openssl-devel libcurl-devel`
 2. `$ git clone git://github.com/joyent/node.git`
 3. `$ cd node`
-4. `$ git checkout v0.12.0`
+4. `$ git checkout v0.10.32`
 5. `$ ./configure`
 6. `$ make`.  This will take about 30 min.
 7. `$ sudo make install`
