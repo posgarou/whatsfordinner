@@ -8,10 +8,6 @@ gem 'capybara', require: ['capybara', 'capybara/dsl']
 gem 'rspec'
 gem 'selenium-webdriver'
 
-group :production do
-  gem 'passenger'
-end
-
 # Include the client and server gemfiles
 CLIENT_GEMFILE_PATH = './client/Gemfile'
 SERVER_GEMFILE_PATH = './server/Gemfile'

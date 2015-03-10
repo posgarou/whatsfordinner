@@ -39,17 +39,16 @@ Setup an Amazon ec2 instance.  Remember, while setting it up, to open up port 80
 
 Next, install the prerequisites for getting and setting up node.js:
 
-1. `$ sudo yum install gcc-c++ make`
-2. `$ sudo yum install openssl-devel`
-3. `$ sudo yum install libcurl-devel`
-4. `$ git clone git://github.com/joyent/node.git`
-5. `$ cd node`
-6. `$ git checkout v0.12.0`
-7. `$ ./configure`
-8. `$ make`.  This will take about 30 min.
-9. `$ sudo make install`
+1. `$ sudo yum install gcc-c++ make openssl-devel libcurl-devel`
+2. `$ git clone git://github.com/joyent/node.git`
+3. `$ cd node`
+4. `$ git checkout v0.12.0`
+5. `$ ./configure`
+6. `$ make`.  This will take about 30 min.
+7. `$ sudo make install`
+8. `$ echo 'export PATH=$PATH:/usr/local/bin' >> $HOME/.bashrc`
 
-Now enter the sudo terminal (`$ sudo su`), open `/etc/sudoers`, and add `/usr/local/bin` to the default `secure_path`.  :wq! and exit su.
+Now enter the sudo terminal (`$ sudo su`), open `/etc/sudoers`, and add `/usr/local/bin` to the end of the default `secure_path`.  :wq! and exit su.
 
 To install npm:
 
@@ -59,15 +58,15 @@ To install npm:
 
 To setup the Ruby environment further:
 
-1. Go into `~/whatsfordinner`.  RVM will prompt the installation of the correct Ruby version.  Follow the command it gives.  (Remember to `$ cd .` afterwards.)
-2. `$ gem install bundler`
+
+1. Clone the repo: `$ git clone https://github.com/posgarou/whatsfordinner.git`
+2. Go into `~/whatsfordinner`.  RVM will prompt the installation of the correct Ruby version.  Follow the command it gives.  (Remember to `$ cd .` afterwards.)
+3. `$ gem install bundler`
 
 To setup the frontend:
 1. `$ cd client`
 2. `$ npm install`
 3. `$ sudo npm install -g gulp-cli karma-cli`
-
-Clone the repo: `$ git clone https://github.com/posgarou/whatsfordinner.git`
 
 Next, you need to setup Passenger and nginx.  Passenger should be included via the Gemfile.
 
