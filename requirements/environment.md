@@ -11,6 +11,8 @@ Basic environment setup:
 
 **Time**: 15 min
 
+**STATUS**: **COMPLETE**
+
 ### Client
 
 #### SINATRA SERVER
@@ -20,6 +22,8 @@ Setup a Sinatra server to serve static assets for the front-facing Angular app. 
 **Details**: Using .coffee, .scss, and .jade.
 
 **Time**: 1 hour
+
+**STATUS**: **COMPLETE**
 
 #### GULP WORKFLOW
 
@@ -37,6 +41,8 @@ Setup a series of Gulp tasks for asset management.
 
 **Time**: 3 hours
 
+**STATUS**: **COMPLETE**
+
 ### Server
 
 #### RAILS INITIALIZATION
@@ -48,11 +54,15 @@ Initialize a new Rails app.
 
 **TIME**: 10 min
 
+**STATUS**: **INCOMPLETE**
+
 #### GRAPE SETUP
 
 Install Grape, setup the asset path, and mount it at Rails root.
 
 **TIME**: 30 min
+
+**STATUS**: **COMPLETE**
 
 ### Cascade
 
@@ -62,11 +72,15 @@ Combine `client/Gemfile` and `server/Gemfile` with a couple Cascade app-specific
 
 **Time**: 45 min
 
+**STATUS**: **COMPLETE**
+
 #### Cascade the Apps
 
 Create a custom `config.ru` that will run the Sinatra and Rails servers side by side.
 
 **Time**: 2 hours
+
+**STATUS**: **COMPLETE**
 
 ## Testing
 
@@ -78,6 +92,8 @@ Setup frontend testing environment with Karma and Jasmine.
 
 **Time**: 2 hours
 
+**STATUS**: **COMPLETE**
+
 ### BACKEND TESTING
 
 Simple setup with RSpec.
@@ -86,11 +102,15 @@ Simple setup with RSpec.
 
 **Time**: 30 min
 
+**STATUS**: **INCOMPLETE**
+
 ### E2E TESTING
 
 Setup E2E testing at the Cascade level using RSpec/Capybara and Rack::Test.
 
 **Time**: 45 min
+
+**STATUS**: **INCOMPLETE**
 
 ## Production
 
@@ -99,6 +119,8 @@ Setup E2E testing at the Cascade level using RSpec/Capybara and Rack::Test.
 Set it up on Amazon and set local environment up with key to SSH in.
 
 **Time**: 1 hour
+
+**STATUS**: **COMPLETE**
 
 ### INSTALL DEPENDENCIES ON AMAZON BOX
 
@@ -115,12 +137,18 @@ Need:
 
 **Time**: 2 hours
 
+**STATUS**: **COMPLETE**
+
+**COMPLETION NOTE**: This took _much_ longer than I was expecting.
+
 ### PRODUCTION SHELL SCRIPT
 
 Write a simple .sh script to
 
 * pull from Github,
 * set RACK_ENV to production, and
-* compile assets and start the Rack server via `serve.sh`.
+* compile assets and restart the nginx server.
 
 **Time**: 15 min
+
+**STATUS**: **INCOMPLETE**
