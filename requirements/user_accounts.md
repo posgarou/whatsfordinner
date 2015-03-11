@@ -46,7 +46,7 @@ There should be a user model. It should require a user's name and email address.
 
 **Time**: 30 min
 
-**STATUS**: **INCOMPLETE**
+**STATUS**: **COMPLETE**
 
 ##### ROUTES
 

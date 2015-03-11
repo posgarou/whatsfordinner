@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get 'auth/failure', to: 'sessions#failure'
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
+  resources :sessions, only: [:create, :destroy]
+
   namespace :admin do
 
   end

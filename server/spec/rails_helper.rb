@@ -4,6 +4,7 @@ require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require_relative 'helpers'
+require_relative 'omniauth_helper'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -24,6 +25,9 @@ require_relative 'helpers'
 
 # Required database_cleaner strategy for MongoDB
 DatabaseCleaner.strategy = :truncation
+
+# Prevent requests going to the auth servers
+OmniAuth.config.test_mode = true
 
 RSpec.configure do |config|
   # RSpec Rails can automatically mix in different behaviours to your tests
@@ -52,5 +56,7 @@ RSpec.configure do |config|
 
   config.after do
     DatabaseCleaner.clean
+    OmniAuth.config.mock_auth[:facebook] = nil
+    OmniAuth.config.mock_auth[:google_oauth2] = nil
   end
 end

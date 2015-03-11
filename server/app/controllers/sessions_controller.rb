@@ -1,11 +1,17 @@
 class SessionsController < ApplicationController
 
-  layout :frontend_notice
+  layout 'frontend_notice'
 
   def create
-    user = User.from_omniauth(env["omniauth.auth"])
-    flash[:notice] = 'Successfully logged in.'
-    session[:user_id] = user.id
+    response = GetUserFromOmniauth.(auth: request.env["omniauth.auth"])
+
+    if response.success?
+      flash[:notice] = 'Successfully logged in.'
+      session[:user_id] = response.user.id
+    else
+      flash[:error] = 'Could not log in successfully.'
+      redirect_to action: 'failure'
+    end
   end
 
   def failure
@@ -13,7 +19,7 @@ class SessionsController < ApplicationController
     flash[:error] = 'Failed to authenticate.'
   end
 
-  def destory
+  def destroy
     flash[:notice] = 'Successfully logged out.'
     session[:user_id] = nil
   end

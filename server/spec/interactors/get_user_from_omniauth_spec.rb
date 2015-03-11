@@ -1,38 +1,47 @@
 shared_examples 'a GetUserFromOmniauth' do
-  let(:auth) do
-    Hashie::Mash.new({
-      provider: user.provider,
-      uid: user.uid,
-      info: {
-         name: user.name,
-         email: user.email,
-         image: user.image_url
-      },
-      credentials: {
-         token: user.oauth_token,
-         expires_at: user.oauth_expires_at
-      }
-    })
-  end
+  include OmniauthHelper
 
-  let(:interactor) { GetUserFromOmniauth.new(auth: auth) }
+  let(:interactor) { GetUserFromOmniauth.new(auth: auth_hash) }
 
   subject { interactor }
 
   it 'creates a user where one did not previously exist' do
-    expect { subject.call }.to change { User.count }.from(0).to(1)
+    expect { subject.run }.to change { User.count }.from(0).to(1)
   end
 
   it 'returns a user where one did previously exist' do
     user.save!
-    expect { subject.call }.not_to change { User.count }
+    expect { subject.run }.not_to change { User.count }
+  end
+
+  describe 'with invalid input' do
+
+    context 'e.g. empty input' do
+      let(:auth_hash) { {} }
+
+
+      it 'fails the context' do
+        subject.run
+        expect(subject.context.success?).to be_falsey
+      end
+    end
+
+    context 'e.g. input missing a required field' do
+
+      let(:auth_hash) { {} }
+
+      it 'fails the context' do
+        subject.run
+        expect(subject.context.success?).to be_falsey
+      end
+    end
   end
 
   describe 'in saving user attributes' do
 
     it 'has all of its attributes defined' do
       user.delete
-      interactor.call
+      interactor.run
 
       expect_attributes_present(
           interactor.context.user,

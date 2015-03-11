@@ -17,6 +17,10 @@ FactoryGirl.define do
       oauth_expires_at 1.minute.ago
     end
 
+    trait :google do
+      # defaults above
+    end
+
     trait :facebook do
       provider 'facebook'
       image_url 'http://graph.facebook.com/1234567/picture?type=square'

@@ -52,6 +52,7 @@ source 'https://rubygems.org' do
   group :test do
     gem 'rspec-its'
     gem 'database_cleaner'
+    gem 'capybara', require: ['capybara', 'capybara/dsl']
   end
 
   # API
