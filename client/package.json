@@ -1,20 +1,26 @@
 {
   "name": "whats-for-dinner",
   "description": "The Angular frontfacing app for What's for Dinner?",
+  "repository": "https://github.com/posgarou/whatsfordinner",
   "version": "0.0.1",
   "devDependencies": {
     "coffee-script": "^1.9.1",
+    "del": "^1.1.1",
+    "glob": "^5.0.2",
     "gulp": "~3.8.0",
     "gulp-bower": "0.0.10",
-    "gulp-clean": "~0.2.4",
     "gulp-coffee": "~1.4",
     "gulp-concat": "~2.2.0",
+    "gulp-if": "^1.2.5",
     "gulp-imagemin": "~0.1.4",
     "gulp-jade": "^1.0.0",
-    "gulp-notify": "^2.2.0",
+    "gulp-minify-html": "^1.0.1",
+    "gulp-ng-html2js": "^0.2.0",
+    "gulp-rev-all": "^0.7.6",
     "gulp-sass": "~0.7.1",
+    "gulp-tap": "^0.1.3",
     "gulp-uglify": "~0.2.1",
-    "gulp-watch": "^4.1.1",
+    "gulp-util": "^3.0.4",
     "jasmine-core": "^2.2.0",
     "jasmine-expect": "^2.0.0-beta1",
     "karma": "^0.12.31",
@@ -25,7 +31,10 @@
     "karma-jasmine-jquery": "^0.1.1",
     "karma-jasmine-matchers": "^2.0.0-beta1",
     "karma-ng-html2js-preprocessor": "^0.1.2",
+    "lodash": "^3.5.0",
     "main-bower-files": "^2.5.0",
-    "node-sass": "^2.0.1"
+    "minimist": "^1.1.1",
+    "node-sass": "^2.0.1",
+    "vinyl-paths": "^1.0.0"
   }
 }

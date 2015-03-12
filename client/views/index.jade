@@ -1,10 +1,11 @@
 doctype
 html
   head
-    link(rel='stylesheet', href='../css/main.css')
+    link(rel='stylesheet', href='../css/#{mainCSS}')
     link(rel='stylesheet', href='http://i.icomoon.io/public/dea34bb888/whatsfordinner/style.css')
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Raleway:100,400,600')
-    script(type='text/javascript', src='../js/vendor.min.js')
-    script(type='text/javascript', src='../js/all.min.js')
+    script(type='text/javascript', src="../js/#{vendorJS}")
+    script(type= 'text/javascript', src = '../js/#{templateJS}')
+    script(type='text/javascript', src='../js/#{allJS}')
   body(ng-app="whatsForDinnerApp")
     .content(ng-view='')

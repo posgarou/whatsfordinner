@@ -1,0 +1,12 @@
+{
+  "default": {
+    "allJS": "all.js",
+    "vendorJS": "vendor.js",
+    "templateJS": "templates.min.js",
+    "mainCSS": "main.min.css"
+  },
+  "production": {
+    "allJS": "all.min.js",
+    "vendorJS": "vendor.min.js"
+  }
+}

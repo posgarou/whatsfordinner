@@ -1,2 +1,2 @@
 angular
-  .module('whatsForDinnerApp', ['ngRoute', 'mm.foundation'])
+  .module('whatsForDinnerApp', ['ngRoute', 'mm.foundation', 'templates'])

@@ -1,0 +1,10 @@
+{
+  "default": {
+    "scripts": ["app/app.coffee", "app/**/*.coffee", "app/**/*.js"],
+    "styles":  ["assets/css/style.scss", "assets/css/**/*.css"],
+    "images": ["assets/images/**/*"],
+    "views": ["views/**/*.jade"],
+    "lib": "lib",
+    "bower": "./bower_components"
+  }
+}

@@ -14,8 +14,8 @@ gem 'dotenv'
 group :test do
   gem 'rack-test'
   gem 'test-unit'
-  gem 'capybara', require: ['capybara', 'capybara/dsl']
-  gem 'rspec'
+  # gem 'capybara', require: ['capybara', 'capybara/dsl']
+  # gem 'rspec'
   gem 'selenium-webdriver'
 end
 

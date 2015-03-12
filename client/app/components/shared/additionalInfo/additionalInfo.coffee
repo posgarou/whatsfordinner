@@ -5,5 +5,5 @@ angular.module('whatsForDinnerApp').directive 'additionalInfo', ->
       name: '@',
       type: '@'
     },
-    templateUrl: 'app/shared/additionalInfo/additionalInfoView.html'
+    templateUrl: 'views/templates/shared/additionalInfoView.html'
   }

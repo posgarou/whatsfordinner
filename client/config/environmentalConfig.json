@@ -1,0 +1,12 @@
+{
+  "default": {
+    "shouldUglify": false,
+    "shouldOptimizeImages": false,
+    "shouldCacheBust": false
+  },
+  "production": {
+    "shouldUglify": true,
+    "shouldOptimizeImages": true,
+    "shouldCacheBust": true
+  }
+}

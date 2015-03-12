@@ -333,7 +333,7 @@ DEPENDENCIES
   better_errors!
   binding_of_caller!
   byebug!
-  capybara
+  capybara!
   coffee-rails (~> 4.1.0)!
   database_cleaner!
   dotenv
@@ -354,7 +354,6 @@ DEPENDENCIES
   rack-test
   racksh
   rails (= 4.2.0)!
-  rspec
   rspec-its!
   rspec-rails!
   sass-rails (~> 5.0)!
