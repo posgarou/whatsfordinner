@@ -3,6 +3,14 @@
 
 Goal: to be an easy-to-use tool to help users figure out what to eat.  Users input their preferences (and rate recipes as they go along) and then are shown, based on time- and preference-backed criteria, a short list of recipes to choose from.
 
+# Requirements
+
+For requirements, see [the requirements documents](requirements).
+
+# Standups
+
+For standups, see [the standup records](standups).
+
 # Project Structure
 
 This application mounts side-by-side
