@@ -1,8 +1,9 @@
-angular.module('whatsForDinnerApp').directive 'ratingBar', ->
+angular.module('whatsForDinnerApp').directive 'ratingBar', ["PATHS", (PATHS)->
   {
     restrict: 'E',
     scope: {
       currentRating: '='
     },
-    templateUrl: 'views/templates/shared/ratingBarView.html'
+    templateUrl: "#{PATHS.SHARED_PARTIALS}/ratingBarView.html"
   }
+]

@@ -1,9 +1,10 @@
-angular.module('whatsForDinnerApp').directive 'additionalInfo', ->
+angular.module('whatsForDinnerApp').directive 'additionalInfo', ['PATHS', (PATHS)->
   {
     restrict: 'E',
     scope: {
       name: '@',
       type: '@'
     },
-    templateUrl: 'views/templates/shared/additionalInfoView.html'
+    templateUrl: "#{PATHS.SHARED_PARTIALS}/additionalInfoView.html"
   }
+]

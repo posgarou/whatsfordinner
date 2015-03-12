@@ -1,14 +1,14 @@
-angular.module('whatsForDinnerApp').config(['$routeProvider', ($routeProvider)->
+angular.module('whatsForDinnerApp').config(['PATHS', '$routeProvider', (PATHS, $routeProvider)->
     $routeProvider.when('/', {
-      templateUrl: 'views/templates/components/homeView.html',
+      templateUrl: "#{PATHS.COMPONENT_VIEWS}/homeView.html",
       controller: 'HomeCtrl'
     })
     $routeProvider.when('/concierge', {
-      templateUrl: 'views/templates/components/recipeChooserView.html',
+      templateUrl: "#{PATHS.COMPONENT_VIEWS}/recipeChooserView.html",
       controller: 'RecipeChooserCtrl'
     })
     $routeProvider.when('/instructions', {
-      templateUrl: 'views/templates/components/instructionView.html',
+      templateUrl: "#{PATHS.COMPONENT_VIEWS}/instructionView.html",
       controller: 'InstructionCtrl'
     })
     $routeProvider.otherwise({ redirectTo: '/' })
