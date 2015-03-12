@@ -2,8 +2,18 @@ module.exports = (config) ->
   config.set
     basePath: '.',
     files: [
-      'public/js/vendor.min.js',
-      'public/js/all.min.js',
+      {
+        pattern: 'public/js/vendor?(.min)?(.*).js',
+        included: true
+      },
+      {
+        pattern: 'public/js/templates?(.min)?(.*).js',
+        included: true
+      },
+      {
+        pattern: 'public/js/all?(.min)?(.*).js',
+        included: true
+      },
       {
         pattern: 'public/views/**/*.html',
         included: true
