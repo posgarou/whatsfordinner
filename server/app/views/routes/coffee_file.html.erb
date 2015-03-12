@@ -1,0 +1,26 @@
+<pre>
+class APIRoute
+  constructor: (information)->
+    @information = JSON.parse(information)
+    @name = @information['named']
+    @path = @information['path']
+    @method = @information['method']
+    @description = @information['description']
+    @path_helper = "#{@name}_path"
+
+angular.module('APIRoutes', [])
+angular.module('APIRoutes').service 'APIRoutes', [ class APIRouteSet
+  constructor: ->
+    @routes = []
+  add: (api_route)->
+    @routes.push(api_route)
+  for: (helper_name)->
+    (route for route in @routes when route.path_helper == helper_name)[0]
+
+route_set = new APIRouteSet()
+
+<%= @routes.each do |route| %>
+  route_set.push( new APIRoute(<%= route.instance_variable_get(:@options).to_json %>) )
+<% end %>
+
+</pre>

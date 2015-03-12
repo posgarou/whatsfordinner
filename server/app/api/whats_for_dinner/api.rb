@@ -5,7 +5,9 @@ module WhatsForDinner
     prefix :api
 
     resource :recipes do
-      desc 'A test route'
+      desc 'A test route' do
+        named 'recipes_test'
+      end
       get :test do
         { name: 'Ryan' }
       end
