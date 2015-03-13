@@ -1,5 +1,4 @@
 source 'https://rubygems.org' do
-
   # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
   gem 'rails', '4.2.0'
   # Use SCSS for stylesheets
@@ -37,11 +36,11 @@ source 'https://rubygems.org' do
   group :development do
     gem 'guard-rspec', require: false
     gem 'zeus', require: false
-    gem 'rubocop', require: false
   end
 
   group :development, :test do
-    # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+    # Call 'byebug' anywhere in the code to stop execution
+    # and get a debugger console
     gem 'byebug'
 
     gem 'better_errors'

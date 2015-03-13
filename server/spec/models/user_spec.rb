@@ -12,11 +12,12 @@ describe User, type: :model do
 
   describe 'token validity' do
     it 'expires tokens successfully' do
-      expect { subject.expire_oauth_token! }.to change { subject.oauth_token }.to(nil)
+      expect { subject.expire_oauth_token! }
+        .to change { subject.oauth_token }.to(nil)
     end
 
     describe 'with a valid token' do
-      it 'denies that the oauth token is expired when the date is in the present' do
+      it 'denies the oauth token is expired when the date is in the present' do
         expect(subject.oauth_token_expired?).to be_falsey
         expect(subject.oauth_token_valid?).to be_truthy
       end

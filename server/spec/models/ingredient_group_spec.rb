@@ -1,6 +1,7 @@
 describe Graph::IngredientGroup do
   it 'saves successfully' do
-    expect{ FactoryGirl.create(:ingredient_group) }.to change{ Graph::IngredientGroup.count }.from(0).to(1)
+    expect{ FactoryGirl.create(:ingredient_group) }
+      .to change{ Graph::IngredientGroup.count }.from(0).to(1)
   end
 
   it 'sets up relationships correctly' do

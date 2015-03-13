@@ -1,3 +1,4 @@
+# General purpose test helpers.
 module Helpers
   def expect_attribute_present(subject, attribute)
     expect(subject.send(attribute.to_sym)).to be_present
