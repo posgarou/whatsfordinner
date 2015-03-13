@@ -5,6 +5,7 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require_relative 'helpers'
 require_relative 'omniauth_helper'
+require_relative 'database_cleaner_config'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -22,9 +23,6 @@ require_relative 'omniauth_helper'
 # require only the support files necessary.
 #
 # Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
-
-# Required database_cleaner strategy for MongoDB
-DatabaseCleaner.strategy = :truncation
 
 # Prevent requests going to the auth servers
 OmniAuth.config.test_mode = true
