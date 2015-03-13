@@ -1,0 +1,31 @@
+# Dependencies
+
+## MongoDB
+
+Installation of MongoDB should be fairly straightforward.  Assuming you have npm installed, just run `$ npm install mongodb`
+
+## Neo4j
+
+There is a gotcha for Neo4j installation for users using zshell: all Rake commands with arguments must be run with noglob.
+
+Thus, to install a (named) instance of neo4j, run `$ noglob bundle exec rake neo4j:install[community-2.2.0-M02,wfd-dev]`.
+
+### Starting Neo4j
+
+Run `$ noglob bundle exec rake neo4j:start['wfd-dev']`.
+
+# Test Env Setup
+
+## Neo4j
+
+Run the following to setup a neo4j test server that will run on 7475:
+
+`$ noglob bundle exec rake neo4j:install[community-2.2.0-M02,wfd-test]`
+`$ noglob rake neo4j:config[test,7475]`
+`$ noglob rake neo4j:start[test]`
+
+This installs a separate instance called test, sets it to run on port 7475, and starts it.
+
+# Troubleshooting
+
+If you have problems accessing the database, visit localhost:7474 for development and localhost:7475 for testing.  If you do not see some sort of html response (a broken app is to be expected if installed via rake), then you need to start the neo4j server at that port using the commands above.
