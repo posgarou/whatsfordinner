@@ -73,4 +73,8 @@ Rails.application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # Setup Neo4j
+  config.neo4j.session_type = :server_db
+  config.neo4j.session_path = ENV['NEO4J_URL'] || 'http://localhost:7474'
 end
