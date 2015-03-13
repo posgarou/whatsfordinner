@@ -188,7 +188,7 @@ gulp.task('compile-jade', function() {
 
 // Convert all of the templates into a simple template.js file.
 gulp.task('compile-templates', ['compile-jade', 'scripts'], function() {
-    return gulp.src(outputPaths.get('views') + '/templates/**/*.html')
+    return gulp.src(outputPaths.get('views') + '/components/**/*.html')
         .pipe(minifyHTML({
             empty: true,
             spare: true,
@@ -196,7 +196,7 @@ gulp.task('compile-templates', ['compile-jade', 'scripts'], function() {
         }))
         .pipe(html2js({
             moduleName: 'templates',
-            prefix: 'views/templates/'
+            prefix: 'views/components/'
         }))
         .pipe(concat(outputFiles.get('templateJS')))
         .pipe(uglify())
@@ -232,9 +232,16 @@ gulp.task('handle-assets', ['compile-assets'], function() {
     del('./tmp/manifest.json');
 
     if (config.get('shouldCacheBust')) {
-        return gulp.src(distDir.forCurrentEnv() + '/**/*.*')
+        // Do not cache bust the component template files: the templates.js is itself cache-busted
+        console.log('!' + outputPaths.get('views') + '/components/**/*.html');
+        return gulp.src([distDir.forCurrentEnv() + '/**/*.*', '!' + outputPaths.get('views') + '/components/**/*.html'])
             .pipe(currentFiles) // save the current file list
-            .pipe(revAll()) // create a cache-busted version
+            .pipe(revAll( { ignore:
+                [
+                    outputPaths.get('scripts') + '/' + outputFiles.get('templateJS'),
+                    new RegExp('/components/(.+)\.html')
+                ]
+            } )) // create a cache-busted version
             .pipe(gulp.dest(distDir.forCurrentEnv())) // save rev'd files in distDir
             .pipe(revAll.manifest({ fileName: 'manifest.json' })) // create a rev manifest
             .pipe(gulp.dest('./tmp')) // save the rev manifest

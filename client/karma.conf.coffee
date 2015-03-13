@@ -1,25 +1,22 @@
+# TODO Add in the Jade precompiler again
+
 module.exports = (config) ->
   config.set
     basePath: '.',
     files: [
+      'public/js/vendor.js',
+      'public/js/templates.min.js',
+
       {
-        pattern: 'public/js/vendor?(.min)?(.*).js',
+        pattern: 'app/app.coffee',
         included: true
       },
       {
-        pattern: 'public/js/templates?(.min)?(.*).js',
+        pattern: 'app/app.routes.coffee',
         included: true
       },
       {
-        pattern: 'public/js/all?(.min)?(.*).js',
-        included: true
-      },
-      {
-        pattern: 'public/views/**/*.html',
-        included: true
-      },
-      {
-        pattern: 'test/unit/**/*.coffee',
+        pattern: 'app/components/**/*.coffee',
         included: true
       }
     ]
@@ -36,6 +33,7 @@ module.exports = (config) ->
     plugins: [
       'karma-coffee-preprocessor',
       'karma-chrome-launcher',
+      'karma-jade-preprocessor',
       'karma-ng-html2js-preprocessor',
       'karma-jasmine',
       'karma-jasmine-jquery',
@@ -43,8 +41,9 @@ module.exports = (config) ->
     ]
 
     preprocessors: {
+      'app/**/*.coffee': ['coffee'],
       'test/**/*.coffee': ['coffee'],
-      'public/**/*.html': ['ng-html2js']
+      '*.jade': ['jade', 'ng-html2js']
     }
 
 

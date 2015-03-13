@@ -1,9 +1,9 @@
 {
   "default": {
-    "scripts": ["app/app.coffee", "app/**/*.coffee", "app/**/*.js"],
+    "scripts": ["app/app.coffee", "app/**/*.coffee", "app/**/*.js", "!app/**/*.spec.coffee"],
     "styles":  ["assets/css/style.scss", "assets/css/**/*.css"],
     "images": ["assets/images/**/*"],
-    "views": ["views/**/*.jade"],
+    "views": ["views/**/*.jade", "app/**/*.jade"],
     "lib": "lib",
     "bower": "./bower_components"
   }

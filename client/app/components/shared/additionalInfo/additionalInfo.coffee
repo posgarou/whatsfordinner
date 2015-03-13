@@ -5,6 +5,6 @@ angular.module('whatsForDinnerApp').directive 'additionalInfo', ['PATHS', (PATHS
       name: '@',
       type: '@'
     },
-    templateUrl: "#{PATHS.SHARED_PARTIALS}/additionalInfoView.html"
+    templateUrl: "#{PATHS.SHARED_VIEWS}/additionalInfo/additionalInfo.html"
   }
 ]

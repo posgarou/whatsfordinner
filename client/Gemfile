@@ -1,6 +1,7 @@
 # This Gemfile includes gems necessary for the Sinatra app.
 
 source 'https://rubygems.org' do
+
   # Server
   gem 'sinatra', require: ['sinatra/base']
 end
