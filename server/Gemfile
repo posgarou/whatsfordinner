@@ -39,15 +39,15 @@ source 'https://rubygems.org' do
 
     # Command line interaction
     gem 'highline', require: ['highline/import']
+
+    gem 'better_errors'
+    gem 'binding_of_caller'
   end
 
   group :development, :test do
     # Call 'byebug' anywhere in the code to stop execution
     # and get a debugger console
     gem 'byebug'
-
-    gem 'better_errors'
-    gem 'binding_of_caller'
 
     gem 'rspec-rails'
     gem 'factory_girl_rails'
