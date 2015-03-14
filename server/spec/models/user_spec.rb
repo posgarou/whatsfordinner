@@ -1,5 +1,10 @@
+require_relative '../support/tokenable_examples'
+
 describe User, type: :model do
   subject { FactoryGirl.build(:user) }
+
+  is_and_acts_like 'Tokenable'
+
 
   it 'responds to its attribute methods' do
     is_expected.to respond_to(:name)

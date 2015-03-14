@@ -5,7 +5,8 @@ describe Graph::Ingredient do
   end
 
   it 'sets up relationships correctly' do
-    relationed_group = FactoryGirl.create(:ingredient, associated_ingredient_groups: 2)
-    expect(relationed_group.groups.length).to eq(2)
+    ingredient = FactoryGirl.create(:ingredient, associated_ingredient_groups: 2, associated_flavors: 2)
+    expect(ingredient.groups.length).to eq(2)
+    expect(ingredient.flavors.length).to eq(2)
   end
 end

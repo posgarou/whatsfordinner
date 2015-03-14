@@ -2,6 +2,8 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  include Tokenable
+
   embeds_many :user_login_attempts
 
   field :name, type: String
