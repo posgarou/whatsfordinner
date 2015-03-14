@@ -5,7 +5,6 @@ describe User, type: :model do
 
   is_and_acts_like 'Tokenable'
 
-
   it 'responds to its attribute methods' do
     is_expected.to respond_to(:name)
     is_expected.to respond_to(:email)
@@ -44,6 +43,18 @@ describe User, type: :model do
         expect(subject.oauth_token_expired?).to be_truthy
         expect(subject.oauth_token_valid?).to be_falsey
       end
+    end
+  end
+
+  describe 'in interacting with Graph::User' do
+    it 'creates a graph user when there is not one already' do
+      expect { subject.graph_user }.to change { Graph::User.count }.from(0).to(1)
+    end
+
+    it 'returns the existing graph user when there is one already' do
+      subject.graph_user
+
+      expect { subject.graph_user }.not_to change { Graph::User.count }
     end
   end
 end

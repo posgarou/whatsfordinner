@@ -16,6 +16,11 @@ class User
   field :oauth_token, type: String
   field :oauth_expires_at, type: Time
 
+  # Connection with Graph DB
+  field :user_id, type: String
+
+  field :roles, type: Array, default: ['registered']
+
   # Will also expire the oauth_token (wipe it clean) if it is expired.
   #
   # Return value is truthy/falsey
@@ -34,5 +39,11 @@ class User
     self.oauth_token = nil
     self.oauth_expires_at = nil
     self.save
+  end
+
+  # Get the graph equivalent
+  def graph_user
+    # It fails if you don't call to_s, since id is natively a BSON::ObjectId
+    Graph::User.find_or_create_by(user_id: id.to_s)
   end
 end
