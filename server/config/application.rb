@@ -29,9 +29,8 @@ module WFDinnerServer
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    # Add the Grape engine files to the autoload paths
-    config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
-    config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
+    config.paths.add File.join('app', 'grape'), glob: File.join('**', '*.rb')
+    config.autoload_paths += Dir[Rails.root.join('app', 'grape', '*')]
 
     Rails.application.config.middleware.use OmniAuth::Builder do
       provider :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_SECRET']
