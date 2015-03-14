@@ -46,4 +46,30 @@ class User
     # It fails if you don't call to_s, since id is natively a BSON::ObjectId
     Graph::User.find_or_create_by(user_id: id.to_s)
   end
+
+  def admin?
+    roles.include?('admin')
+  end
+
+  def admin!
+    roles << 'admin' unless admin?
+    save if persisted?
+  end
+
+  def registered?
+    roles.include?('registered')
+  end
+
+  def register!
+    roles << 'register' unless registered?
+    save if persisted?
+  end
+
+  def visitor?
+    !(admin? || registered?)
+  end
+
+  class NullUser < User
+    field :roles, type: Array, default: []
+  end
 end

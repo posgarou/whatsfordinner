@@ -57,4 +57,20 @@ describe User, type: :model do
       expect { subject.graph_user }.not_to change { Graph::User.count }
     end
   end
+
+  describe 'with roles' do
+    it 'defaults to registered' do
+      is_expected.not_to be_admin
+      is_expected.to be_registered
+      is_expected.not_to be_visitor
+    end
+
+    it 'can be both admin and registered' do
+      subject.admin!
+
+      is_expected.to be_admin
+      is_expected.to be_registered
+      is_expected.not_to be_visitor
+    end
+  end
 end
