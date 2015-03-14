@@ -51,6 +51,8 @@ source 'https://rubygems.org' do
 
     gem 'rspec-rails'
     gem 'factory_girl_rails'
+
+    gem 'awesome_print'
   end
 
   group :test do

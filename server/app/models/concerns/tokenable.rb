@@ -15,6 +15,12 @@ module Tokenable
     self.tokens.create(client: client)
   end
 
+  # Return the last-created token for a given client
+  def most_recent_token client
+    self.tokens.where(client: client).desc(:invalid_at).limit(1).first \
+      || new_token_for(client)
+  end
+
   # Delete all stale tokens
   def prune_tokens
     tokens.select(&:stale?).map(&:delete)
