@@ -39,4 +39,13 @@ Rails.application.configure do
   # Setup Neo4j
   config.neo4j.session_type = :server_db
   config.neo4j.session_path = ENV['NEO4J_URL'] || 'http://localhost:7474'
+
+  ##############################
+  #         DB LOGGING         #
+  ##############################
+
+  config.loglevel = ENV['LOG_LVL'] || Logger::INFO
+
+  Mongoid.logger.level = Logger::DEBUG
+  Moped.logger.level = Logger::DEBUG
 end
