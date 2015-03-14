@@ -30,5 +30,14 @@ FactoryGirl.define do
       provider 'facebook'
       image_url 'http://graph.facebook.com/1234567/picture?type=square'
     end
+
+    factory :admin_user do
+      after :build do |user, _evaluator|
+        user.admin!
+      end
+    end
+  end
+
+  factory :null_user, class: User::NullUser do
   end
 end
