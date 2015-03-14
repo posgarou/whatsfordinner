@@ -15,7 +15,7 @@ module API
     end
 
     add_swagger_documentation :format => :json,
-      :base_path => "http://localhost:3000/api/",
+      :base_path => "http://#{ENV['ROOT_URL']}/api/",
       :hide_documentation_path => true
   end
 end

@@ -17,6 +17,6 @@ module Tokenable
 
   # Delete all stale tokens
   def prune_tokens
-
+    tokens.select(&:stale?).map(&:delete)
   end
 end

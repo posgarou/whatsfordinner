@@ -29,4 +29,40 @@ shared_examples_for 'Tokenable' do
       expect(subject.validate(' ', 'client')).to be_falsey
     end
   end
+
+  describe 'prune_tokens' do
+    before do
+      Timecop.freeze(Time.now)
+      FactoryGirl.build(:token, tokenable: subject)
+    end
+
+    after do
+      Timecop.return
+    end
+
+    it 'does not prune still valid tokens' do
+      expect { subject.prune_tokens }.not_to change { subject.tokens.length }
+    end
+
+    it 'prunes stale tokens' do
+      Timecop.travel 1.month.from_now
+      FactoryGirl.build(:token, tokenable: subject)
+
+      expect { subject.prune_tokens }.to change { subject.tokens.length }.from(2).to(1)
+    end
+  end
+
+  describe 'new_token_for' do
+    before do
+      # If we don't save the subject, we can't save the embedded child
+      
+      subject.save
+    end
+
+    let(:client) { 'fooClient' }
+
+    it 'adds a new token' do
+      expect { subject.new_token_for(client) }.to change { subject.tokens.count }.from(0).to(1)
+    end
+  end
 end
