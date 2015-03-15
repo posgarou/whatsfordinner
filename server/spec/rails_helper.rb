@@ -48,13 +48,39 @@ RSpec.configure do |config|
 
   config.use_transactional_fixtures = false
 
-  config.before :each do
+  # An explanation of this configuration: there are certain test suites
+  # that I want run in a defined order.  We should not clean between them.
+
+  def start_cleaning
     DatabaseCleaner.start
   end
 
-  config.after do
+  def stop_cleaning
     DatabaseCleaner.clean
     OmniAuth.config.mock_auth[:facebook] = nil
     OmniAuth.config.mock_auth[:google_oauth2] = nil
+  end
+
+  def clean_up_around(ex)
+    start_cleaning
+    ex.run
+    stop_cleaning
+  end
+
+  config.around :each do |ex|
+    if self.class.metadata[:test_sequence]
+      ex.run
+    else
+      clean_up_around ex
+    end
+  end
+
+  config.before :context, :test_sequence do
+    self.class.metadata[:order] = :defined
+    start_cleaning
+  end
+
+  config.after :context, :test_sequence do
+    stop_cleaning
   end
 end
