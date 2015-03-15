@@ -9,7 +9,9 @@ FactoryGirl.define do
 
     after :create do |recipe, evaluator|
       evaluator.associated_ingredients.times do
-        recipe.ingredients << FactoryGirl.create(:ingredient)
+        ingredient = FactoryGirl.create(:ingredient)
+
+        create(:made_with, :one, from_node: recipe, to_node: ingredient)
       end
 
       evaluator.associated_tags.times do

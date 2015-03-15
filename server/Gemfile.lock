@@ -386,6 +386,7 @@ DEPENDENCIES
   omniauth!
   omniauth-facebook!
   omniauth-google-oauth2!
+  pry!
   pundit!
   rails (= 4.2.0)!
   require_all!

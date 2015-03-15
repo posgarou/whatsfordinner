@@ -10,5 +10,11 @@ module Graph
     # TODO Add has_many :out, :flavors and make the relationship in FlavorProfile polymorphic
 
     has_many :out, :ingredients, rel_class: Graph::MadeWith, model_class: Graph::Ingredient
+
+    # Render a list of ingredients with quantities suitable for printing
+    # as a list of ingredients.
+    def render_ingredients
+      ingredients.each_rel.map &:render
+    end
   end
 end

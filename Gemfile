@@ -7,9 +7,6 @@ source 'https://rubygems.org' do
 # rails c like rack interface
   gem 'racksh'
 
-  gem 'pry'
-  gem 'awesome_print'
-
   gem 'dotenv'
 
   group :test do

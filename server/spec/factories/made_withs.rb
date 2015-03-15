@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :made_with, class: Graph::MadeWith do
     from_node { create(:recipe) }
-    to_node { FactoryGirl.create(:ingredient, name: 'sugar') }
+    to_node { create(:ingredient, name: 'sugar') }
 
     trait :one do
       quantity 1
