@@ -9,7 +9,7 @@ For requirements, see [the requirements documents](requirements).
 
 # Standups
 
-For standups, see [the standup records](standups).
+For standups, see [the standup records](standups).  (NB: the most recent standups are located on the development branch.)
 
 # Project Structure
 
