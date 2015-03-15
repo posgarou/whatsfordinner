@@ -1,5 +1,5 @@
 describe Graph::Recipe do
-  subject { FactoryGirl.create(:recipe, :with_tags) }
+  subject { FactoryGirl.create(:recipe, :with_tags, :with_ingredients) }
 
   it 'has tags' do
     expect(subject.tags).not_to be_empty

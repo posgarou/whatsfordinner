@@ -21,8 +21,8 @@ Run `$ noglob bundle exec rake neo4j:start['wfd-dev']`.
 Run the following to setup a neo4j test server that will run on 7475:
 
 `$ noglob bundle exec rake neo4j:install[community-2.2.0-M02,wfd-test]`
-`$ noglob rake neo4j:config[test,7475]`
-`$ noglob rake neo4j:start[test]`
+`$ noglob rake neo4j:config[wfd-test,7475]`
+`$ noglob rake neo4j:start[wfd-test]`
 
 This installs a separate instance called test, sets it to run on port 7475, and starts it.
 

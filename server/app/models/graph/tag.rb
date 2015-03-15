@@ -4,6 +4,6 @@ module Graph
 
     property :name, index: :exact
 
-    has_many :in, :recipes, origin: :tagged_as, model_class: Graph::Recipe
+    has_many :in, :recipes, origin: :tags, model_class: Graph::Recipe
   end
 end

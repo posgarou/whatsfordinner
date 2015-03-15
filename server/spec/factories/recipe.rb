@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :recipe, class: Graph::Recipe do
     transient do
-      associated_ingredients 6
+      associated_ingredients 0
       associated_tags 0
     end
     title { generate :unique_name }
@@ -19,6 +19,10 @@ FactoryGirl.define do
 
     trait :with_tags do
       associated_tags 3
+    end
+
+    trait :with_ingredients do
+      associated_ingredients 6
     end
   end
 end

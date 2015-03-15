@@ -9,6 +9,6 @@ module Graph
 
     # TODO Add has_many :out, :flavors and make the relationship in FlavorProfile polymorphic
 
-    has_many :out, :ingredients, type: :made_with, model_class: Graph::Ingredient
+    has_many :out, :ingredients, rel_class: Graph::MadeWith, model_class: Graph::Ingredient
   end
 end

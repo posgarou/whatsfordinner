@@ -25,6 +25,10 @@ RSpec.configure do |config|
   config.filter_gems_from_backtrace 'zeus'
   config.backtrace_exclusion_patterns = (config.backtrace_exclusion_patterns << /\-e\:1\:in \`\<main\>\'/)
 
+
+  # Allow bare use of FactoryGirl methods
+  config.include FactoryGirl::Syntax::Methods
+
   # Alias it_behaves_like for shared examples
   config.alias_it_should_behave_like_to :is_and_acts_like, 'because it is'
 
