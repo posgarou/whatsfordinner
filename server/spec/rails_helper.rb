@@ -61,17 +61,15 @@ RSpec.configure do |config|
     OmniAuth.config.mock_auth[:google_oauth2] = nil
   end
 
-  def clean_up_around(ex)
-    start_cleaning
-    ex.run
-    stop_cleaning
+  config.before :each do
+    unless self.class.metadata[:test_sequence]
+      start_cleaning
+    end
   end
 
-  config.around :each do |ex|
-    if self.class.metadata[:test_sequence]
-      ex.run
-    else
-      clean_up_around ex
+  config.after :each do
+    unless self.class.metadata[:test_sequence]
+      start_cleaning
     end
   end
 
