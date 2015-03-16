@@ -116,6 +116,9 @@ GEM
     grape-entity (0.4.5)
       activesupport
       multi_json (>= 1.3.2)
+    grape-entity-matchers (1.0.1)
+      grape-entity (~> 0.4.0)
+      rspec (>= 3.2.0)
     grape-swagger (0.10.1)
       grape (>= 0.8.0)
       grape-entity
@@ -205,6 +208,10 @@ GEM
       net-http-persistent
       os
       zip
+    neo4j-will_paginate_redux (0.3.4)
+      activesupport (~> 4.0)
+      neo4j (> 3.0.2)
+      will_paginate (~> 3.0)
     net-http-persistent (2.9.4)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
@@ -217,6 +224,8 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (~> 1.2)
+    oj (2.12.1)
+    oj_mimic_json (1.0.1)
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
       rack (~> 1.0)
@@ -376,6 +385,7 @@ GEM
       descendants_tracker (~> 0.0, >= 0.0.3)
       equalizer (~> 0.0, >= 0.0.9)
     websocket (1.2.1)
+    will_paginate (3.0.7)
     xpath (2.0.0)
       nokogiri (~> 1.3)
     zeus (0.15.4)
@@ -396,6 +406,8 @@ DEPENDENCIES
   dotenv!
   factory_girl_rails!
   grape!
+  grape-entity!
+  grape-entity-matchers!
   grape-swagger!
   grape-swagger-ui!
   guard-rspec!
@@ -407,6 +419,9 @@ DEPENDENCIES
   json (= 1.8.1)!
   mongoid!
   neo4j!
+  neo4j-will_paginate_redux!
+  oj!
+  oj_mimic_json!
   omniauth!
   omniauth-facebook!
   omniauth-google-oauth2!

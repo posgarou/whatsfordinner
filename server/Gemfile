@@ -26,6 +26,12 @@ source 'https://rubygems.org' do
   # DB
   gem 'mongoid'
   gem 'neo4j'
+  # pagination library for neo4j
+  gem 'neo4j-will_paginate_redux'
+
+  # Recommended by neo4j developers to improve performance
+  gem 'oj'
+  gem 'oj_mimic_json'
 
   # Use ActiveModel has_secure_password
   # gem 'bcrypt', '~> 3.1.7'
@@ -72,6 +78,10 @@ source 'https://rubygems.org' do
 
   # API
   gem 'grape'
+  # Grape decorator
+  gem 'grape-entity'
+  # Helps in testing grape entities
+  gem 'grape-entity-matchers'
   # automatically add documentation at /swagger_doc.json
   gem 'grape-swagger'
   # automatically generate an HTML representation at api/swagger/
