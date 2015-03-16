@@ -14,6 +14,9 @@ module Graph
 
     has_many :out, :steps, type: :has_step, model_class: Graph::RecipeStep
 
+    # User/Recipe relationships
+    has_many :in, :users_selecting, rel_class: Graph::RecipeInteractions::Selected, model_class: Graph::User
+
     # Render a list of ingredients with quantities suitable for printing
     # as a list of ingredients.
     def render_ingredients
