@@ -7,4 +7,4 @@ DatabaseCleaner[
     connection: {
       type: :server_db, path: 'http://localhost:7475'
     }
-  ].strategy = :deletion
+  ].strategy = :truncation
