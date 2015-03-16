@@ -25,6 +25,8 @@ RSpec.configure do |config|
   config.filter_gems_from_backtrace 'zeus'
   config.backtrace_exclusion_patterns = (config.backtrace_exclusion_patterns << /\-e\:1\:in \`\<main\>\'/)
 
+  # Treat all tests by default in /api as a request test
+  config.include RSpec::Rails::RequestExampleGroup, type: :request, file_path: /spec\/api/
 
   # Allow bare use of FactoryGirl methods
   config.include FactoryGirl::Syntax::Methods
