@@ -5,9 +5,14 @@ module Graph
   class MadeWith
     include Neo4j::ActiveRel
 
+    include Grape::Entity::DSL
+
     from_class Graph::Recipe
     to_class Graph::Ingredient
     type 'made_with'
+
+    alias_method :recipe, :from_node
+    alias_method :ingredient, :to_node
 
     # These four properties are needed to:
     #
@@ -50,6 +55,12 @@ module Graph
     end
 
     alias_method :to_s, :render
+
+    # When included in a recipe, also include ingredient data
+    entity :render, :required do
+      expose :render, as: :text
+      expose :ingredient, using: Graph::Ingredient::Entity
+    end
 
     # TODO Write a render_scaled function
 

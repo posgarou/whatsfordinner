@@ -1,6 +1,7 @@
 module Graph
   class Ingredient
     include Neo4j::ActiveNode
+    include Grape::Entity::DSL
 
     property :name, index: :exact
 
@@ -9,5 +10,7 @@ module Graph
     has_many :out, :groups, type: :group, model_class: Graph::IngredientGroup
 
     has_many :out, :flavors, type: :tastes, model_class: Graph::FlavorProfile
+
+    entity :id, :name
   end
 end

@@ -1,3 +1,6 @@
+# Preload all Grape validation classes
+require_rel 'validations'
+
 module API
   class Root < Grape::API
     format :json
@@ -5,14 +8,7 @@ module API
 
     helpers API::TokenAuthentication
 
-    resource :recipes do
-      desc 'A test route' do
-        named 'recipes_test'
-      end
-      get :test do
-        { name: 'Ryan' }
-      end
-    end
+    mount API::Recipes
 
     add_swagger_documentation :format => :json,
       :base_path => "http://#{ENV['ROOT_URL']}/api/",
