@@ -1,6 +1,8 @@
 describe API::Recipes do
+  let(:first_recipe) { Graph::Recipe.all.first }
+
   describe 'GET /api/recipes', :test_sequence do
-    # Neo4j creation is very expensive, so we cache it in before :all
+    # Use the expensive creation for the whole describe block
     before :all do
       21.times do
         create(:recipe, :with_ingredients, :with_steps, :with_tags)
@@ -54,20 +56,55 @@ describe API::Recipes do
       expect_400
     end
   end
-  #
-  describe 'GET /api/recipes/:recipe_id', :test_sequence do
-    before :all do
+
+  describe 'GET /api/recipes/:recipe_id' do
+    before do
       5.times do
         create(:recipe, :with_ingredients, :with_steps, :with_tags)
       end
     end
 
-    subject(:first_recipe) { Graph::Recipe.all.first }
-
     it 'returns a recipe when visiting the path' do
       get "/api/recipes/#{first_recipe.id}"
+      json = parse_response
 
       expect_success
+      expect(json).to have_key('title')
+      expect(json).to have_key('description')
+      expect(json).to have_key('id')
+    end
+  end
+
+  describe 'GET /api/recipes/:recipe_id/instructions' do
+    before do
+      create(:recipe, :with_ingredients, :with_steps, :with_tags)
+    end
+    it 'returns a JSON representation of the recipe instructions' do
+      get "/api/recipes/#{first_recipe.id}/instructions"
+      json = parse_response['instructions']
+
+      expect(json).to have_key('title')
+      expect(json).to have_key('description')
+      expect(json).to have_key('serves')
+      expect(json['serves']).to have_key('current_amount')
+      expect(json).to have_key('timeframe')
+      expect(json['timeframe']).to have_key('displayText')
+      expect(json['timeframe']).to have_key('breakdownText')
+      expect(json).to have_key('cuisines')
+      expect(json).to have_key('mealtimes')
+      expect(json).to have_key('difficulty')
+      expect(json).to have_key('serveWith')
+      expect(json).to have_key('tags')
+      expect(json).to have_key('ingredients')
+      expect(json).to have_key('steps')
+    end
+
+    it 'includes user info when user_id is supplied' do
+      get "/api/recipes/#{first_recipe.id}/instructions", { user_id: create(:graph_user).uuid }
+      json = parse_response
+
+      expect(json).to have_key('instructions')
+      expect(json).to have_key('user')
     end
   end
 end

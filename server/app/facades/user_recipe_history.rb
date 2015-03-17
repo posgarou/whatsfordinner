@@ -1,6 +1,6 @@
 # Presents the history between a user and a given recipe.
 #
-# For methods included, see UserhistoricalRecipeInteractions
+# For methods included, see UserHistoricalRecipeInteractions
 class UserRecipeHistory
   include UserHistoricalRecipeInteractions
   include Grape::Entity::DSL
@@ -27,8 +27,13 @@ class UserRecipeHistory
     query.where(recipe: { neo_id: recipe.neo_id })
   end
 
+  def rating
+    0
+  end
+
   entity :user_id, :recipe_id do
     expose :entries do |history, options|
+      expose :rating
       if options[:relation_types]
         present history.recent_interactions(relation_types)
       else

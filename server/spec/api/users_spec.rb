@@ -22,9 +22,9 @@ describe API::Users do
     end
   end
 
-  describe 'GET /api/users/:user_id/history' do
+  describe 'GET /api/users/:user_id/recipes/history' do
     it 'returns history (with pagination) for all user\'s related recipes' do
-      get resource_path + '/history'
+      get resource_path + '/recipes/history'
 
       expect_success
 

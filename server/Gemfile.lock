@@ -81,6 +81,8 @@ GEM
       xpath (~> 2.0)
     celluloid (0.16.0)
       timers (~> 4.0.0)
+    chronic_duration (0.10.6)
+      numerizer (~> 0.1.1)
     coderay (1.1.0)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
@@ -219,6 +221,7 @@ GEM
     notiffany (0.0.6)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    numerizer (0.1.1)
     oauth2 (1.0.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
@@ -384,6 +387,7 @@ DEPENDENCIES
   binding_of_caller!
   byebug!
   capybara!
+  chronic_duration
   coffee-rails (~> 4.1.0)!
   database_cleaner!
   factory_girl_rails!

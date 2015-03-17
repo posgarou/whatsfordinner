@@ -3,15 +3,15 @@ module API
     extend Grape::API::Helpers
 
     def find_user
-      Graph::User.find_by(uuid: params[:user_id])
+      Graph::User.find_by(uuid: params[:user_id]) if params[:user_id]
     end
 
     def find_user_facade
-      UserFacade.from_uuid(params[:user_id])
+      UserFacade.from_uuid(params[:user_id]) if params[:user_id]
     end
 
     def find_recipe
-      Graph::Recipe.find(params[:recipe_id])
+      Graph::Recipe.find(params[:recipe_id]) if params[:recipe_id]
     end
   end
 end

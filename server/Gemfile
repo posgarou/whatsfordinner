@@ -95,6 +95,9 @@ source 'https://rubygems.org' do
   # Handle unit math and conversion
   gem 'unitwise'
 
+  # Natural language time parsing and rendering
+  gem 'chronic_duration'
+
   # Play nice with Grape's parameter validation
   gem 'hashie_rails'
 

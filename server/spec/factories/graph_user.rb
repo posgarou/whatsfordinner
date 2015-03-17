@@ -1,5 +1,9 @@
 FactoryGirl.define do
   factory :graph_user, class: Graph::User do
+    transient do
+      user nil
+    end
+
     after :create do |user, evaluator|
       user.user_id ||= evaluator.try(:user) || create(:user, uuid: user.uuid).id
       user.save

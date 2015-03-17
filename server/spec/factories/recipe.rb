@@ -7,6 +7,10 @@ FactoryGirl.define do
     end
     title { generate :unique_name }
     description { 'Here is a description of the recipe and why you should eat it. It is good!' }
+    serves 8
+
+    prep_time 600
+    cooking_time 6000
 
     after :create do |recipe, evaluator|
       evaluator.associated_ingredients.times do

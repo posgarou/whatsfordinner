@@ -17,12 +17,24 @@ module API
       end
 
       params do
-        requires :recipe_id, type: String, desc: 'Id for recipe to lookup.'
+        requires :recipe_id, type: String, desc: 'Recipe id'
       end
       route_param :recipe_id do
         desc 'Information about a single recipe'
         get do
           render find_recipe
+        end
+
+        # recipes/:recipe_id/instruction
+        desc 'Instructions for a single recipe'
+        params do
+          optional :user_id, type: String, desc: 'User id'
+        end
+        get 'instructions' do
+          render RecipeInstructions.new(find_recipe), root: :instructions
+          if user = find_user_facade
+            render user, root: :user
+          end
         end
       end
     end
