@@ -69,7 +69,7 @@ RSpec.configure do |config|
 
   config.after :each do
     unless self.class.metadata[:test_sequence]
-      start_cleaning
+      stop_cleaning
     end
   end
 
