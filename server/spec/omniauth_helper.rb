@@ -1,6 +1,6 @@
 # Helpers to ease testing of OmniAuth.
 module OmniauthHelper
-  def auth_hash # rubocop:disable Metrics/LineLength
+  def auth_hash
     Hashie::Mash.new({
       provider: user.provider,
       uid: user.uid,

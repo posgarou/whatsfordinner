@@ -1,10 +1,9 @@
 FactoryGirl.define do
   factory :graph_user, class: Graph::User do
-    transient do
-      user { FactoryGirl.create(:user) }
+    after :create do |user, evaluator|
+      user.user_id ||= evaluator.try(:user) || create(:user, uuid: user.uuid).id
+      user.save
     end
-
-    user_id { user.id }
 
     # You need to define interaction_set to use this factory
     trait :with_interactions do

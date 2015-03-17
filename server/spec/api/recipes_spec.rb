@@ -68,7 +68,6 @@ describe API::Recipes do
       get "/api/recipes/#{first_recipe.id}"
 
       expect(response.status).to eq(200)
-      binding.pry
     end
   end
 end
