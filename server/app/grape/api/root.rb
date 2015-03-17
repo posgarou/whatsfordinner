@@ -6,6 +6,7 @@ module API
     helpers API::TokenAuthentication
 
     mount API::Recipes
+    mount API::Users
 
     add_swagger_documentation :format => :json,
       :base_path => "http://#{ENV['ROOT_URL']}/api/",

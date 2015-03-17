@@ -17,7 +17,7 @@ class User
   field :oauth_expires_at, type: Time
 
   # Connection with Graph DB
-  field :user_id, type: String
+  field :uuid, type: String
 
   field :roles, type: Array, default: ['registered']
 
@@ -43,8 +43,14 @@ class User
 
   # Get the graph equivalent
   def graph_user
-    # It fails if you don't call to_s, since id is natively a BSON::ObjectId
-    Graph::User.find_or_create_by(user_id: id.to_s)
+    if uuid
+      Graph::User.find_by(uuid: uuid)
+    else
+      graph_user = Graph::User.find_or_create_by(user_id: id)
+      self.uuid = graph_user.uuid
+      save if persisted?
+      graph_user
+    end
   end
 
   def admin?
