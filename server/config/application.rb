@@ -31,6 +31,7 @@ module WFDinnerServer
 
     config.paths.add File.join('app', 'grape'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[Rails.root.join('app', 'grape', '*')]
+    config.autoload_paths += Dir[Rails.root.join('app', 'facades', 'concerns')]
 
     Rails.application.config.middleware.use OmniAuth::Builder do
       provider :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_SECRET']
