@@ -6,7 +6,7 @@ shared_examples 'a GetUserFromOmniauth' do
   subject { interactor }
 
   it 'creates a user where one did not previously exist' do
-    expect { subject.run }.to change { User.count }.from(0).to(1)
+    expect { subject.run }.to change { User.count }.by(1)
   end
 
   it 'returns a user where one did previously exist' do
