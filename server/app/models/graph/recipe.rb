@@ -5,6 +5,10 @@ module Graph
 
     property :title, index: :exact
     property :description
+    property :serves, type: Integer
+
+    property :prep_time, type: Integer
+    property :cooking_time, type: Integer
 
     has_many :out, :tags, type: :tagged_as, model_class: Graph::Tag
 
@@ -38,17 +42,21 @@ module Graph
       steps.order(number: :asc).to_a
     end
 
-    entity :title, :description do
+    entity :title, :description, :serves do
       # Specifies that these attributes should only be
       # displayed if the instance is not in a collection
       # or if options[:type] is explicitly set to :full
-      alone_or_solo = -> (_instance, options) do
+      alone_or_full = -> (_instance, options) do
         !options[:collection] || options[:type] == :full
       end
 
-      expose :tags_for_rendering, if: alone_or_solo, using: Graph::Tag::Entity, as: :tags
-      expose :ingredients_rels, as: :ingredients, using: Graph::MadeWith::Entity
-      expose :steps_in_order, if: alone_or_solo, as: :steps
+      expose :tags_for_rendering, if: alone_or_full, using: Graph::Tag::Entity, as: :tags
+      expose :ingredients_rels, as: :ingredients, using: Graph::MadeWith::Entity, if: alone_or_full
+      expose :steps_in_order, if: alone_or_full, as: :steps
+
+      def total_time
+        cooking_time + prep_time
+      end
     end
   end
 end
