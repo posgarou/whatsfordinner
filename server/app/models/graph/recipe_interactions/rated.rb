@@ -15,7 +15,7 @@ module Graph
       #  +1: liked it
       property :rating, type: Integer
 
-      entity :rating, :event_date
+      entity :rating, :event_date, :type
     end
   end
 end

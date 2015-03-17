@@ -14,11 +14,11 @@ describe API::Users do
 
   let(:resource_path) { "/api/users/#{user.uuid}" }
 
-  describe 'GET /api/users/:user_id' do
+  xdescribe 'GET /api/users/:user_id' do
     it 'returns a user and his/her info' do
       get resource_path
 
-      expect(response.status).to eq(200)
+      expect_success
     end
   end
 
@@ -26,7 +26,9 @@ describe API::Users do
     it 'returns history (with pagination) for all user\'s related recipes' do
       get resource_path + '/history'
 
-      expect(response.status).to eq(200)
+      expect_success
+
+      expect(response.body).to match(/selected/).and match(/rated/)
     end
   end
 end

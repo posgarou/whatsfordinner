@@ -15,7 +15,7 @@ module Graph
         date_confirmed.present?
       end
 
-      entity :event_date, :confirmed? do
+      entity :event_date, :type, :confirmed? do
         expose :date_confirmed, safe: true
       end
     end

@@ -6,6 +6,7 @@ require 'spec_helper'
 require_relative 'helpers'
 require_relative 'omniauth_helper'
 require_relative 'database_cleaner_config'
+require_rel 'support'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -45,6 +46,7 @@ RSpec.configure do |config|
   config.include Helpers
 
   config.infer_spec_type_from_file_location!
+  config.include ResponseHelpers, :type => :request
 
   config.use_transactional_fixtures = false
 

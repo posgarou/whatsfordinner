@@ -10,48 +10,48 @@ describe API::Recipes do
     it 'returns a list of recipes' do
       get '/api/recipes'
 
-      expect(response.status).to eq(200)
+      expect_success
     end
 
     it 'returns 20 by default on page one' do
       get '/api/recipes', p: 1
 
-      expect(response.status).to eq(200)
-      expect(JSON.parse(response.body).length).to eq(20)
+      expect_success
+      expect(parse_response.length).to eq(20)
     end
 
     it 'returns 1 by default on page two' do
       get '/api/recipes', p: 2
 
-      expect(response.status).to eq(200)
-      expect(JSON.parse(response.body).length).to eq(1)
+      expect_success
+      expect(parse_response.length).to eq(1)
     end
 
     it 'returns 0 by default on page three' do
       get '/api/recipes', p: 3
 
-      expect(response.status).to eq(200)
-      expect(JSON.parse(response.body)).to be_empty
+      expect_success
+      expect(parse_response).to be_empty
     end
 
     it 'returns 21 for p 1 if I specify per_page of 30' do
       get '/api/recipes', p: 1, per_page: 30
 
-      expect(response.status).to eq(200)
-      expect(JSON.parse(response.body).length).to eq(21)
+      expect_success
+      expect(parse_response.length).to eq(21)
     end
 
     it 'returns 0 for p 2 if I specify per_page of 30' do
       get '/api/recipes', p: 2, per_page: 30
 
-      expect(response.status).to eq(200)
-      expect(JSON.parse(response.body).length).to eq(0)
+      expect_success
+      expect(parse_response).to be_empty
     end
 
     it 'raises an error if I specify per_page outside 1..40' do
       get '/api/recipes', per_page: 0
 
-      expect(response.status).to eq(400)
+      expect_400
     end
   end
   #
@@ -67,7 +67,7 @@ describe API::Recipes do
     it 'returns a recipe when visiting the path' do
       get "/api/recipes/#{first_recipe.id}"
 
-      expect(response.status).to eq(200)
+      expect_success
     end
   end
 end
