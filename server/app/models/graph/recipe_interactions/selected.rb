@@ -2,6 +2,7 @@ module Graph
   module RecipeInteractions
     class Selected
       include Graph::RecipeInteractions::Base
+      include Grape::Entity::DSL
 
       type 'selected'
 
@@ -12,6 +13,10 @@ module Graph
 
       def confirmed?
         date_confirmed.present?
+      end
+
+      entity :event_date, :confirmed? do
+        expose :date_confirmed, safe: true
       end
     end
   end

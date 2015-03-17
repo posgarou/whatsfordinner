@@ -22,7 +22,6 @@ module Graph
     module Base
       extend ActiveSupport::Concern
       include Neo4j::ActiveRel
-      include Grape::Entity::DSL
 
       included do
         from_class Graph::User
