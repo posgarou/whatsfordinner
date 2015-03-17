@@ -6,7 +6,7 @@ shared_examples 'a GetUserFromOmniauth' do
   subject { interactor }
 
   it 'creates a user where one did not previously exist' do
-    expect { subject.run }.to change { User.count }.by(1)
+    expect { subject.run }.to change { User.count }.from(0).to(1)
   end
 
   it 'returns a user where one did previously exist' do
@@ -59,13 +59,13 @@ end
 
 describe GetUserFromOmniauth do
   describe 'with a google account' do
-    let(:user) { FactoryGirl.build(:user) }
+    let(:user) { FactoryGirl.create(:user) }
 
     it_behaves_like "a GetUserFromOmniauth"
   end
 
   describe 'with a facebook account' do
-    let(:user) { FactoryGirl.build(:user, :facebook) }
+    let(:user) { FactoryGirl.create(:user, :facebook) }
 
     it_behaves_like "a GetUserFromOmniauth"
   end
