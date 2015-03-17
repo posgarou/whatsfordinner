@@ -1,11 +1,11 @@
 module API
   class Recipes < Grape::API
+    helpers SharedParams
 
     resource :recipes do
       desc 'Index listing of recipes'
       params do
-        optional :p, type: Integer, default: 1, desc: 'Current page of paginated recipes. Defaults to 1.'
-        optional :per_page, type: Integer, default: 20, range: 1..40, desc: 'Number to include per request. '
+        use :pagination
       end
       get do
         present Graph::Recipe.all.paginate(
@@ -14,9 +14,9 @@ module API
           )
       end
 
-      # params do
-      #   required :recipe_id, type: String, desc: 'Id for a recipe'
-      # end
+      params do
+        requires :recipe_id, type: String, desc: 'Id for recipe to lookup.'
+      end
       route_param :recipe_id do
         desc 'Information about a single recipe'
         get do
