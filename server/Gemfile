@@ -77,7 +77,9 @@ source 'https://rubygems.org' do
   end
 
   # API
-  gem 'grape'
+  # Edge grape has some nifty features with named params blocks (e.g., support for range validation).
+  # Limit to most recent commit as of 3/16/15
+  gem 'grape', git: 'git://github.com/intridea/grape.git', ref: '489cdc94a4e36a40f6707d55c565232336aae4fc'
   # Grape decorator
   gem 'grape-entity'
   # Helps in testing grape entities
