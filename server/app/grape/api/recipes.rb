@@ -1,6 +1,8 @@
 module API
   class Recipes < Grape::API
     helpers SharedParams
+    helpers FinderHelpers
+    helpers PresenterHelpers
 
     resource :recipes do
       desc 'Index listing of recipes'
@@ -20,7 +22,7 @@ module API
       route_param :recipe_id do
         desc 'Information about a single recipe'
         get do
-          present Graph::Recipe.find(params[:recipe_id]), with: Graph::Recipe::Entity
+          render find_recipe
         end
       end
     end

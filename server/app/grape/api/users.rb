@@ -1,6 +1,8 @@
 module API
   class Users < Grape::API
     helpers SharedParams
+    helpers FinderHelpers
+    helpers PresenterHelpers
 
     resource :users do
       # Note: no /users/ index route for now.
@@ -12,7 +14,7 @@ module API
       route_param :user_id do
         desc 'Generation user info.'
         get do
-          present UserFacade.from_uuid(params[:user_id])
+          present find_user_facade
         end
 
         # /users/:user_id/history
@@ -22,12 +24,11 @@ module API
             use :pagination
           end
           get do
-            interactions = UserRecipesHistory.interactions_for(
-              user: Graph::User.find_by(uuid: params[:user_id]),
+            render_all UserRecipesHistory.interactions_for(
+              user: find_user,
               page: params[:p],
               per_page: params[:per_page]
             )
-            interactions.map(&:entity)
           end
 
           desc 'Recent recipe interactions between this user and a given recipe.'
@@ -37,13 +38,12 @@ module API
           end
           route_param :recipe_id do
             get do
-              interactions = UserRecipeHistory.interactions_for(
+              render_all UserRecipeHistory.interactions_for(
                 user: Graph::User.find_by(uuid: params[:user_id]),
                 recipe: Recipe.find(params[:recipe_id]),
                 page: params[:p],
                 per_page: params[:per_page]
               )
-              interactions.map(&:entity)
             end
           end
         end
