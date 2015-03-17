@@ -1,6 +1,3 @@
-# Preload all Grape validation classes
-require_rel 'validations'
-
 module API
   class Root < Grape::API
     format :json
