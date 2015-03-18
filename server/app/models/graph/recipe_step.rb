@@ -3,6 +3,7 @@ module Graph
     include Neo4j::ActiveNode
 
     property :text, type: String
+    property :tip, type: String
     property :number, type: Integer
     property :optional, type: Boolean, default: false
 

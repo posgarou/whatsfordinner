@@ -44,6 +44,21 @@
     aside {
       border-color: $dark;
     }
+
+    .recipe-preview {
+      &:not(:last-of-type) {
+        border-right-color: transparentize($med, 0.7);
+      }
+    }
+
+    .standard-btn.themed {
+      border-color: $dark;
+
+      &:hover, &:active, &:focus {
+        color: $light;
+        background: $dark;
+      }
+    }
   }  // end .recipe
 }
 

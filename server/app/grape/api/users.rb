@@ -33,6 +33,16 @@ module API
             end
           end
 
+          desc 'Get recipe suggestions'
+          params do
+            # Add here mealtime, difficulty, etc.
+          end
+          get 'concierge' do
+            result = Concierge.(user: find_user)
+
+            render_all result.suggestions, root: 'recipes'
+          end
+
           desc 'Recent recipe interactions between this user and a given recipe'
           params do
             optional :recipe_id, 'Recipe id'

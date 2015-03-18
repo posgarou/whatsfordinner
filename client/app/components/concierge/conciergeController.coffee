@@ -1,4 +1,4 @@
-angular.module('whatsForDinnerApp').controller('RecipeChooserCtrl', ['$scope', 'RecipePreview', ($scope, RecipePreview) ->
+angular.module('whatsForDinnerApp').controller('ConciergeCtrl', ['$scope', 'ConciergeService', 'TEST_DATA', ($scope, ConciergeService, TEST_DATA) ->
   $scope.headerTexts = {
     'common': [
       'Hungry? Good.',
@@ -18,11 +18,9 @@ angular.module('whatsForDinnerApp').controller('RecipeChooserCtrl', ['$scope', '
       'Dinnertime'
     ]
   }
-  $scope.recipes = [
-    new RecipePreview,
-    new RecipePreview,
-    new RecipePreview
-  ]
+  $scope.concierge = new ConciergeService TEST_DATA.USER_ID
+  $scope.concierge.load()
+  $scope.recipes = $scope.concierge.suggestions
   $scope.theme = 'dinner'
 
   $scope.headerText = ->

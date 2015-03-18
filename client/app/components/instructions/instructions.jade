@@ -36,7 +36,7 @@
             .ingredients-list.circled-star-list
                 h2.sr-only Ingredients List
                 ul(ng-class="{ columnized: instructions.ingredients.length >= 10 }")
-                    li(ng-repeat='ingredient in instructions.ingredients') {{ ingredient }}
+                    li(ng-repeat='ingredient in instructions.ingredients') {{ ingredient.text }}
             .timeframe-and-serve-with
                 .serve-with
                     h4 Try it with

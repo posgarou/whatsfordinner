@@ -1,0 +1,11 @@
+.standard-btn {
+  @extend .button;
+  @extend .block-center;
+
+  width: 50%;
+  border: 1px solid black;
+  border-radius: 4px;
+
+  background: transparent;
+  color: $charcoal;
+}

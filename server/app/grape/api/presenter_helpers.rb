@@ -14,7 +14,7 @@ module API
 
     def render_all collection, root:nil
       if root
-        present root, collection.map(&:entity)
+        Hash.new(root: present(collection.map(&:entity)))
       else
         present collection.map(&:entity)
       end

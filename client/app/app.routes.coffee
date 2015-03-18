@@ -4,10 +4,10 @@ angular.module('whatsForDinnerApp').config(['PATHS', '$routeProvider', (PATHS, $
       controller: 'HomeCtrl'
     })
     $routeProvider.when('/concierge', {
-      templateUrl: "#{PATHS.COMPONENT_VIEWS}/recipeChooser/recipeChooser.html",
-      controller: 'RecipeChooserCtrl'
+      templateUrl: "#{PATHS.COMPONENT_VIEWS}/concierge/concierge.html",
+      controller: 'ConciergeCtrl'
     })
-    $routeProvider.when('/instructions', {
+    $routeProvider.when('/instructions/:recipeId', {
       templateUrl: "#{PATHS.COMPONENT_VIEWS}/instructions/instructions.html",
       controller: 'InstructionsCtrl'
     })

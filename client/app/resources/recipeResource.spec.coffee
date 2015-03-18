@@ -1,18 +1,18 @@
-describe 'Instructions', ->
+describe 'Recipe', ->
   beforeEach ->
     module('whatsForDinnerApp')
 
   beforeEach inject ($injector) ->
     @httpBackend = $injector.get('$httpBackend')
     @rootScope = $injector.get('$rootScope')
-    @instructions = $injector.get('Instructions')
+    @recipe = $injector.get('RecipeResource')
 
   afterEach ->
     @httpBackend.verifyNoOutstandingExpectation()
     @httpBackend.verifyNoOutstandingRequest()
 
-  it 'calls the GET route for recipe/:id/instructions', ->
-    @httpBackend.expectGET('/api/recipes/40/instructions').respond(200, 'success')
-    @instructions.get({ recipeId: 40 })
+  it 'calls the GET route for recipe/:id', ->
+    @httpBackend.expectGET('/api/recipes/45').respond(200, 'success')
+    @recipe.get({ recipeId: 45 })
     @httpBackend.flush()
 

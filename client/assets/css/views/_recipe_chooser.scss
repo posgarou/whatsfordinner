@@ -1,3 +1,28 @@
 .recipe-chooser {
-  @extend .main-content;
+  @extend %main-content;
+
+  .recipes-preview {
+    @extend .row;
+    .recipe-preview {
+      @extend .columns;
+      @extend .large-4;
+
+      margin-bottom: 2em;
+
+      text-align: center;
+
+      &:not(:last-of-type) {
+        border-right: 3px solid black;
+      }
+
+      h1 {
+        font-size: 2em;
+        margin: 0.6em 0;
+      }
+
+      p {
+        margin-bottom: 1.7em;
+      }
+    }
+  }
 }

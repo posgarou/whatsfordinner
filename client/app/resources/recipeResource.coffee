@@ -1,6 +1,6 @@
 angular
   .module('whatsForDinnerApp')
-  .factory('Recipe', ['$resource', ($resource) ->
+  .factory('RecipeResource', ['$resource', ($resource) ->
     $resource(
       '/api/recipes/:recipeId',
       {recipeId: '@id'}

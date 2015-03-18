@@ -1,10 +1,10 @@
-describe 'RecipeChooserCtrl', ->
+describe 'ConciergeCtrl', ->
   beforeEach ->
     module('whatsForDinnerApp')
 
   beforeEach inject ($rootScope, $controller) ->
     @scope = $rootScope.$new()
-    @ctrl = $controller 'RecipeChooserCtrl', $scope: @scope
+    @ctrl = $controller 'ConciergeCtrl', $scope: @scope
 
   describe 'scope variables', ->
     it 'includes theme', ->
