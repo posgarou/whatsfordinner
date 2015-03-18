@@ -160,6 +160,9 @@ GEM
     i18n (0.7.0)
     ice_nine (0.11.1)
     interactor (3.1.0)
+    interactor-rails (2.0.1)
+      interactor (~> 3.0)
+      rails (>= 3, < 5)
     jbuilder (2.2.11)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -423,7 +426,7 @@ DEPENDENCIES
   guard-rspec!
   hashie_rails
   highline!
-  interactor
+  interactor-rails
   jbuilder (~> 2.0)!
   jquery-rails!
   json (= 1.8.1)!

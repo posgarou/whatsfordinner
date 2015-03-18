@@ -90,7 +90,7 @@ source 'https://rubygems.org' do
   gem 'grape-swagger-ui'
 
   # Organize business logic
-  gem 'interactor'
+  gem 'interactor-rails'
 
   # Handle unit math and conversion
   gem 'unitwise'
