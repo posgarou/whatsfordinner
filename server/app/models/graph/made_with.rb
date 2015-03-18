@@ -40,18 +40,26 @@ module Graph
 
     property :required, type: Boolean, default: true
 
+    # If set to true, just the bare recipe name is returned
+    # (E.g., as would be appropriate for "salt" or "pepper" sometimes.)
+    property :uncounted, type: Boolean, default: false
+
     # Note to future self: to find a compatible metric unit for a non-metric unit of
     # measurement, you would use the data offered by derived_unit.yml and the
     # compatible_with function to find the compatible_unit in metric
 
     def render
-      quantity_string = render_quantity
-      [
-        quantity_string,
-        render_units(transform:quantity_string.present?),
-        to_node.name,
-        render_optionality
-      ].compact.join(' ')
+      if uncounted
+        to_node.name
+      else
+        quantity_string = render_quantity
+        [
+          quantity_string,
+          render_units(transform:quantity_string.present?),
+          to_node.name,
+          render_optionality
+        ].compact.join(' ')
+      end
     end
 
     alias_method :to_s, :render
