@@ -50,7 +50,7 @@ class RecipeInstructions
   end
 
   def total_time
-    cooking_time + prep_time
+    (cooking_time || 0) + (prep_time || 0)
   end
 
   #################################
@@ -73,7 +73,7 @@ class RecipeInstructions
     expose :description
 
     expose :serves do
-      expose :current_amount
+      expose :current_amount, as: :currentAmount
     end
 
     expose :timeframe do

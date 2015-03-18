@@ -11,7 +11,7 @@ describe RecipeInstructions do
     )
   end
 
-  subject(:facade) { RecipeInstructions.new(recipe, user) }
+  subject(:facade) { RecipeInstructions.new(recipe) }
 
   describe 'timeframe_breakdown_text' do
     it 'displays a breakdown of cooking and prep time' do
@@ -31,6 +31,20 @@ describe RecipeInstructions do
     it 'displays the total time' do
       expect(facade.timeframe_display_text)
         .to eq('1h 50m')
+    end
+
+    it 'displays the total time even when prep time is nil' do
+      recipe.update_attribute(:prep_time, nil)
+
+      expect(facade.timeframe_display_text)
+        .to eq('1h 40m')
+    end
+
+    it 'displays the total time even when cooking time is nil' do
+      recipe.update_attribute(:cooking_time, nil)
+
+      expect(facade.timeframe_display_text)
+        .to eq('10m')
     end
   end
 end
