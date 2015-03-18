@@ -1,7 +1,6 @@
 angular
-  .module('whatsForDinnerApp', ['ngRoute', 'mm.foundation', 'templates'])
+  .module('whatsForDinnerApp', ['ngRoute', 'ngResource', 'mm.foundation', 'templates'])
   .constant('PATHS', {
     "COMPONENT_VIEWS": 'views/components',
-    "SHARED_VIEWS": 'views/components/shared',
-    "API": "api"
+    "SHARED_VIEWS": 'views/components/shared'
   })

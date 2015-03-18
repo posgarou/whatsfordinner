@@ -128,6 +128,7 @@ var libraries = new ConfigurationSet({
         function() { return paths.get('lib') + '/jquery.js'; },
         function() { return paths.get('bower') + '/underscore/underscore.js'; },
         function() { return paths.get('lib') + '/angular.js'; },
+        function() { return paths.get('bower') + '/angular-resource/angular-resource.js'},
         function() { return paths.get('lib') + '/**/*.js'; },
         function() { return paths.get('lib') + '/*.js'; }
     ]

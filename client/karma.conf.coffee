@@ -16,7 +16,7 @@ module.exports = (config) ->
         included: true
       },
       {
-        pattern: 'app/components/**/*.coffee',
+        pattern: 'app/**/*.coffee',
         included: true
       }
     ]

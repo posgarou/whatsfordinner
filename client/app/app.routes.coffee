@@ -8,8 +8,8 @@ angular.module('whatsForDinnerApp').config(['PATHS', '$routeProvider', (PATHS, $
       controller: 'RecipeChooserCtrl'
     })
     $routeProvider.when('/instructions', {
-      templateUrl: "#{PATHS.COMPONENT_VIEWS}/instructions/instruction.html",
-      controller: 'InstructionCtrl'
+      templateUrl: "#{PATHS.COMPONENT_VIEWS}/instructions/instructions.html",
+      controller: 'InstructionsCtrl'
     })
     $routeProvider.otherwise({ redirectTo: '/' })
   ])
