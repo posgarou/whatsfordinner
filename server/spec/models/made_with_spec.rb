@@ -36,6 +36,12 @@ describe Graph::MadeWith do
 
       is_and_acts_like 'required or optional', '3 mg sugar'
     end
+
+    context 'of 1 tsp' do
+      subject { build(:made_with, unit_quantity: 1, unit_type:'teaspoon')}
+
+      is_and_acts_like 'required or optional', '1 teaspoon sugar'
+    end
   end
 
   describe 'with a quantity and a unit' do

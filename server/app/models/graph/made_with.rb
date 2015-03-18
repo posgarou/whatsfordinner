@@ -94,8 +94,13 @@ module Graph
     # TODO Use Unitwise's #round method. This will be really complex to implement, as you need to round and transform units (e.g., 400tsp to some other measurement), and the way you round will depend on the type of unit (e.g., 453mg to 450mg but 0.53cups to 0.5cups). Moreover, this will be inherently imperfect, as for some measurements--even with the same unit--sometimes you want very precise rounding and sometimes you want very liberal rounding.  You could, in the future, add something like the quantity_step property for handling unit rounding.
     def render_units scale=1.0, transform: true
       if unit_quantity && unit_type
+        units = (Unitwise(unit_quantity, unit_type) * (transform ? scale : 1))
+
         # :symbol normalizes to (e.g.) "10 °C"
-        (Unitwise(unit_quantity, unit_type) * (transform ? scale : 1)).to_s(:symbol)
+        # UnitWise does not handle #to_s nicely when there is no symbol.
+        # TODO Add a custom lookup for tablespoons, teaspoons, pints, quarts, etc.
+        strategy = units.unit.to_s(:symbol) == '1' ? :names : :symbol
+        units.to_s(strategy)
       end
     end
 
