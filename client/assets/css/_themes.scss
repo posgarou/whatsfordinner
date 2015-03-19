@@ -59,7 +59,16 @@
         background: $dark;
       }
     }
-  }  // end .recipe
+  }  // end %main-content
+
+  .btn-#{$name} {
+    border-color: $dark;
+
+    &:hover, &:active, &:focus {
+      color: $light;
+      background: $dark;
+    }
+  }
 }
 
 // THEME DEFINITIONS

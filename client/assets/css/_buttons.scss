@@ -7,5 +7,37 @@
   border-radius: 4px;
 
   background: transparent;
+
+  font-family: $headerFonts;
+  font-weight: 100;
   color: $charcoal;
+
+  text-transform: lowercase;
+  letter-spacing: 0.12em;
+
+  &:hover, &:active, &:focus {
+    background: $secondary-color;
+    color: white;
+  }
+}
+
+.btn-easy {
+  border-color: $easy;
+  &:hover, &:active, &:focus {
+    background: $easy;
+  }
+}
+
+.btn-medium {
+  border-color: $medium;
+  &:hover, &:active, &:focus {
+    background: $medium;
+  }
+}
+
+.btn-hard {
+  border-color: $hard;
+  &:hover, &:active, &:focus {
+    background: $hard;
+  }
 }
