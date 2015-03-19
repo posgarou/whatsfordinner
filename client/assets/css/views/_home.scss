@@ -7,16 +7,18 @@
   width: 100%;
   min-height: 100vh;
   padding: 1em 0 6em;
+  border-bottom: 10px solid white;
 
   h1 {
     font-size: 4em;
-    margin: 20vh 0 1em;
+    margin: 10vh 0 1em;
     padding: 0.5em;
     background: transparentize(white, 0.45);
   }
 
   .content-row {
     background: transparentize(white, 0.45);
+    margin-bottom: 1em;
   }
 
   .hero-content-box {
@@ -25,8 +27,6 @@
       padding: 0.5em;
 
       text-align: center;
-      p {
-      }
     }
   }
 }
@@ -46,6 +46,10 @@
   @extend %hero-unit;
   background-image: url('/images/tea.jpg');
 
+  h1 {
+    margin-top: 20vh;
+  }
+
   .button-set {
     @extend .row;
     text-align: right;
@@ -54,7 +58,7 @@
   .subheader-left {
     @extend .columns;
     @extend .medium-6;
-    padding: 2em 0vw;
+    padding: 2em 0vw 0.5em;
 
     h2 { text-align: left; }
   }
@@ -62,7 +66,7 @@
   .subheader-right {
     @extend .columns;
     @extend .medium-6;
-    padding: 2em 0;
+    padding: 2em 0 0;
 
     h2 { text-align: right; }
   }
