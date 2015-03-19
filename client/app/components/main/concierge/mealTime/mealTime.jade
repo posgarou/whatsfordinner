@@ -1,0 +1,3 @@
+a.standard-btn.guessed(ng-click='selectMealTime(guess.name)', ng-class='guess.className') {{ guess.buttonTextGuessed }}
+
+a.standard-btn.not-guessed(ng-click='selectMealTime(button.name)', ng-class='button.className', ng-repeat='button in doubtful') {{ button.buttonTextDoubtful }}

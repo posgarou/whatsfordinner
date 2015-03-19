@@ -1,7 +1,7 @@
 describe 'InstructionsCtrl', ->
   beforeEach ->
     module('whatsForDinnerApp')
-    module(($provide) ->
+    module( ($provide) ->
       @mock = (recipeId) ->
         {}
       $provide.value('Instructions', @mock)

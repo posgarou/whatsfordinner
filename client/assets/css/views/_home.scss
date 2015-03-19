@@ -1,0 +1,79 @@
+%hero-unit {
+  background: no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100%;
+  min-height: 100vh;
+  padding: 1em 0 6em;
+
+  h1 {
+    font-size: 4em;
+    margin: 20vh 0 1em;
+    padding: 0.5em;
+    background: transparentize(white, 0.45);
+  }
+
+  .content-row {
+    background: transparentize(white, 0.45);
+  }
+
+  .hero-content-box {
+    .inner {
+      display: inline-block;
+      padding: 0.5em;
+
+      text-align: center;
+      p {
+      }
+    }
+  }
+}
+
+// SASS does squirrely things if these @extends are included
+// in the above declaration.
+.content-row {
+  @extend .row;
+}
+
+.hero-content-box {
+  @extend .columns;
+  @extend .medium-6;
+}
+
+.splash {
+  @extend %hero-unit;
+  background-image: url('/images/tea.jpg');
+
+  .button-set {
+    @extend .row;
+    text-align: right;
+  }
+
+  .subheader-left {
+    @extend .columns;
+    @extend .medium-6;
+    padding: 2em 0vw;
+
+    h2 { text-align: left; }
+  }
+
+  .subheader-right {
+    @extend .columns;
+    @extend .medium-6;
+    padding: 2em 0;
+
+    h2 { text-align: right; }
+  }
+}
+
+.below-the-fold {
+  @extend %hero-unit;
+
+  background-image: url('/images/pasta.jpg');
+}
+
+.how-it-works {
+  @extend %hero-unit;
+}

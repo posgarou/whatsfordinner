@@ -1,9 +1,0 @@
-.recipe-chooser(ng-class='theme')
-    .header
-        .meal-name {{ theme }}
-        h1 {{ headerText() }}
-    .recipes-preview
-        .recipe-preview(ng-repeat='recipe in recipes')
-            h1 {{ recipe.title }}
-            p {{ recipe.description }}
-            a.standard-btn.themed(ng-href="#/instructions/{{recipe.recipeId}}") Eat it

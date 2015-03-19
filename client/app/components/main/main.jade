@@ -1,0 +1,5 @@
+.content-box(ng-class='[stylingInfo.theme, stylingInfo.outerClass]')
+    .header
+        .meal-name(ng-if='headerInfo.mealName') {{ headerInfo.mealName }}
+        h1 {{ headerInfo.h1 }}
+    .main-content(app-view-segment='1')

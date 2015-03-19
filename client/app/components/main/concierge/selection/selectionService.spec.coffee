@@ -1,11 +1,11 @@
-describe 'ConciergeService', ->
+describe 'SelectionService', ->
   beforeEach ->
     module('whatsForDinnerApp')
 
   beforeEach inject ($injector) ->
     @httpBackend = $injector.get('$httpBackend')
     @rootScope = $injector.get('$rootScope')
-    @concierge = $injector.get('ConciergeService')
+    @selector = $injector.get('SelectionService')
 
     @httpBackend.expectGET('/api/users/40/recipes/concierge').respond(
       [
@@ -20,14 +20,14 @@ describe 'ConciergeService', ->
     @httpBackend.verifyNoOutstandingRequest()
 
   it 'calls the GET route for /api/users/40/recipes/concierge', ->
-    concierge = new @concierge(40)
-    concierge.load()
+    selector = new @selector(40)
+    selector.load()
     @httpBackend.flush()
 
   it 'loads in the JSON data', ->
-    concierge = new @concierge(40)
-    concierge.load()
+    selector = new @selector(40)
+    selector.load()
     @httpBackend.flush()
 
-    expect(concierge.suggestions.length).toEqual(3)
+    expect(selector.suggestions.length).toEqual(3)
 

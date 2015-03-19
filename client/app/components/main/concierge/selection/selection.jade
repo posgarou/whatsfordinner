@@ -1,0 +1,5 @@
+.recipes-preview
+    .recipe-preview(ng-repeat='recipe in recipes')
+        h1 {{ recipe.title }}
+        p {{ recipe.description }}
+        a.standard-btn.themed(ng-click="selectRecipe(recipe.recipeId)") Eat it

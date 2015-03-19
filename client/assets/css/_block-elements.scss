@@ -11,14 +11,32 @@ body {
 
 h1 {
   text-align: center;
+  color: inherit;
+  text-transform: uppercase;
+  font-weight: 100;
+  letter-spacing: 0.1em;
 }
 
 h2 {
   text-align: center;
+  color: inherit;
+  text-transform: lowercase;
+  font-weight: 200;
+  letter-spacing: 0.1em;
+  margin: 1em 0;
 }
 
 h3 {
   text-align: center;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: gray;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 %main-content {
@@ -48,13 +66,6 @@ h3 {
       letter-spacing: 0.33em;
       top: 8.5em;
       left: 2em;
-    }
-
-    h1 {
-      color: inherit;
-      text-transform: uppercase;
-      font-weight: 100;
-      letter-spacing: 0.1em;
     }
   } // end .header
 }
