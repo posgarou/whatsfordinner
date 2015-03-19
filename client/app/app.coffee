@@ -2,11 +2,13 @@ angular
   .module(
     'whatsForDinnerApp',
     ['ngRoute',
+     'smoothScroll',
      'route-segment',
      'view-segment',
      'ngResource',
      'mm.foundation',
-     'templates'
+     'templates',
+     'ng-token-auth'
     ]
   )
   .constant('PATHS', {

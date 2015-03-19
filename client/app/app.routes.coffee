@@ -10,6 +10,7 @@ angular.module('whatsForDinnerApp').config(['PATHS', '$routeSegmentProvider', (P
   .when('/go/recipes', 'main.recipes')
   .when('/go/recipes/:recipeId', 'main.recipe')
   .when('/go/recipes/:recipeId/instructions', 'main.recipe.instructions')
+  .when('/login', 'login')
   .segment('home', {
       templateUrl: "#{PATHS.COMPONENT_VIEWS}/home/home.html",
       controller: 'HomeCtrl'
@@ -63,5 +64,10 @@ angular.module('whatsForDinnerApp').config(['PATHS', '$routeSegmentProvider', (P
   .segment('recipes', {
     templateUrl: "#{PATHS.COMPONENT_VIEWS}/main/recipes/recipes.html",
     controller: 'RecipesCtrl'
+  })
+  .root()
+  .segment('login', {
+    templateUrl: "#{PATHS.COMPONENT_VIEWS}/login/login.html",
+    controller: 'LoginCtrl'
   })
 ])
