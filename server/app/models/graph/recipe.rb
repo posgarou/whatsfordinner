@@ -22,6 +22,8 @@ module Graph
     # User/Recipe relationships
     has_many :in, :users_selecting, rel_class: Graph::RecipeInteractions::Selected, model_class: Graph::User
 
+    has_many :out, :cuisines, type: :CLASSIFIED_AS, model_class: Graph::Cuisine
+
     # Render a list of ingredients with quantities suitable for printing
     # as a list of ingredients.
     def render_ingredients

@@ -1,5 +1,5 @@
 describe Graph::Recipe do
-  subject(:recipe) { FactoryGirl.create(:recipe, :with_tags, :with_ingredients, :with_steps) }
+  subject(:recipe) { FactoryGirl.create(:recipe, :with_tags, :with_ingredients, :with_steps, :with_cuisines) }
 
   it 'has tags' do
     expect(recipe.tags).not_to be_empty
@@ -11,6 +11,10 @@ describe Graph::Recipe do
 
   it 'has steps' do
     expect(recipe.steps).not_to be_empty
+  end
+
+  it 'has cuisines' do
+    expect(recipe.cuisines).not_to be_empty
   end
 
   describe 'render_ingredients' do
