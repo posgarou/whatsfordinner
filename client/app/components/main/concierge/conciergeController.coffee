@@ -6,7 +6,8 @@ angular
    '$routeSegment',
     '$location',
     'MealTimeGuesserService',
-   ($scope, $routeParams, $routeSegment, $location, MealTimeGuesserService) ->
+    'RecipeResource',
+   ($scope, $routeParams, $routeSegment, $location, MealTimeGuesserService, RecipeResource) ->
 
      # TODO set it to pull in $routeParams on refresh
 
@@ -58,7 +59,23 @@ angular
        $scope.showSelectionPicker()
 
      $scope.selectRecipe = (recipeId)->
-       # TODO Send info to the server that a recipe was selected and the other two were rejected
+       # Get rejected recipes
+       rejected = _.reject($scope.conciergeData.recipes, (el)->
+         el.recipeId == recipeId
+       )
+
+       rejectedIds = _.map(rejected, (recipe) ->
+         recipe.recipeId
+       )
+
+       selected = new RecipeResource({id: recipeId})
+
+       selected.$select({
+         "rejectedIds[]": rejectedIds
+       })
+
+       # Send put notice to server
+       # Regardless of response, load path
        $location.path(
          $routeSegment.getSegmentUrl('main.recipe.instructions', { recipeId: recipeId })
        )

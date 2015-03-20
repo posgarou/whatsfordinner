@@ -14,6 +14,7 @@ angular
       $scope.selector = new SelectionService TEST_DATA.USER_ID
       $scope.selector.load()
       $scope.recipes = $scope.selector.suggestions
+      $scope.conciergeData.recipes = $scope.recipes
 
 
       $scope.setHeader('Cool. Time to choose.')

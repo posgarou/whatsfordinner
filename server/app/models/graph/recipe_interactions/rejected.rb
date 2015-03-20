@@ -7,7 +7,7 @@ module Graph
       include Graph::RecipeInteractions::Base
       include Grape::Entity::DSL
 
-      type 'RATED'
+      type 'REJECTED'
     end
   end
 end

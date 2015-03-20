@@ -6,7 +6,7 @@ angular.module('whatsForDinnerApp').controller('InstructionsCtrl', ["$scope", '$
   setScopeDataFromInstructions = ->
     $scope.reTheme $scope.instructions.theme
     $scope.headerInfo.mealName = $scope.stylingInfo.theme
-    setHeader($scope.instructions.title)
+    $scope.setHeader($scope.instructions.title)
 
   $scope.instructions = new Instructions($routeParams.recipeId)
 

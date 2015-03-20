@@ -23,6 +23,10 @@ module Graph
       extend ActiveSupport::Concern
       include Neo4j::ActiveRel
 
+      def set_default_event_date
+        self.event_date ||= Time.now
+      end
+
       included do
         from_class Graph::User
         to_class Graph::Recipe
@@ -30,9 +34,7 @@ module Graph
 
         property :event_date, type: DateTime
 
-        after_initialize do
-          self.event_date ||= Time.now
-        end
+        before_save :set_default_event_date
 
         alias_method :user, :from_node
         alias_method :recipe, :to_node

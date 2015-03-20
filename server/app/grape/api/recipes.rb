@@ -3,6 +3,7 @@ module API
     helpers SharedParams
     helpers FinderHelpers
     helpers PresenterHelpers
+    helpers AuthenticatedResource
 
     resource :recipes do
       desc 'Index listing of recipes'
@@ -20,6 +21,10 @@ module API
         requires :recipe_id, type: String, desc: 'Recipe id'
       end
       route_param :recipe_id do
+        before do
+          authenticate!
+        end
+
         desc 'Information about a single recipe'
         get do
           render find_recipe
@@ -27,13 +32,27 @@ module API
 
         # recipes/:recipe_id/instruction
         desc 'Instructions for a single recipe'
-        params do
-          optional :user_id, type: String, desc: 'User id'
-        end
         get 'instructions' do
           render RecipeInstructions.new(find_recipe), root: :instructions
           if user = find_user_facade
             render user, root: :user
+          end
+        end
+
+        params do
+          optional :rejectedIds, type: Array, desc: 'Other recipes that have been rejected'
+        end
+        desc 'Should be called when a recipe has been selected'
+        put 'select' do
+          res = RecordRecipeSelectionAndRejections.(
+            user: current_user,
+            selectionId: params[:recipe_id],
+            rejectionIds: params[:rejectedIds])
+
+          if res.success?
+            { success: true}
+          else
+            error!(res.message, 400)
           end
         end
       end

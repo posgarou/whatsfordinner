@@ -3,6 +3,7 @@ module API
     helpers SharedParams
     helpers FinderHelpers
     helpers PresenterHelpers
+    helpers AuthenticatedResource
 
     resource :users do
       # Note: no /users/ index route for now.
@@ -18,6 +19,10 @@ module API
         end
 
         resource :recipes do
+          before do
+            authenticate!
+          end
+
           # /users/:user_id/recipes/history
           resource :history do
             desc 'Recent recipe interactions for this user'
@@ -38,7 +43,7 @@ module API
             # Add here mealtime, difficulty, etc.
           end
           get 'concierge' do
-            result = Concierge.(user: find_user)
+            result = Concierge.(user: current_user)
 
             render_all result.suggestions, root: 'recipes'
           end
