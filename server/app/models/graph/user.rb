@@ -9,6 +9,8 @@ module Graph
     id_property :uuid, auto: :uuid
 
     has_many :out, :selected_recipes, rel_class: Graph::RecipeInteractions::Selected, model_class: Graph::Recipe
+    has_many :out, :rated_recipes, rel_class: Graph::RecipeInteractions::Rated, model_class: Graph::Recipe
+    has_many :out, :rejected_recipes, rel_class: Graph::RecipeInteractions::Rejected, model_class: Graph::Recipe
 
     def standard_user
       ::User.find(user_id)
