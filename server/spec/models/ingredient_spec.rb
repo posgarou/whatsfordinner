@@ -1,7 +1,7 @@
 describe Graph::Ingredient do
   it 'saves successfully' do
     expect { FactoryGirl.create(:ingredient) }
-      .to change { Graph::Ingredient.count }.from(0).to(1)
+      .to change { Graph::Ingredient.count }.by(1)
   end
 
   it 'sets up relationships correctly' do

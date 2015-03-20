@@ -6,4 +6,12 @@ class TokenableStub
   include Mongoid::Document
 
   embeds_many :tokens, as: :tokenable
+
+  field :uid, type: String
+
+  after_initialize do
+    unless persisted?
+      self.uid = SecureRandom.uuid
+    end
+  end
 end

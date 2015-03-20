@@ -13,7 +13,7 @@ describe Token do
   subject! { FactoryGirl.build(:token) }
 
   it 'grabs the embedding document\'s uid' do
-    expect(subject.uid).to eq(subject.tokenable.id)
+    expect(subject.uid).to eq(subject.tokenable.uid)
   end
 
   describe 'past_date?' do
