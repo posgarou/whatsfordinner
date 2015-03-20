@@ -6,8 +6,6 @@ class User
 
   include Tokenable
 
-  embeds_many :user_login_attempts
-
   field :name, type: String
   field :email, type: String
 
