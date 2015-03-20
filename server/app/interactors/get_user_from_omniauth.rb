@@ -20,7 +20,7 @@ class GetUserFromOmniauth
         context.fail!(error: 'Not all required OmniAuth fields were present.')
       end
     else
-      context.fail!(error: 'No valid OmniAuth response weas received.')
+      context.fail!(error: 'No valid OmniAuth response was received.')
     end
   end
 
