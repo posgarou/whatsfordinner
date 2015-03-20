@@ -1,5 +1,10 @@
+require_relative '../support/token_headers'
+
 describe API::Recipes do
   let(:first_recipe) { Graph::Recipe.all.first }
+  let(:user) { create(:graph_user) }
+
+  include TokenHeaders
 
   describe 'GET /api/recipes', :test_sequence do
     # Use the expensive creation for the whole describe block
@@ -65,7 +70,7 @@ describe API::Recipes do
     end
 
     it 'returns a recipe when visiting the path' do
-      get "/api/recipes/#{first_recipe.id}"
+      get "/api/recipes/#{first_recipe.id}", nil, valid_headers(user)
       json = parse_response
 
       expect_success
@@ -80,13 +85,13 @@ describe API::Recipes do
       create(:recipe, :with_ingredients, :with_steps, :with_tags)
     end
     it 'returns a JSON representation of the recipe instructions' do
-      get "/api/recipes/#{first_recipe.id}/instructions"
+      get "/api/recipes/#{first_recipe.id}/instructions", nil, valid_headers(user)
       json = parse_response['instructions']
-
+      
       expect(json).to have_key('title')
       expect(json).to have_key('description')
       expect(json).to have_key('serves')
-      expect(json['serves']).to have_key('current_amount')
+      expect(json['serves']).to have_key('currentAmount')
       expect(json).to have_key('timeframe')
       expect(json['timeframe']).to have_key('displayText')
       expect(json['timeframe']).to have_key('breakdownText')
@@ -100,7 +105,7 @@ describe API::Recipes do
     end
 
     it 'includes user info when user_id is supplied' do
-      get "/api/recipes/#{first_recipe.id}/instructions", { user_id: create(:graph_user).uuid }
+      get "/api/recipes/#{first_recipe.id}/instructions", { user_id: user.uuid }, valid_headers(user)
       json = parse_response
 
       expect(json).to have_key('instructions')
