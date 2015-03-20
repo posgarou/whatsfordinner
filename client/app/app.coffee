@@ -8,6 +8,7 @@ angular
      'ngResource',
      'mm.foundation',
      'templates',
+     'ipCookie',
      'ng-token-auth'
     ]
   )

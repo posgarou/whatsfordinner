@@ -35,6 +35,10 @@ Note: Client assets need to be compiled via Gulp in some fashion before running 
   * `$ gulp` will download prerequisite libraries and compile the assets.
   * `$ gulp watch` will watch for changes in dependencies or libraries and recompile asset files as needed.
 
+# Sources
+
+* Large swathes of the authentication system are adaptations of or strict copying from the DeviseTokenAuth gem, revised to work without Devise.
+
 # Setting the App Up on Production
 
 Setup an Amazon ec2 instance.  Remember, while setting it up, to open up port 80 to HTTP.

@@ -2,7 +2,7 @@ angular
 .module('whatsForDinnerApp')
 # Parent controller for any page of the site that uses the center content box
 # Controls/displays theme.
-.controller('MainCtrl', ['$scope', 'AuthenticationService', ($scope, AuthenticationService) ->
+.controller('MainCtrl', ['$scope', 'AuthenticationService', 'ipCookie', ($scope, AuthenticationService, ipCookie) ->
 #    $scope.theme = 'dinner'
     $scope.headerInfo = {h1: 'Ready?'}
     $scope.stylingInfo = {
@@ -18,8 +18,4 @@ angular
 
     $scope.setHeader = (newHeaderText)->
       $scope.headerInfo.h1 = newHeaderText
-
-    # AUTHENTICATION
-
-    $scope.currentUser = AuthenticationService.currentUser()
 ])

@@ -44,8 +44,9 @@ Rails.application.configure do
   #         DB LOGGING         #
   ##############################
 
-  config.loglevel = ENV['LOG_LVL'] || Logger::INFO
+  config.logger = Lumberjack::Logger.new("log/application.log", :buffer_size => 0, :level => :debug)
+  # config.loglevel = ENV['LOG_LVL'] || Logger::DEBUG
 
-  Mongoid.logger.level = Logger::DEBUG
-  Moped.logger.level = Logger::DEBUG
+  Mongoid.logger.level = Logger::INFO
+  Moped.logger.level = Logger::INFO
 end

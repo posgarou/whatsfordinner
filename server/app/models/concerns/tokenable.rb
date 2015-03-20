@@ -25,4 +25,10 @@ module Tokenable
   def prune_tokens
     tokens.select(&:stale?).map(&:delete)
   end
+
+  def token_validation_response
+    self.as_json(except: [
+        :tokens, :created_at, :updated_at
+      ])
+  end
 end

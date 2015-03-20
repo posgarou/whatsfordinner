@@ -40,8 +40,7 @@ angular
        $scope.showMealTimePicker()
 
 
-     $scope.guessMealTime = ->
-       MealTimeGuesserService.guess()
+     $scope.guessMealTime = MealTimeGuesserService.guess
 
      $scope.selectMealTime = (mealTime)->
        # Update data

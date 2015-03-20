@@ -51,6 +51,9 @@ source 'https://rubygems.org' do
 
     gem 'better_errors'
     gem 'binding_of_caller'
+
+    # Logging
+    gem 'lumberjack'
   end
 
   group :development, :test do

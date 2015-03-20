@@ -1,3 +1,7 @@
+# Use angular-route-segment to set up routes with nested controllers.
+#
+# Authenticates all access to /dashboard and /go paths.
+# TODO Resolve dashboard
 angular.module('whatsForDinnerApp').config(['PATHS', '$routeSegmentProvider', (PATHS, $routeSegmentProvider)->
   $routeSegmentProvider
   .when('/', 'home')
@@ -11,17 +15,34 @@ angular.module('whatsForDinnerApp').config(['PATHS', '$routeSegmentProvider', (P
   .when('/go/recipes/:recipeId', 'main.recipe')
   .when('/go/recipes/:recipeId/instructions', 'main.recipe.instructions')
   .when('/login', 'login')
+  .when('/unauthorized', 'unauthorized')
   .segment('home', {
       templateUrl: "#{PATHS.COMPONENT_VIEWS}/home/home.html",
       controller: 'HomeCtrl'
     })
   .segment('dashboard', {
     templateUrl: "#{PATHS.COMPONENT_VIEWS}/dashboard/dashboard.html",
-    controller: 'DashboardCtrl'
+    controller: 'DashboardCtrl',
+    resolve: {
+      user: (AuthenticationService) ->
+        AuthenticationService.currentUser()
+    }
+    resolveFailed: {
+      templateUrl: "#{PATHS.COMPONENT_VIEWS}/unauthorized/unauthorized.html",
+      controller: 'UnauthorizedCtrl'
+    }
   })
   .segment('main', {
     templateUrl: "#{PATHS.COMPONENT_VIEWS}/main/main.html",
-    controller: 'MainCtrl'
+    controller: 'MainCtrl',
+    resolve: {
+      user: (AuthenticationService) ->
+        AuthenticationService.currentUser()
+    }
+    resolveFailed: {
+      templateUrl: "#{PATHS.COMPONENT_VIEWS}/unauthorized/unauthorized.html",
+      controller: 'UnauthorizedCtrl'
+    }
   })
   .within()
   .segment('concierge', {
@@ -69,5 +90,10 @@ angular.module('whatsForDinnerApp').config(['PATHS', '$routeSegmentProvider', (P
   .segment('login', {
     templateUrl: "#{PATHS.COMPONENT_VIEWS}/login/login.html",
     controller: 'LoginCtrl'
+  })
+  .root()
+  .segment('unauthorized', {
+    templateUrl: "#{PATHS.COMPONENT_VIEWS}/unauthorized/unauthorized.html",
+    controller: 'UnauthorizedCtrl'
   })
 ])

@@ -99,6 +99,9 @@ test:
         # low amounts for fast failures.
         max_retries: 1
         retry_interval: 0
+        # Raise an error when performing a #find and the document is not found.
+        # (default: true)
+        raise_not_found_error: false
 
 production:
   sessions:
@@ -107,3 +110,6 @@ production:
       hosts:
         - localhost:27017
       options:
+        # Raise an error when performing a #find and the document is not found.
+        # (default: true)
+        raise_not_found_error: false

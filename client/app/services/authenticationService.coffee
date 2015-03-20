@@ -2,16 +2,39 @@ angular
 .module('whatsForDinnerApp')
 .service('AuthenticationService', [
   '$auth',
-  ($auth) ->
+  '$q',
+  '$rootScope',
+  ($auth, $q, $rootScope) ->
     new class Authenticator
       constructor: ->
-      isLoggedIn: ->
-        $auth.validateUser()
-      currentUser: ->
-        @isLoggedIn().then( (data) =>
-          console.log data
-        ).catch( (data, e) ->
-          console.log data, e
-        )
-        {}
+        @user = null
+        @deferred = null
+
+      isLoggedIn: =>
+        if @user?
+          @user
+        else
+          @deferred
+
+      listenForInitialValidation: =>
+        if @user?
+          @user
+        else if @deferred?
+          @deferred
+        else
+          @deferred = $auth.validateUser()
+
+          @deferred.then (data) =>
+            @user = data
+          .catch (data, error) ->
+            console.log 'Login error.'
+          @deferred
+
+
+      currentUser: =>
+        $auth.user
+
+      authenticate: (provider) =>
+        $auth.authenticate(provider).then (data) =>
+          @user = data
 ])

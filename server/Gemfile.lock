@@ -406,6 +406,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)!
   jquery-rails!
   json (= 1.8.1)!
+  lumberjack!
   mongoid!
   neo4j!
   neo4j-will_paginate_redux!

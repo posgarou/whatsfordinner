@@ -2,6 +2,8 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  include Grape::Entity::DSL
+
   include Tokenable
 
   embeds_many :user_login_attempts
@@ -78,4 +80,6 @@ class User
   class NullUser < User
     field :roles, type: Array, default: []
   end
+
+  entity :name, :email, :provider, :uid, :image_url, :roles
 end

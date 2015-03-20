@@ -11,6 +11,9 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:create, :destroy]
 
+  get "/api/auth/facebook", to: redirect("/auth/facebook")
+  get "/api/auth/google_oauth2", to: redirect("/auth/google_oauth2")
+
   namespace :admin do
 
   end

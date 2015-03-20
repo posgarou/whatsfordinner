@@ -5,6 +5,24 @@ html
     meta name="viewport" content="width=device-width, initial-scale=1.0"
     = stylesheet_link_tag    "frontend", media: 'all'
     = javascript_include_tag "frontend"
+    javascript:
+      var usingExternalWindow = function () {
+        var nav = navigator.userAgent.toLowerCase(),
+                ieLTE10 = (nav && nav.indexOf('msie') != -1),
+                ie11 = !!navigator.userAgent.match(/Trident.*rv\:11\./);
+        return !(ieLTE10 || ie11);
+      };
+      if (usingExternalWindow()) {
+        window.addEventListener("message", function (ev) {
+          if (ev.data === "requestCredentials") {
+            ev.source.postMessage({#{yield}}, '*');
+            window.close();
+          }
+        });
+      } else {
+        window.location.href = "#{@auth_origin_url} %>";
+      }
+
 
   body
-    = yield
+    h1 Logging in. Please wait.

@@ -1,7 +1,0 @@
-p Success!
-javascript:
-  try {
-    window.opener.$windowScope.handlePopupAuthentication("#{@user.provider}", "#{@user.to_json.html_safe}", "#{flash[:notice]}");
-  } catch (err) {
-  }
-  window.close();

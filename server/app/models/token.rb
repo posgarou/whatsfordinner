@@ -10,8 +10,10 @@ class Token
   embedded_in :tokenable, polymorphic: true
 
   after_initialize do
-    self.value = SecureRandom.urlsafe_base64
-    self.invalid_at = 2.weeks.from_now
+    unless persisted?
+      self.value = SecureRandom.urlsafe_base64
+      self.invalid_at = 2.weeks.from_now
+    end
   end
 
   def expire!
@@ -19,7 +21,12 @@ class Token
   end
 
   def uid
-    @uid ||= tokenable.id
+    @uid ||= tokenable.uid
+  end
+
+  # Convert invalid_at to Unix time (since epoch) for easy JS consumption
+  def expiry
+    invalid_at.to_f.to_s
   end
 
   # A putative token is valid if
