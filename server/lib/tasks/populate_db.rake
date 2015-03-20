@@ -43,6 +43,11 @@ module Graph
       self.cuisines << cuisine
       self
     end
+
+    def with_difficulty difficulty
+      self.difficulty = difficulty
+      self
+    end
   end
 end
 
@@ -191,6 +196,7 @@ namespace :db do
         .add_ingredient(olive_oil, unit_quantity: 1, unit_type: 'teaspoon')
         .add_tag('pan-fried')
         .add_cuisine(tex_mex)
+        .with_difficulty('easy')
         .add_steps([
             { text: 'Heat the oil in a large skillet over medium heat.' },
             { text: 'Place the tortillas inside the skillet.' },
@@ -216,6 +222,7 @@ namespace :db do
         .add_ingredient(pepper, uncounted: true)
         .add_ingredient(olive_oil, unit_quantity: 1, unit_type: 'teaspoon')
         .add_tag('pan-fried')
+        .with_difficulty('easy')
         .add_steps([
           { text: 'Place a cast-iron skillet on the oven and preheat the burner to medium-high.' },
           { text: 'Once the skillet is radiating heat and a droplet of water dances on the pan, add the oil.' },
@@ -235,6 +242,7 @@ namespace :db do
       .add_ingredient(pepper, uncounted: true)
       .add_ingredient(toast, uncounted: true)
       .add_tag("Healthy")
+      .with_difficulty('easy')
       .add_steps([
           { text: 'Cut the avocado in half.' },
           { text: 'Cut each half into slices about 1/4" thick.".' },
@@ -254,7 +262,7 @@ namespace :db do
 
     num.times do
       my_ingredients = ingredients.sample(
-        rand(2..[6, ingredients.size].min)
+        rand(6..[10, ingredients.size].min)
       )
       my_tags = tags.sample(rand(0..[3, tags.length].min))
       my_cuisines = cuisines.sample(rand(0..[2, cuisines.length].min))
@@ -265,6 +273,7 @@ namespace :db do
       r.serves = rand(2..8)
       r.prep_time = [0, rand(1..60)].sample
       r.cooking_time = (rand(1..18)) * 5
+      r.difficulty = Graph::Recipe::DIFFICULTIES.sample
 
       my_ingredients.each do |ingredient|
         Graph::MadeWith.create(from_node: r, to_node: ingredient, uncounted: true)

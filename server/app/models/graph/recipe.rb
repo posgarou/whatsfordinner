@@ -11,6 +11,11 @@ module Graph
     property :prep_time, type: Integer
     property :cooking_time, type: Integer
 
+    DIFFICULTIES = %w(EASY MEDIUM HARD)
+
+    property :difficulty, type: String
+
+
     has_many :out, :tags, type: :tagged_as, model_class: Graph::Tag
 
     # TODO Add has_many :out, :flavors and make the relationship in FlavorProfile polymorphic
@@ -23,6 +28,14 @@ module Graph
     has_many :in, :users_selecting, rel_class: Graph::RecipeInteractions::Selected, model_class: Graph::User
 
     has_many :out, :cuisines, type: :CLASSIFIED_AS, model_class: Graph::Cuisine
+
+    validates :difficulty, inclusion: { in: DIFFICULTIES }, allow_nil: true
+
+    before_validation do
+      if self.changed?
+        self.difficulty = self.difficulty.upcase if self.difficulty
+      end
+    end
 
     # Render a list of ingredients with quantities suitable for printing
     # as a list of ingredients.
