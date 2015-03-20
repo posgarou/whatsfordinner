@@ -5,22 +5,22 @@ class SessionsController < ApplicationController
   def create
     response = GetUserFromOmniauth.(auth: request.env["omniauth.auth"])
 
-    @resource = response.user
+    if response.success?
+      @resource = response.user
 
-    token = @resource.most_recent_token 'wfdinner-app'
-    @token = token.value
-    @client_id = token.client
-    @expiry = token.expiry
-    @uid = token.uid
+      token = @resource.most_recent_token 'wfdinner-app'
+      @token = token.value
+      @client_id = token.client
+      @expiry = token.expiry
+      @uid = token.uid
 
-    @auth_origin_url = generate_url('http://localhost:9292/#', {
+      @auth_origin_url = generate_url('http://localhost:9292/#', {
         token:     @token,
         client_id: @client_id,
         uid:       @uid,
         expiry:    @expiry
       })
 
-    if response.success?
       flash[:notice] = 'Successfully logged in.'
       session[:user_id] = response.user.id
     else
