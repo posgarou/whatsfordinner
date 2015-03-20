@@ -34,7 +34,13 @@ module Graph
     end
 
     def add_tag name
-      Graph::Tag.find_or_create_by(name: name)
+      self.tags << Graph::Tag.find_or_create_by(name: name)
+      self
+    end
+
+    def add_cuisine cuisine
+      cuisine = cuisine.is_a?(Graph::Cuisine) ? cuisine : Graph::Cuisine.find_or_create_by(name: cuisine)
+      self.cuisines << cuisine
       self
     end
   end
@@ -50,6 +56,10 @@ end
 
 def group(name)
   Graph::IngredientGroup.find_or_create_by(name: name)
+end
+
+def cuisine(name)
+  Graph::Cuisine.find_or_create_by(name: name)
 end
 
 def flavor(name)
@@ -82,8 +92,14 @@ namespace :db do
       puts 'All existing data has been deleted. Creating new data.'
 
       setup_users
-      
+
+      italian = cuisine('Italian')
+      french = cuisine('French')
+      tex_mex = cuisine('Tex-Mex')
+      american = cuisine('American')
+
       animal_prod = group('Animal Products')
+      gluten = group('Gluten-containing')
 
       eggs = ingredient('egg', animal_prod).tastes('Savory')
       ingredient('honey', animal_prod).tastes('Sweet')
@@ -110,7 +126,24 @@ namespace :db do
       ingredient('boston butt', pork).tastes('Savory')
       ingredient('ground pork', pork).tastes('Savory')
 
+      vegetable_products = group('Vegetable Products')
+      prep = group('Prepared Foods')
+
       vegetables = group('Vegetables')
+      grains = group('Grains')
+      vegetable_products.subgroups << [vegetables, grains]
+
+      ingredient('Barley', grains)
+      ingredient('Quinoa', grains)
+      ingredient('Bulgar Wheat', [grains, gluten])
+      ingredient('Rice', grains)
+
+      bread = group('Bread')
+      vegetable_products.subgroups << bread
+      prep.subgroups << bread
+      gluten.subgroups << bread
+      ingredient('White Bread', bread)
+      ingredient('Whole Wheat Bread', bread)
 
       cruc = group('Cruciferous')
       lg = group('Leafy Green')
@@ -130,8 +163,7 @@ namespace :db do
       ingredient('romaine lettuce', let).tastes('Grassy')
       ingredient('iceberg lettuce', let).tastes('Grassy')
       ingredient('watercress', [let, cruc]).tastes('Grassy', 'Spicy', 'Peppery')
-      
-      prep = group('Prepared Foods')
+
       tort = ingredient('corn tortilla', prep)
       
       spice = group('Spices and Seasonings')
@@ -144,8 +176,7 @@ namespace :db do
       fruits = group('Fruits')
       avocado = ingredient('avocado', fruits)
 
-      gluten = group('Gluten-containing')
-      toast = ingredient('toast', [prep, gluten])
+      toast = ingredient('toast', [bread, gluten])
 
       huevos = Graph::Recipe.create(
         title: 'Huevos Rancheros',
@@ -159,6 +190,7 @@ namespace :db do
         .add_ingredient(tort, quantity: 2)
         .add_ingredient(olive_oil, unit_quantity: 1, unit_type: 'teaspoon')
         .add_tag('pan-fried')
+        .add_cuisine(tex_mex)
         .add_steps([
             { text: 'Heat the oil in a large skillet over medium heat.' },
             { text: 'Place the tortillas inside the skillet.' },
@@ -202,6 +234,7 @@ namespace :db do
       .add_ingredient(salt, uncounted: true)
       .add_ingredient(pepper, uncounted: true)
       .add_ingredient(toast, uncounted: true)
+      .add_tag("Healthy")
       .add_steps([
           { text: 'Cut the avocado in half.' },
           { text: 'Cut each half into slices about 1/4" thick.".' },
@@ -209,6 +242,39 @@ namespace :db do
         ])
     else
       puts 'Task aborted.'
+    end
+  end
+
+  task add_random_recipes: :environment do
+    num = HighLine.ask('How many random recipes should be added?', Integer)
+
+    ingredients = Graph::Ingredient.all.to_a
+    tags = Graph::Tag.all.to_a
+    cuisines = Graph::Cuisine.all.to_a
+
+    num.times do
+      my_ingredients = ingredients.sample(
+        rand(2..[6, ingredients.size].min)
+      )
+      my_tags = tags.sample(rand(0..[3, tags.length].min))
+      my_cuisines = cuisines.sample(rand(0..[2, cuisines.length].min))
+
+      r = Graph::Recipe.create
+      r.title = "Random #{r.neo_id}"
+      r.description = "A randomly generated method"
+      r.serves = rand(2..8)
+      r.prep_time = [0, rand(1..60)].sample
+      r.cooking_time = (rand(1..18)) * 5
+
+      my_ingredients.each do |ingredient|
+        Graph::MadeWith.create(from_node: r, to_node: ingredient, uncounted: true)
+      end
+
+      r.tags << my_tags
+      r.cuisines << my_cuisines
+      r.steps << (1..rand(2..7)).map { |n| Graph::RecipeStep.create(text: "Step #{n}.") }
+
+      r.save
     end
   end
 end
