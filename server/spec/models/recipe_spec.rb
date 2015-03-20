@@ -25,8 +25,8 @@ describe Graph::Recipe do
   describe 'steps_in_order' do
     subject(:ordered_ingredients) { recipe.steps_in_order }
     it 'returns a list of steps from first to last' do
-      expect(ordered_ingredients.first.number).to eq(1)
-      expect(ordered_ingredients.last.number).to eq(ordered_ingredients.length)
+      expect(ordered_ingredients.to_a.first.number).to eq(1)
+      expect(ordered_ingredients.to_a.last.number).to eq(ordered_ingredients.length)
     end
   end
 end
