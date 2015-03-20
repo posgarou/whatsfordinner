@@ -4,7 +4,7 @@ module Graph
       include Graph::RecipeInteractions::Base
       include Grape::Entity::DSL
 
-      type 'selected'
+      type 'SELECTED'
 
       # Users may well select a recipe and then never make it.
       # This data doesn't hurt, but it's mostly used to answer the question,

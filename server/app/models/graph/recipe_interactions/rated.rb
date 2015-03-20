@@ -7,7 +7,7 @@ module Graph
       include Graph::RecipeInteractions::Base
       include Grape::Entity::DSL
 
-      type 'rated'
+      type 'RATED'
 
       # For ease in querying, ratings should be:
       #  -1: did not like
