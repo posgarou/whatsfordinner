@@ -1,4 +1,8 @@
+require_relative '../support/token_headers'
+
 describe API::Users do
+  include TokenHeaders
+
   let(:recipe) { create(:recipe) }
 
   let(:recipes) { [recipe] }
@@ -16,7 +20,7 @@ describe API::Users do
 
   xdescribe 'GET /api/users/:user_id' do
     it 'returns a user and his/her info' do
-      get resource_path
+      get resource_path, nil, valid_headers(user)
 
       expect_success
     end
@@ -24,11 +28,11 @@ describe API::Users do
 
   describe 'GET /api/users/:user_id/recipes/history' do
     it 'returns history (with pagination) for all user\'s related recipes' do
-      get resource_path + '/recipes/history'
+      get resource_path + '/recipes/history', nil, valid_headers(user)
 
       expect_success
 
-      expect(response.body).to match(/selected/).and match(/rated/)
+      expect(response.body).to match(/SELECTED/).and match(/RATED/)
     end
   end
 
@@ -38,7 +42,7 @@ describe API::Users do
     end
 
     it 'returns 3 recommendations (or # of recipes, if fewer)' do
-      get resource_path + '/recipes/concierge'
+      get resource_path + '/recipes/concierge', nil, valid_headers(user)
 
       expect_success
 
