@@ -43,11 +43,11 @@ describe UserRecipesHistory, type: :model do
 
   describe 'recently_ methods' do
     it 'returns only Rated objects when I call recently_rated' do
-      expect(history.recently_rated.map(&:type).uniq).to eq(['rated'])
+      expect(history.recently_rated.map(&:type).uniq).to eq(['RATED'])
     end
 
     it 'returns only Selected objects when I call recently_selected' do
-      expect(history.recently_selected.map(&:type).uniq).to eq(['selected'])
+      expect(history.recently_selected.map(&:type).uniq).to eq(['SELECTED'])
     end
   end
 end

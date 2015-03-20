@@ -24,7 +24,7 @@ describe UserRecipeHistory, type: :model do
   end
 
   describe 'recent_interactions' do
-    it 'returns resultst' do
+    it 'returns results' do
       expect(history.recent_interactions).not_to be_empty
     end
 

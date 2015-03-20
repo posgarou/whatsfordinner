@@ -14,13 +14,13 @@ module UserHistoricalRecipeInteractions
     delegate :uuid, to: :user, prefix: 'user'
 
     ALLOWED_RELATIONSHIPS = [
-      'rated',
-      'selected'
+      'RATED',
+      'SELECTED'
     ]
 
     # Defines (e.g.) recently_rated, _hidden, etc.
     ALLOWED_RELATIONSHIPS.each do |type|
-      define_method "recently_#{type}" do
+      define_method "recently_#{type.downcase}" do
         recent_interactions types:[type]
       end
     end
