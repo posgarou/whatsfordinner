@@ -8,7 +8,7 @@ module API
 
       user = User.find_by(uid: uid) if uid
 
-      if !user.visitor? && user.validate(headers['Access-Token'], headers['Client'])
+      if user && !user.visitor? && user.validate(headers['Access-Token'], headers['Client'])
         @user = user
       else
         @user = User::NullUser.new

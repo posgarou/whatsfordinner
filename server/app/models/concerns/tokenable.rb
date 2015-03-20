@@ -10,6 +10,11 @@ module Tokenable
     tokens.any? &:validate.with(putative, putative_client)
   end
 
+  # Expire every token for this Tokenable
+  def expire_all_tokens!
+    tokens.map(&:expire!)
+  end
+
   # Generate a new token for the given client device.
   def new_token_for client
     self.tokens.create(client: client)

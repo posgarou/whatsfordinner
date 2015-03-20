@@ -31,6 +31,9 @@ angular
           @deferred
 
 
+      logout: =>
+        $auth.signOut()
+
       currentUser: =>
         $auth.user
 

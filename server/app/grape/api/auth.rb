@@ -8,22 +8,20 @@ module API
     desc 'Handles application authorization via OmniAuth'
     namespace :auth do
 
-      before do
-        authenticate!
-      end
-
       desc 'OmniAuth for Facebook'
       get 'validate_token' do
-        if !current_user.visitor?
-          present current_user, using: User::Entity
-        else
-          error!('401 Unauthorized', 401)
-        end
+        authenticate!
+
+        present current_user, using: User::Entity
       end
 
       desc 'Sign out'
-      get 'sign_out' do
+      delete 'sign_out' do
+        authenticate_without_tokens!
 
+        if current_user
+          current_user.expire_all_tokens!
+        end
       end
     end
   end

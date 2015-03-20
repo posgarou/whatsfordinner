@@ -17,7 +17,7 @@ class Token
   end
 
   def expire!
-    self.used_at = Time.now
+    self.used_at = Time.now unless stale?
   end
 
   def uid
