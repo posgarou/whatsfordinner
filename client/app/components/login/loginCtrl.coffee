@@ -6,16 +6,12 @@ angular
    '$modal',
     '$location',
     '$routeSegment',
-   ($scope, AuthenticationService, $modal, $location, $routeSegment) ->
+    'Router',
+   ($scope, AuthenticationService, $modal, $location, $routeSegment, Router) ->
      $scope.authenticate = (provider) ->
        p = AuthenticationService.authenticate(provider)
-       console.log p
-     $scope.logInForm = {}
 
-     $scope.phoneHome = ->
-       $location.path(
-         $routeSegment.getSegmentUrl('home')
-       )
+     $scope.phoneHome = Router.phoneHome
 
      $scope.$on('auth:login-success', (ev, user) ->
        $modal.open({

@@ -17,4 +17,7 @@ angular
 
     concierge: =>
       @redirectTo 'main.concierge'
+
+    dashboard: =>
+      @redirectTo 'dashboard'
 ])

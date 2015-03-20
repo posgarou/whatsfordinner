@@ -1,0 +1,40 @@
+header {
+  @extend .clear-fix;
+
+  text-align: right;
+
+  .home-icon {
+    font-size: 1.7em;
+    padding: 0.5em;
+    background: transparentize(white, 0.9);
+    border: 3px solid transparentize(white, 0.5);
+    border-bottom-right-radius: 4px;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
+  ul {
+    display: inline-block;
+    background: transparentize(white, 0.95);
+    border: 4px solid transparentize(white, 0.5);
+    border-bottom-left-radius: 2px;
+    padding: 0.5em;
+  }
+
+  li {
+    display: inline-block;
+    text-transform: uppercase;
+    float: right;
+
+    &:not(:last-of-type) {
+      &:before {
+        content: ' | '
+      }
+    }
+
+    a {
+      padding: 0.5em;
+    }
+  }
+}
