@@ -3,8 +3,8 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'spec_helper'
-require_relative 'helpers'
-require_relative 'omniauth_helper'
+require_relative 'support/helpers'
+require_relative 'support/omniauth_helper'
 require_relative 'database_cleaner_config'
 require_rel 'support'
 
