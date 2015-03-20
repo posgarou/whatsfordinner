@@ -30,6 +30,10 @@ module Graph
 
         property :event_date, type: DateTime
 
+        after_initialize do
+          self.event_date ||= Time.now
+        end
+
         alias_method :user, :from_node
         alias_method :recipe, :to_node
       end
