@@ -22,6 +22,7 @@ module Tokenable
 
   # Return the last-created token for a given client
   def most_recent_token client
+    prune_tokens
     self.tokens.where(client: client).desc(:invalid_at).limit(1).first \
       || new_token_for(client)
   end
