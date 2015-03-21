@@ -4,7 +4,8 @@ angular
   '$auth',
   '$q',
   '$rootScope',
-  ($auth, $q, $rootScope) ->
+  'Router'
+  ($auth, $q, $rootScope, Router) ->
     new class Authenticator
       constructor: ->
         @user = null
@@ -33,6 +34,7 @@ angular
 
       logout: =>
         $auth.signOut()
+        Router.phoneHome()
 
       currentUser: =>
         $auth.user
