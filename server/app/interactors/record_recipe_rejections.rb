@@ -19,7 +19,7 @@ class RecordRecipeRejections
         )
       end
     rescue Exception => e
-        context.fail!(e.message)
+        context.fail!(error: e.message)
     end
   end
 

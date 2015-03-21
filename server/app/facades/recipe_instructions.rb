@@ -41,6 +41,10 @@ class RecipeInstructions
     [*recipe.steps_in_order]
   end
 
+  def cuisines
+    [*recipe.cuisines]
+  end
+
   def quantified_ingredients
     [*recipe.ingredients_rels]
   end
@@ -85,10 +89,10 @@ class RecipeInstructions
       expose :timeframe_breakdown_text, as: :breakdownText
     end
 
-    expose :cuisines
+    expose :cuisines, using: Graph::Cuisine::Entity
     expose :mealtimes
     expose :difficulty
-    expose :serveWith
+    expose :serve_with, as: :serveWith
 
     expose :tags, using: Graph::Tag::Entity
     expose :quantified_ingredients, using: Graph::MadeWith::Entity, as: :ingredients
@@ -99,15 +103,11 @@ class RecipeInstructions
   #          STUBBED              #
   #################################
 
-  def cuisines
-    []
-  end
-
   def mealtimes
     {name: 'breakfast'}
   end
 
-  def serveWith
+  def serve_with
     []
   end
 end

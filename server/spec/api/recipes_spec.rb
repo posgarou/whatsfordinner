@@ -82,7 +82,7 @@ describe API::Recipes do
 
   describe 'GET /api/recipes/:recipe_id/instructions' do
     before do
-      create(:recipe, :with_ingredients, :with_steps, :with_tags)
+      create(:recipe, :with_ingredients, :with_steps, :with_tags, :with_cuisines)
     end
     it 'returns a JSON representation of the recipe instructions' do
       get "/api/recipes/#{first_recipe.id}/instructions", nil, valid_headers(user)
@@ -96,12 +96,16 @@ describe API::Recipes do
       expect(json['timeframe']).to have_key('displayText')
       expect(json['timeframe']).to have_key('breakdownText')
       expect(json).to have_key('cuisines')
+      expect(json['cuisines']).not_to be_empty
       expect(json).to have_key('mealtimes')
       expect(json).to have_key('difficulty')
       expect(json).to have_key('serveWith')
       expect(json).to have_key('tags')
+      expect(json['tags']).not_to be_empty
       expect(json).to have_key('ingredients')
+      expect(json['ingredients']).not_to be_empty
       expect(json).to have_key('steps')
+      expect(json['steps']).not_to be_empty
     end
 
     it 'includes user info when user_id is supplied' do
