@@ -12,7 +12,7 @@ module API
       get 'validate_token' do
         authenticate!
 
-        present current_user, using: User::Entity
+        render current_user, root: :data
       end
 
       desc 'Sign out'

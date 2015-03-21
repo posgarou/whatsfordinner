@@ -38,5 +38,11 @@ module Graph
     def recipe_interactions
 
     end
+
+    # Sent back from SessionsController
+    def to_json
+      options[:except] ||= %i(created_at updated_at oauth_expires_at oauth_token tokens)
+      super(options)
+    end
   end
 end
