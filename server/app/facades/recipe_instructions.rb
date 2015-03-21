@@ -53,6 +53,10 @@ class RecipeInstructions
     (cooking_time || 0) + (prep_time || 0)
   end
 
+  def difficulty
+    recipe.difficulty.try(:titlecase) || 'Unspecified'
+  end
+
   #################################
   #          UTILITY              #
   #################################
@@ -101,10 +105,6 @@ class RecipeInstructions
 
   def mealtimes
     {name: 'breakfast'}
-  end
-
-  def difficulty
-    'easy'
   end
 
   def serveWith
