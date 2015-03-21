@@ -11,5 +11,6 @@
 /log/*
 !/log/.keep
 /tmp
+/coverage
 
 db/neo4j

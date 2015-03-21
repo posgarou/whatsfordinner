@@ -77,6 +77,9 @@ source 'https://rubygems.org' do
 
     # easily mock time
     gem 'timecop'
+
+    # coverage
+    gem 'simplecov', require: false
   end
 
   # API
