@@ -15,6 +15,9 @@ angular
     login: =>
       @redirectTo 'login'
 
+    unauthorized: =>
+      @redirectTo 'unauthorized'
+
     concierge: =>
       @redirectTo 'main.concierge'
 
