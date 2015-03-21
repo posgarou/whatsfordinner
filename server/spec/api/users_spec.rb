@@ -18,11 +18,24 @@ describe API::Users do
 
   let(:resource_path) { "/api/users/#{user.uuid}" }
 
-  xdescribe 'GET /api/users/:user_id' do
+  describe 'GET /api/users/:user_id' do
     it 'returns a user and his/her info' do
       get resource_path, nil, valid_headers(user)
 
       expect_success
+    end
+
+    it 'includes required data for the dashboard' do
+      get resource_path, nil, valid_headers(user)
+      
+      json = parse_response
+
+      expect(json['name']).not_to be_blank
+      expect(json['email']).not_to be_blank
+      expect(json['provider']).not_to be_blank
+      expect(json['image_url']).not_to be_blank
+      expect(json['roles']).not_to be_empty
+      expect(json['uuid']).not_to be_empty
     end
   end
 

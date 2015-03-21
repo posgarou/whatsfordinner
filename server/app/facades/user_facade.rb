@@ -4,6 +4,13 @@ class UserFacade
 
   attr_accessor :user, :graph_user
 
+  delegate :name,
+    :email,
+    :provider,
+    :image_url,
+    :roles,
+    to: :user
+
   delegate :uuid, to: :graph_user
 
   # Accepts a UUID and generates a facade based on the User/GraphUser associated therewith
@@ -19,5 +26,5 @@ class UserFacade
     self.graph_user = graph_user
   end
 
-  entity :uuid
+  entity :name, :email, :provider, :image_url, :roles, :uuid
 end
