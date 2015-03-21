@@ -24,9 +24,9 @@ angular.module('whatsForDinnerApp').config(['PATHS', '$routeSegmentProvider', (P
     templateUrl: "#{PATHS.COMPONENT_VIEWS}/dashboard/dashboard.html",
     controller: 'DashboardCtrl',
     resolve: {
-      user: (AuthenticationService) ->
+      user: ['AuthenticationService', (AuthenticationService) ->
         AuthenticationService.currentUser()
-    }
+    ]}
     resolveFailed: {
       templateUrl: "#{PATHS.COMPONENT_VIEWS}/unauthorized/unauthorized.html",
       controller: 'UnauthorizedCtrl'
@@ -36,9 +36,9 @@ angular.module('whatsForDinnerApp').config(['PATHS', '$routeSegmentProvider', (P
     templateUrl: "#{PATHS.COMPONENT_VIEWS}/main/main.html",
     controller: 'MainCtrl',
     resolve: {
-      user: (AuthenticationService) ->
+      user: ['AuthenticationService', (AuthenticationService) ->
         AuthenticationService.currentUser()
-    }
+    ]}
     resolveFailed: {
       templateUrl: "#{PATHS.COMPONENT_VIEWS}/unauthorized/unauthorized.html",
       controller: 'UnauthorizedCtrl'
