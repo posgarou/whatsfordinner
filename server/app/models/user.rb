@@ -44,13 +44,27 @@ class User
   # Get the graph equivalent
   def graph_user
     if uuid
-      Graph::User.find_by(uuid: uuid)
-    else
-      graph_user = Graph::User.find_or_create_by(user_id: id)
-      self.uuid = graph_user.uuid
-      save if persisted?
-      graph_user
+      graph_user = Graph::User.find_by(uuid: uuid)
+      if graph_user
+        return graph_user
+      else
+        Rails.logger.warn "User #{self.id} found with no longer existing graph user via uuid."
+      end
+
+      graph_user = Graph::User.find_by(user_id: id)
+      if graph_user
+        Rails.logger.warn "Found graph user for #{self.id} via user id property."
+        return graph_user
+      else
+        Rails.logger.error "Could not find graph user for #{self.id} via uuid or user id property, even though User model has record of previous Graph::User."
+      end
     end
+
+    # Default for new, also if previous searches ultimately failed
+    graph_user = Graph::User.find_or_create_by(user_id: id)
+    self.uuid = graph_user.uuid
+    save if persisted?
+    graph_user
   end
 
   def admin?
