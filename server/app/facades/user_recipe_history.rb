@@ -28,7 +28,12 @@ class UserRecipeHistory
   end
 
   def rating
-    0
+    res = Rating::Determine.(user, recipe)
+
+    if res.success?
+      # TODO Add error handling. Should Grape have error handlers?
+      res.rating
+    end
   end
 
   entity :user_id, :recipe_id do
