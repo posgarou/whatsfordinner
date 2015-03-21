@@ -10,5 +10,9 @@ module Graph
     has_one :in, :recipe, origin: :steps, model_class: Graph::Recipe
 
     alias_method :optional?, :optional
+
+    def self.name
+      'RecipeStep'
+    end
   end
 end

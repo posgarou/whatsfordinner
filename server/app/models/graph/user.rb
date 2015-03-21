@@ -27,6 +27,10 @@ module Graph
       model_class: Graph::Recipe,
       unique: true
 
+    def self.name
+      'User'
+    end
+
     def standard_user
       ::User.find(user_id)
     end

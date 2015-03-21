@@ -37,6 +37,10 @@ module Graph
       end
     end
 
+    def self.name
+      'Recipe'
+    end
+
     # Render a list of ingredients with quantities suitable for printing
     # as a list of ingredients.
     def render_ingredients

@@ -60,7 +60,7 @@ module UserHistoricalRecipeInteractions
 
     user
        .query_as(:user)
-       .match("user-[rel:#{type_query}]->(recipe:`Graph::Recipe`)")
+       .match("user-[rel:#{type_query}]->(recipe:Recipe)")
   end
 
   def page

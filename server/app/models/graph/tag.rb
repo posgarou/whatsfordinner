@@ -7,6 +7,10 @@ module Graph
 
     has_many :in, :recipes, origin: :tags, model_class: Graph::Recipe
 
+    def self.name
+      'Tag'
+    end
+
     entity :id, :name
   end
 end

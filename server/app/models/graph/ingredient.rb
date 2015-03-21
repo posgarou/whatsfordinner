@@ -11,6 +11,10 @@ module Graph
 
     has_many :out, :flavors, type: :tastes, model_class: Graph::FlavorProfile
 
+    def self.name
+      'Ingredient'
+    end
+
     entity :id, :name
   end
 end
