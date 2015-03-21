@@ -271,8 +271,8 @@ namespace :db do
       r.title = "Random #{r.neo_id}"
       r.description = "A randomly generated method"
       r.serves = rand(2..8)
-      r.prep_time = [0, rand(1..60)].sample
-      r.cooking_time = (rand(1..18)) * 5
+      r.prep_time = [0, rand(1..60)].sample * 60
+      r.cooking_time = (rand(1..18)) * 5 * 60
       r.difficulty = Graph::Recipe::DIFFICULTIES.sample
 
       my_ingredients.each do |ingredient|
