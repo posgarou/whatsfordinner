@@ -16,6 +16,7 @@ angular.module('whatsForDinnerApp').config(['PATHS', '$routeSegmentProvider', (P
   .when('/go/recipes/:recipeId/instructions', 'main.recipe.instructions')
   .when('/login', 'login')
   .when('/unauthorized', 'unauthorized')
+  .when('/not-found', 'notFound')
   .segment('home', {
       templateUrl: "#{PATHS.COMPONENT_VIEWS}/home/home.html",
       controller: 'HomeCtrl'
@@ -24,13 +25,10 @@ angular.module('whatsForDinnerApp').config(['PATHS', '$routeSegmentProvider', (P
     templateUrl: "#{PATHS.COMPONENT_VIEWS}/dashboard/dashboard.html",
     controller: 'DashboardCtrl',
     resolve: {
-      user: ['$auth', 'Router', ($auth, Router) ->
-        user = $auth.user
-
-        Router.unauthorized() unless user.signedIn
-
-        user
-    ]}
+      user: ['AuthenticationService', (AuthenticationService) ->
+        AuthenticationService.validateUser()
+      ]
+    }
     resolveFailed: {
       templateUrl: "#{PATHS.COMPONENT_VIEWS}/unauthorized/unauthorized.html",
       controller: 'UnauthorizedCtrl'
@@ -40,13 +38,10 @@ angular.module('whatsForDinnerApp').config(['PATHS', '$routeSegmentProvider', (P
     templateUrl: "#{PATHS.COMPONENT_VIEWS}/main/main.html",
     controller: 'MainCtrl',
     resolve: {
-      user:  ['$auth', 'Router', ($auth, Router) ->
-        user = $auth.user
-
-        Router.unauthorized() unless user.signedIn
-
-        user
-    ]}
+      user: ['AuthenticationService', (AuthenticationService) ->
+        AuthenticationService.validateUser()
+      ]
+    }
     resolveFailed: {
       templateUrl: "#{PATHS.COMPONENT_VIEWS}/unauthorized/unauthorized.html",
       controller: 'UnauthorizedCtrl'
@@ -104,4 +99,9 @@ angular.module('whatsForDinnerApp').config(['PATHS', '$routeSegmentProvider', (P
     templateUrl: "#{PATHS.COMPONENT_VIEWS}/unauthorized/unauthorized.html",
     controller: 'UnauthorizedCtrl'
   })
+  .root()
+  .segment('notFound', {
+      templateUrl: "#{PATHS.COMPONENT_VIEWS}/not-found/not-found.html",
+      controller: 'NotFoundCtrl'
+    })
 ])

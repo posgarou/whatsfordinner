@@ -8,7 +8,9 @@ angular
   ($auth, $q, $rootScope, Router) ->
     new class Authenticator
       constructor: ->
-        @user = null
+        @user = {
+          data: null
+        }
         @deferred = null
 
       isLoggedIn: =>
@@ -17,29 +19,36 @@ angular
         else
           @deferred
 
-      listenForInitialValidation: =>
-        if @user?
+      invalidateUser: =>
+        @user = {
+          data: null
+        }
+        @deferred = null
+
+      validateUser: =>
+        if @user.data?
           @user
         else if @deferred?
           @deferred
         else
           @deferred = $auth.validateUser()
 
-          @deferred.then (data) =>
-            @user = data
+          @deferred.then (response)=>
+            @user = response
           .catch (data, error) ->
-            console.log 'Login error.'
+            console.log 'Unable to validate user'
+            unless Router.isAtLocation('home') or Router.isAtLocation('login')
+              Router.phoneHome()
           @deferred
-
 
       logout: =>
         $auth.signOut()
         Router.phoneHome()
 
-      currentUser: =>
-        $auth.user
-
       authenticate: (provider) =>
         $auth.authenticate(provider).then (data) =>
           @user = data
+          # Reset @deferred toa allow future validation queries to go through
+          # if for any reason necessary
+          @deferred = null
 ])

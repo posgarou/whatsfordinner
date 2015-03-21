@@ -12,6 +12,9 @@ angular
     phoneHome: =>
       @redirectTo 'home'
 
+    isAtLocation: (name) =>
+      $routeSegment.name == name
+
     login: =>
       @redirectTo 'login'
 
