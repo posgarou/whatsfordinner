@@ -1,0 +1,29 @@
+.error-page {
+  @extend .columns;
+  @extend .medium-8;
+  @extend .medium-offset-2;
+  background: transparentize(white, 0.07);
+  min-height: 100vh;
+
+  border-width: 0 0.2em;
+  border-style: solid;
+  border-color: transparentize(white, 0.01);
+
+  padding: 0;
+
+  text-align: center;
+
+  .error-page-content {
+    padding: 1em;
+  }
+
+  p {
+    margin: 2em 0;
+  }
+
+  h1 {
+    margin-top: 17vh;
+    padding: 1em;
+    background: transparentize(white, 0);
+  }
+}
