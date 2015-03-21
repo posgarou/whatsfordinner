@@ -12,7 +12,7 @@ class RecordRecipeRejections
     begin
       graph_user = context.user.graph_user
       context.rejectedRecipes = context.rejectionIds.map do |recipeId|
-        recipe = Graph::Recipe.find(recipeId).tap { |recipe| ap recipe }
+        recipe = Graph::Recipe.find(recipeId)
         Graph::RecipeInteractions::Rejected.create(
           from_node: graph_user,
           to_node: recipe
