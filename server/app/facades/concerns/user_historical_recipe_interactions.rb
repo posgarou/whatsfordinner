@@ -15,7 +15,8 @@ module UserHistoricalRecipeInteractions
 
     ALLOWED_RELATIONSHIPS = [
       'RATED',
-      'SELECTED'
+      'SELECTED',
+      'REJECTED'
     ]
 
     # Defines (e.g.) recently_rated, _hidden, etc.
