@@ -8,6 +8,8 @@ module Graph
       include Grape::Entity::DSL
 
       type 'REJECTED'
+
+      entity :event_date, :type
     end
   end
 end
