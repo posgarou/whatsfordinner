@@ -2,7 +2,7 @@ module Graph
   module RecipeInteractions
     # Superclass for User/Recipe interactions.
     #
-    # TODO: Add PassedOver (user did not select), Rejected (User asked to replace), Hid (User asked never to be shown again), and Starred (User marked the recipe for easier access later)
+    # TODO: Hid (User asked never to be shown again) and Starred (User marked the recipe for easier access later)
     #
     # It may be better/easier in the future to turn these into ActiveNodes.
     #

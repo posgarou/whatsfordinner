@@ -15,7 +15,9 @@ module Graph
       #  +1: liked it
       property :rating, type: Integer
 
-      entity :rating, :event_date, :type
+      entity :rating, :event_date, :type do
+        expose :recipe, using: Graph::Recipe::Entity
+      end
     end
   end
 end

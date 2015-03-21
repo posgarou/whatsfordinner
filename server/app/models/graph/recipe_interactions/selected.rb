@@ -17,6 +17,7 @@ module Graph
 
       entity :event_date, :type, :confirmed? do
         expose :date_confirmed, safe: true
+        expose :recipe, using: Graph::Recipe::Entity
       end
     end
   end

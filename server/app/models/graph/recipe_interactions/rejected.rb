@@ -9,7 +9,9 @@ module Graph
 
       type 'REJECTED'
 
-      entity :event_date, :type
+      entity :event_date, :type do
+        expose :recipe, using: Graph::Recipe::Entity
+      end
     end
   end
 end

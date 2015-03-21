@@ -6,10 +6,14 @@ angular
     ['$scope',
      'AuthenticationService',
      'Router',
-    ($scope,AuthenticationService, Router) ->
+      '$auth',
+      'UserHistoryResource',
+    ($scope, AuthenticationService, Router, $auth, UserHistoryResource) ->
       $scope.phoneHome = Router.phoneHome
       $scope.showDashboard = Router.dashboard
       $scope.showConcierge = Router.concierge
       $scope.showLogin = Router.login
       $scope.logout = AuthenticationService.logout
+
+      $scope.test = new UserHistoryResource(AuthenticationService.validateUser()).resource
   ])
