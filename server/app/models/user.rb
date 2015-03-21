@@ -93,5 +93,14 @@ class User
     field :roles, type: Array, default: []
   end
 
-  entity :name, :email, :provider, :uid, :image_url, :roles
+  entity :name, :email, :provider, :uid, :image_url, :roles do
+    expose :uuid_or_create, as: :id
+
+    private
+
+    # This will generate a Graph::User if one is not defined and send back the uuid
+    def uuid_or_create
+      object.uuid || object.graph_user.uuid
+    end
+  end
 end
