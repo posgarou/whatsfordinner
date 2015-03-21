@@ -30,7 +30,7 @@ module API
           render find_recipe
         end
 
-        # recipes/:recipe_id/instruction
+        # recipes/:recipe_id/instructions
         desc 'Instructions for a single recipe'
         get 'instructions' do
           render RecipeInstructions.new(find_recipe), root: :instructions
@@ -52,7 +52,7 @@ module API
           if res.success?
             { success: true}
           else
-            error!(res.message, 400)
+            error!(res.error, 400)
           end
         end
       end

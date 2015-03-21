@@ -15,10 +15,18 @@ class UserFacade
 
   # Accepts a UUID and generates a facade based on the User/GraphUser associated therewith
   def self.from_uuid uuid
-    graph_user = Graph::User.find_by(uuid: uuid)
+    self.from_graph_user Graph::User.find_by(uuid: uuid)
+  end
+
+  # Accepts a Graph::User and generates a facade based on the User/GraphUser associated therewith
+  def self.from_graph_user graph_user
     user = graph_user.standard_user
 
     new(user, graph_user)
+  end
+
+  def self.from_user user
+    new(user, user.graph_user)
   end
 
   def initialize(user, graph_user)
