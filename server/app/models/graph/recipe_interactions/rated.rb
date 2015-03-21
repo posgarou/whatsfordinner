@@ -2,7 +2,7 @@ module Graph
   module RecipeInteractions
     # Represents a rating event.
     #
-    # Ratings should only be allowed one per time selected.  (Maybe require selection to be confirmed?)
+    # Ratings should only be allowed after a recipe has been selected.
     class Rated
       include Graph::RecipeInteractions::Base
       include Grape::Entity::DSL
