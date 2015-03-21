@@ -33,13 +33,7 @@ module UserHistoricalRecipeInteractions
 
   # Constructs one of several queries via options and partial methods
   def recent_interactions(types:ALLOWED_RELATIONSHIPS)
-    type_query = type_query_for types
-
-    all_rels = user
-      .query_as(:user)
-      .match("user-[rel:#{type_query}]->(recipe:`Graph::Recipe`)")
-
-    recipe_restricted = restrict_by_recipe all_rels
+    recipe_restricted = restrict_by_recipe all_relationship_rels(types)
 
     # Order by date and return rels
     recipe_restricted
@@ -56,6 +50,17 @@ module UserHistoricalRecipeInteractions
     @page = page if page
     @per_page = per_page if per_page
     self
+  end
+
+  # Return all relationship rels (unless limited by types) for this user.
+  #
+  # Returns a QueryProxy object.
+  def all_relationship_rels types
+    type_query = type_query_for types
+
+    user
+       .query_as(:user)
+       .match("user-[rel:#{type_query}]->(recipe:`Graph::Recipe`)")
   end
 
   def page
