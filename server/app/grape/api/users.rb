@@ -13,16 +13,18 @@ module API
       end
       # /users/:user_id
       route_param :user_id do
+
+        # Every path under /users is authenticated
+        before do
+          authenticate!
+        end
+
         desc 'User info'
         get do
           present find_user_facade
         end
 
         resource :recipes do
-          before do
-            authenticate!
-          end
-
           # /users/:user_id/recipes/history
           resource :history do
             desc 'Recent recipe interactions for this user'

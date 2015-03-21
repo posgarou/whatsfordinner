@@ -1,4 +1,5 @@
 require_relative '../support/token_headers'
+require_relative '../support/authenticated_resource'
 
 describe API::Users do
   include TokenHeaders
@@ -19,6 +20,8 @@ describe API::Users do
   let(:resource_path) { "/api/users/#{user.uuid}" }
 
   describe 'GET /api/users/:user_id' do
+    is_and_acts_like 'an authenticated resource', :user, :get, :resource_path, {}
+
     it 'returns a user and his/her info' do
       get resource_path, nil, valid_headers(user)
 
@@ -27,7 +30,7 @@ describe API::Users do
 
     it 'includes required data for the dashboard' do
       get resource_path, nil, valid_headers(user)
-      
+
       json = parse_response
 
       expect(json['name']).not_to be_blank
@@ -40,8 +43,12 @@ describe API::Users do
   end
 
   describe 'GET /api/users/:user_id/recipes/history' do
+    let(:history_resource_path) { resource_path + '/recipes/history' }
+
+    is_and_acts_like 'an authenticated resource', :user, :get, :history_resource_path, {}
+
     it 'returns history (with pagination) for all user\'s related recipes' do
-      get resource_path + '/recipes/history', nil, valid_headers(user)
+      get history_resource_path, nil, valid_headers(user)
 
       expect_success
 
@@ -50,12 +57,16 @@ describe API::Users do
   end
 
   describe 'GET /api/users/:user_id/recipes/concierge' do
+    let(:concierge_resource_path) { resource_path + '/recipes/concierge' }
+
+    is_and_acts_like 'an authenticated resource', :user, :get, :concierge_resource_path, {}
+
     before do
       3.times { create(:recipe) }
     end
 
     it 'returns 3 recommendations (or # of recipes, if fewer)' do
-      get resource_path + '/recipes/concierge', nil, valid_headers(user)
+      get concierge_resource_path, nil, valid_headers(user)
 
       expect_success
 

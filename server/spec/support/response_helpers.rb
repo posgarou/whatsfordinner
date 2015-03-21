@@ -8,6 +8,10 @@ module ResponseHelpers
     expect(response.status).to eq(400)
   end
 
+  def expect_401
+    expect(response.status).to eq(401)
+  end
+
   def expect_not_found
     expect(response.status).to eq(404)
   end
