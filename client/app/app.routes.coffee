@@ -1,16 +1,16 @@
 # Use angular-route-segment to set up routes with nested controllers.
 #
 # Authenticates all access to /dashboard and /go paths.
-# TODO Resolve dashboard
 angular.module('whatsForDinnerApp').config(['PATHS', '$routeSegmentProvider', (PATHS, $routeSegmentProvider)->
   $routeSegmentProvider
   .when('/', 'home')
-  .when('/dashboard', 'dashboard')
+  .when('/error', 'error')
   .when('/go', 'main')
   .when('/go/concierge', 'main.concierge')
   .when('/go/concierge/difficulty', 'main.concierge.difficulty')
   .when('/go/concierge/meal-time', 'main.concierge.mealTime')
   .when('/go/concierge/selection', 'main.concierge.selection')
+  .when('/go/dashboard', 'main.dashboard')
   .when('/go/recipes', 'main.recipes')
   .when('/go/recipes/:recipeId', 'main.recipe')
   .when('/go/recipes/:recipeId/instructions', 'main.recipe.instructions')
@@ -21,19 +21,11 @@ angular.module('whatsForDinnerApp').config(['PATHS', '$routeSegmentProvider', (P
       templateUrl: "#{PATHS.COMPONENT_VIEWS}/home/home.html",
       controller: 'HomeCtrl'
     })
-  .segment('dashboard', {
-    templateUrl: "#{PATHS.COMPONENT_VIEWS}/dashboard/dashboard.html",
-    controller: 'DashboardCtrl',
-    resolve: {
-      user: ['AuthenticationService', (AuthenticationService) ->
-        AuthenticationService.validateUser()
-      ]
-    }
-    resolveFailed: {
-      templateUrl: "#{PATHS.COMPONENT_VIEWS}/unauthorized/unauthorized.html",
-      controller: 'UnauthorizedCtrl'
-    }
+  .segment('error', {
+    templateUrl: "#{PATHS.COMPONENT_VIEWS}/error/error.html",
+    controller: 'ErrorCtrl'
   })
+  .root()
   .segment('main', {
     templateUrl: "#{PATHS.COMPONENT_VIEWS}/main/main.html",
     controller: 'MainCtrl',
@@ -47,6 +39,12 @@ angular.module('whatsForDinnerApp').config(['PATHS', '$routeSegmentProvider', (P
       controller: 'UnauthorizedCtrl'
     }
   })
+  .within()
+  .segment('dashboard', {
+    templateUrl: "#{PATHS.COMPONENT_VIEWS}/main/dashboard/dashboard.html",
+    controller: 'DashboardCtrl'
+  })
+  .up()
   .within()
   .segment('concierge', {
     templateUrl: "#{PATHS.COMPONENT_VIEWS}/main/concierge/concierge.html",
