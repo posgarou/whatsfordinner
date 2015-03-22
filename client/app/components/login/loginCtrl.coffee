@@ -9,9 +9,11 @@ angular
     'Router',
    ($scope, AuthenticationService, $modal, $location, $routeSegment, Router) ->
      $scope.authenticate = (provider) ->
-       p = AuthenticationService.authenticate(provider)
+       AuthenticationService.authenticate(provider)
 
      $scope.phoneHome = Router.phoneHome
+
+     $scope.stylingInfo = {}
 
      $scope.$on('auth:login-success', (ev, user) ->
        $modal.open({

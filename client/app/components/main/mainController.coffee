@@ -2,13 +2,14 @@ angular
 .module('whatsForDinnerApp')
 # Parent controller for any page of the site that uses the center content box
 # Controls/displays theme.
-.controller('MainCtrl', ['$scope', 'AuthenticationService', 'ipCookie', 'Router', ($scope, AuthenticationService, ipCookie, Router) ->
+.controller('MainCtrl', ['$scope', '$rootScope', 'AuthenticationService', 'ipCookie', 'Router', ($scope, $rootScope, AuthenticationService, ipCookie, Router) ->
 #    $scope.theme = 'dinner'
     $scope.headerInfo = {h1: 'Ready?'}
     $scope.stylingInfo = {
-      theme: 'dinner',
+      theme: null,
       outerClass: ''
     }
+
 
     $scope.phoneHome = Router.phoneHome
     $scope.showDashboard = Router.dashboard
@@ -21,7 +22,15 @@ angular
     $scope.reTheme = (newTheme)->
       if $scope.stylingInfo.theme != newTheme
         $scope.stylingInfo.theme = newTheme
+        $scope.setBodyClass newTheme
 
     $scope.setHeader = (newHeaderText)->
       $scope.headerInfo.h1 = newHeaderText
+
+    $scope.setBodyClass = (newClass) ->
+      $rootScope.bodyClass = newClass
+
+    # default to dinner
+    unless $scope.stylingInfo.theme?
+      $scope.reTheme 'dinner'
 ])

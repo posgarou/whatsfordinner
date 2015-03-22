@@ -1,0 +1,40 @@
+.dashboard-container {
+  @extend %main-content;
+
+  .dashboard-content {
+    @extend .row;
+  }
+
+  .user-panel {
+    @extend .columns;
+    @extend .medium-4;
+  }
+
+  .histories-panel {
+    @extend .columns;
+    @extend .medium-8
+  }
+
+  time.event-date {
+    font-size: 90%;
+    float: left;
+  }
+
+  .history-row {
+    border: 1px solid black;
+    padding: 1em;
+    margin: 1em 0;
+
+    &.selected {
+      background: pink;
+    }
+
+    &.rejected {
+      background: blue;
+    }
+
+    &.rated {
+      background: green;
+    }
+  }
+}
