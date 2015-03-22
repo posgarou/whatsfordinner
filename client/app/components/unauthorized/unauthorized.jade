@@ -1,7 +1,14 @@
-h1 Whoops!
-h2 Are you sure you're you?
+.error-page
+    h1 Whoops!
+    h2 Are you sure you're you?
 
-p Would you mind logging back in?
+    .error-page-content
 
-a.standard-btn(ng-click='showLogin()') Login
-a.standard-btn(ng-click='phoneHome()') Phone Home
+        p Either you've been logged out or we caught you trying to look at something that's not yours.
+
+        p Would you mind logging back in?
+
+        p
+
+            a.standard-btn(ng-click='showLogin()') Login
+            a.standard-btn(ng-click='phoneHome()') Phone Home

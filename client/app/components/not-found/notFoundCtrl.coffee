@@ -6,10 +6,13 @@ angular
     ['$scope',
      'AuthenticationService',
      'Router',
-    ($scope,AuthenticationService, Router) ->
+     'Themer',
+    ($scope,AuthenticationService, Router, Themer) ->
       $scope.phoneHome = Router.phoneHome
-      $scope.showDashboard = Router.dashboard
-      $scope.showConcierge = Router.concierge
-      $scope.showLogin = Router.login
-      $scope.logout = AuthenticationService.logout
+#      $scope.showDashboard = Router.dashboard
+#      $scope.showLogin = Router.login
+
+      $scope.stylingInfo = {}
+
+      Themer.setBodyClass 'not-found'
   ])
