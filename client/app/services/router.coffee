@@ -25,5 +25,5 @@ angular
       @redirectTo 'main.concierge'
 
     dashboard: =>
-      @redirectTo 'dashboard'
+      @redirectTo 'main.dashboard'
 ])
