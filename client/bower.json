@@ -13,7 +13,8 @@
     "angular-route-segment": "~1.4.0",
     "ngSmoothScroll": "~1.7.1",
     "angular-cookie": "~4.0.6",
-    "ng-token-auth": "~0.0.24"
+    "ng-token-auth": "~0.0.24",
+    "moment": "~2.9.0"
   },
   "devDependencies": {
     "underscore": "~1.8.2"
