@@ -7,5 +7,5 @@ html
     script(type='text/javascript', src="../js/#{vendorJS}")
     script(type= 'text/javascript', src = '../js/#{templateJS}')
     script(type='text/javascript', src='../js/#{allJS}')
-  body(ng-app="whatsForDinnerApp")
+  body(ng-app="whatsForDinnerApp", ng-class='bodyClass')
     .content(app-view-segment='0')
