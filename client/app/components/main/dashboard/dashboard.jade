@@ -1,0 +1,16 @@
+.dashboard-content
+    .user-panel
+        h2 {{ user.name }}
+        //img.user-avatar(ng-src='{{ user.image_url }}')
+        dl
+            dt Email
+            dl {{ user.email }}
+            dt Registered Through
+            dl {{ user.provider.split('_')[0] | TitleCase }}
+            dt User Type
+            dl {{ user.roles.join(' and ') | TitleCase }}
+    .histories-panel
+        h2 History
+        .history-row(ng-repeat='history in histories.data', ng-class='history.rowClass')
+            time-from-now.event-date(datetime='{{ history.eventDate }}')
+            h5 {{ history.recipe.title }}&mdash;{{history.eventType}}
