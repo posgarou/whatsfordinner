@@ -1,4 +1,5 @@
 module Graph
+  # TODO Refactor this into an array of strings put directly into Recipe. This should greatly increase performance, I think.
   class RecipeStep
     include Neo4j::ActiveNode
 
