@@ -10,7 +10,7 @@
     @extend .medium-4;
   }
 
-  .histories-panel {
+  .tabbable {
     @extend .columns;
     @extend .medium-8
   }
@@ -72,6 +72,54 @@
     .confirmation {
       padding: 1.5em 1em;
       @extend .medium-text-center;
+    }
+  }
+
+  .rating-row {
+    border: 1px solid $dark-green-copper;
+    border-radius: 4px;
+
+    // Corrects an odd visual bug with Chrome and border clipping
+    overflow: hidden;
+
+    margin: 1em 0;
+
+    text-align: center;
+
+    .rating-header-row {
+      background: $frosted-mint;
+      padding: 1em 0 1em;
+    }
+
+    .rating-bar {
+      padding: 1em 0.5em;
+
+      span {
+        display: inline-block;
+        padding: 0.5em;
+        font-size: 2.5em;
+      }
+
+      .icon-dislike, .icon-dislike-no {
+        color: $hard;
+      }
+
+      .icon-meh, .icon-meh-no {
+        color: $medium;
+      }
+
+      .icon-like, .icon-like-no {
+        color: $easy;
+      }
+
+      .icon-dislike-no, .icon-meh-no, .icon-like-no {
+        opacity: 0.7;
+        transition: 0.15s opacity;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
     }
   }
 }

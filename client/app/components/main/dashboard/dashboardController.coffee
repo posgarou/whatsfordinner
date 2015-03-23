@@ -6,9 +6,10 @@ angular
     ['$scope',
      'AuthenticationService',
      'Router',
-      '$q',
-      'UserHistoryResource',
-    ($scope, AuthenticationService, Router, $q, UserHistoryResource) ->
+     '$q',
+     'UserHistoryResource',
+     'UserNeedsRatingResource'
+    ($scope, AuthenticationService, Router, $q, UserHistoryResource, UserNeedsRatingResource) ->
       $scope.phoneHome = Router.phoneHome
       $scope.showDashboard = Router.dashboard
       $scope.showConcierge = Router.concierge
@@ -16,6 +17,7 @@ angular
       $scope.logout = AuthenticationService.logout
 
       $scope.histories = new UserHistoryResource(AuthenticationService.validateUser()).resource
+      $scope.needsRating = new UserNeedsRatingResource(AuthenticationService.validateUser()).resource
 
       $scope.setHeader 'Dashboard'
       $scope.stylingInfo.outerClass = 'dashboard-container'

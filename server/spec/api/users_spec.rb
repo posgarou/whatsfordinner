@@ -69,7 +69,7 @@ describe API::Users do
       get needs_rating_resource_path, nil, valid_headers(user)
 
       expect_success
-      
+
       expect(parse_response.length).to eq(3)
     end
   end

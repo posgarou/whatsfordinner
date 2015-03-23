@@ -9,27 +9,43 @@
             dl {{ user.provider.split('_')[0] | TitleCase }}
             dt User Type
             dl {{ user.roles.join(' and ') | TitleCase }}
-    .histories-panel
-        h2 History
-        .history-row(ng-repeat='history in histories.data', ng-class='history.rowClass')
-            .history-header-row
-                .event-time
-                    time-from-now.event-date(datetime='{{ history.eventDate }}')
-                .event-recipe-title
-                    h3 {{ history.recipe.title }}
-                .event-type {{ history.eventType }}
-            .history-details-row
-                .confirmation(ng-if='history.isSelected()', ng-controller='SelectionHistoryCtrl', ng-switch='selectionPanel')
-                    .been-confirmed(ng-switch-when='beenConfirmed')
-                        p
-                            strong Confirmed on:
-                            | &nbsp; {{ history.confirmationDate }}
-                    .just-confirmed(ng-switch-when='justConfirmed')
-                        p Thanks!  This will help us show you better suggestions in the future.
-                    .not-confirmed(ng-switch-when='notBeenConfirmed')
-                        p Did you end up making this?
-                        aside (This sort of information helps us a lot!)
-                        .button-row.set-off
-                            a.standard-btn.btn-easy(ng-click='confirmYes()') Yes!
-                            a.standard-btn.btn-no(ng-click='confirmNo()') Nope
+    tabset
+        tab(heading='Not Rated')
+            .rating-panel
+                h2 What did you think?
+                .rating-row(ng-repeat='recipe in needsRating.data', ng-controller='RecipeRatingCtrl')
+                    .rating-header-row
+                        .recipe-title
+                            h3 {{ recipe.title }}
+                    .rating-bar
+                        icon(name='dislike', ng-if="recipe.currentRating == -1")
+                        icon(name='dislike-no', ng-if="recipe.currentRating != -1", ng-click='setCurrentRating(-1)')
+                        icon(name='meh', ng-if="recipe.currentRating == 0")
+                        icon(name='meh-no', ng-if="recipe.currentRating != 0", ng-click='setCurrentRating(0)')
+                        icon(name='like', ng-if="recipe.currentRating == 1")
+                        icon(name='like-no', ng-if="recipe.currentRating != 1", ng-click='setCurrentRating(1)')
+        tab(heading='Recent History')
+            .histories-panel
+                h2 History
+                .history-row(ng-repeat='history in histories.data', ng-class='history.rowClass')
+                    .history-header-row
+                        .event-time
+                            time-from-now.event-date(datetime='{{ history.eventDate }}')
+                        .event-recipe-title
+                            h3 {{ history.recipe.title }}
+                        .event-type {{ history.eventType }}
+                    .history-details-row
+                        .confirmation(ng-if='history.isSelected()', ng-controller='SelectionHistoryCtrl', ng-switch='selectionPanel')
+                            .been-confirmed(ng-switch-when='beenConfirmed')
+                                p
+                                    strong Confirmed on:
+                                    | &nbsp; {{ history.confirmationDate }}
+                            .just-confirmed(ng-switch-when='justConfirmed')
+                                p Thanks!  This will help us show you better suggestions in the future.
+                            .not-confirmed(ng-switch-when='notBeenConfirmed')
+                                p Did you end up making this?
+                                aside (This sort of information helps us a lot!)
+                                .button-row.set-off
+                                    a.standard-btn.btn-easy(ng-click='confirmYes()') Yes!
+                                    a.standard-btn.btn-no(ng-click='confirmNo()') Nope
 
