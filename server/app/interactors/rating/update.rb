@@ -25,7 +25,7 @@ class Rating::Update
     Graph::RecipeInteractions::Rated.create(from_node: user, to_node: recipe, rating: rating)
   end
 
-  private
+  protected
 
   def ensure_present user, recipe, rating
     context.fail!(error: 'User is required') unless user
