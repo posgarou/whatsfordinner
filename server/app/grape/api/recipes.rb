@@ -61,7 +61,17 @@ module API
         end
         desc 'Set the current user\'s rating for a recipe. Replaces current rating (if any).'
         post :rate do
+          res = Rating::Update.call(
+            user: current_user.graph_user,
+            recipe: find_recipe,
+            rating: params[:rating]
+          )
 
+          if res.success?
+            { success: true }
+          else
+            error!(res.error, 400)
+          end
         end
 
         params do

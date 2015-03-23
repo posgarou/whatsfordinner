@@ -1,7 +1,7 @@
 # Speed up response parsing
 module ResponseHelpers
   def expect_success
-    expect(response.status).to eq(200)
+    expect(response.status).to eq(200).or eq(201)
   end
 
   def expect_400

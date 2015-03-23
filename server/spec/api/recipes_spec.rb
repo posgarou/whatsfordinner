@@ -1,7 +1,7 @@
 require_relative '../support/token_headers'
 
 describe API::Recipes do
-  let(:first_recipe) { Graph::Recipe.all.first }
+  let(:first_recipe) { Graph::Recipe.all.first || create(:recipe) }
   let(:user) { create(:graph_user) }
 
   include TokenHeaders
@@ -114,6 +114,24 @@ describe API::Recipes do
 
       expect(json).to have_key('instructions')
       expect(json).to have_key('user')
+    end
+  end
+
+  describe 'POST api/recipes/:recipe_id/rate' do
+    before do
+      create(:recipe)
+    end
+
+    it 'updates the rating when passed a rating' do
+      post "/api/recipes/#{first_recipe.id}/rate", { rating: 0 }, valid_headers(user)
+
+      expect_success
+    end
+
+    it 'gives a 400 when no rating is given' do
+      post "/api/recipes/#{first_recipe.id}/rate", {}, valid_headers(user)
+
+      expect_400
     end
   end
 end
