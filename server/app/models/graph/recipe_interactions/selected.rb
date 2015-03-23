@@ -16,7 +16,7 @@ module Graph
       property :was_made, type: String
 
       def confirmed?
-        was_made.nil?
+        was_made.present?
       end
 
       entity :event_date, :type, :confirmed? do
