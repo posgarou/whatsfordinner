@@ -57,38 +57,30 @@ module API
         end
 
         params do
-          requires :event_date, type: DateTime, desc: 'DateTime the original selection took place.'
+          requires :event_date, type: DateTime, desc: 'DateTime the original selection took place (in Unix time).'
         end
         desc 'Confirm that a selected recipe was made'
         put 'confirmSelection' do
-          ap params
-          # res = RecordRecipeSelectionAndRejections.(
-          #   user: current_user,
-          #     selectionId: params[:recipe_id],
-          #     rejectionIds: params[:rejectedIds])
-          #
-          # if res.success?
-          #   { success: true}
-          # else
-          #   error!(res.error, 400)
-          # end
+          res = Selection::Confirmation.call(
+            user: current_user.graph_user,
+            recipe: find_recipe,
+            event_date: params[:event_date],
+            was_made: true
+          )
+          present res.success?
         end
 
         params do
-          requires :event_date, type: DateTime
+          requires :event_date, type: DateTime, desc: 'DateTime the original selection took place (in Unix time).'
         end
-        desc 'Confirm that a selected recipe was NOT made', desc: 'DateTime the original selection took place.'
+        desc 'Confirm that a selected recipe was NOT made'
         put 'refuteSelection' do
-          # res = RecordRecipeSelectionAndRejections.(
-          #   user: current_user,
-          #     selectionId: params[:recipe_id],
-          #     rejectionIds: params[:rejectedIds])
-          #
-          # if res.success?
-          #   { success: true}
-          # else
-          #   error!(res.error, 400)
-          # end
+          Selection::Confirmation.call(
+            user: current_user,
+            recipe: find_recipe,
+            event_date: event_date,
+            was_made: false
+          )
         end
       end
     end

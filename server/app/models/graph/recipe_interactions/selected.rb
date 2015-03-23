@@ -11,12 +11,17 @@ module Graph
       # "Did the user confirm he/she made it?"
       property :date_confirmed, type: Date
 
+      # Not a boolean because true, false, and nil all
+      # mean different things here (potentially)
+      property :was_made, type: String
+
       def confirmed?
-        date_confirmed.present?
+        was_made.nil?
       end
 
       entity :event_date, :type, :confirmed? do
         expose :date_confirmed, safe: true
+        expose :was_made, safe: true
         expose :recipe, using: Graph::Recipe::Entity
       end
     end

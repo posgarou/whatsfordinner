@@ -5,7 +5,8 @@ angular
       constructor: (data) ->
         @eventDate = data['event_date']
         @eventType = TitleCaseFilter(data['type'])
-        @confirmed = data['confirmed']
+        @was_made = data['was_made']
+        @confirmed = @was_made?
         @confirmationDate = data['date_confirmed']
         @rating = data['rating']
         @recipe = data['recipe']

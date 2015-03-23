@@ -23,7 +23,7 @@
                     .been-confirmed(ng-switch-when='beenConfirmed')
                         p
                             strong Confirmed on:
-                            | {{ history.recipe.confirmationDate | date }}
+                            | &nbsp; {{ history.confirmationDate }}
                     .just-confirmed(ng-switch-when='justConfirmed')
                         p Thanks!  This will help us show you better suggestions in the future.
                     .not-confirmed(ng-switch-when='notBeenConfirmed')
