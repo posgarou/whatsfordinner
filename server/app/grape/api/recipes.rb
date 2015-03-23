@@ -55,6 +55,41 @@ module API
             error!(res.error, 400)
           end
         end
+
+        params do
+          requires :event_date, type: DateTime, desc: 'DateTime the original selection took place.'
+        end
+        desc 'Confirm that a selected recipe was made'
+        put 'confirmSelection' do
+          ap params
+          # res = RecordRecipeSelectionAndRejections.(
+          #   user: current_user,
+          #     selectionId: params[:recipe_id],
+          #     rejectionIds: params[:rejectedIds])
+          #
+          # if res.success?
+          #   { success: true}
+          # else
+          #   error!(res.error, 400)
+          # end
+        end
+
+        params do
+          requires :event_date, type: DateTime
+        end
+        desc 'Confirm that a selected recipe was NOT made', desc: 'DateTime the original selection took place.'
+        put 'refuteSelection' do
+          # res = RecordRecipeSelectionAndRejections.(
+          #   user: current_user,
+          #     selectionId: params[:recipe_id],
+          #     rejectionIds: params[:rejectedIds])
+          #
+          # if res.success?
+          #   { success: true}
+          # else
+          #   error!(res.error, 400)
+          # end
+        end
       end
     end
   end

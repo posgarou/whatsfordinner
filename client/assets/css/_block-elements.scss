@@ -39,6 +39,12 @@ hr {
   margin-right: auto;
 }
 
+aside {
+  @extend small;
+
+  margin-bottom: 2em;
+}
+
 %main-content {
   @extend .small-12;
   @extend .medium-10;

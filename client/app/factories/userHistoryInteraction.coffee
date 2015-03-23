@@ -10,4 +10,6 @@ angular
         @rating = data['rating']
         @recipe = data['recipe']
         @rowClass = lowercaseFilter(@eventType)
+      isSelected: ->
+        @eventType == 'Selected'
   ])

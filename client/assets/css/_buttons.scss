@@ -44,6 +44,26 @@
   }
 }
 
+.btn-yes {
+  @extend .btn-easy;
+}
+
+.btn-no {
+  @extend .btn-hard;
+}
+
+.button-row {
+
+  &.set-off {
+    margin-top: 2em;
+  }
+
+  a {
+    margin-left: 0.8em;
+    margin-right: 0.8em;
+  }
+}
+
 .scroller-container {
   text-align: center;
 

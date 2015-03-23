@@ -15,26 +15,83 @@
     @extend .medium-8
   }
 
-  time.event-date {
-    font-size: 90%;
-    float: left;
+  h5 {
+    text-align: right;
   }
 
   .history-row {
     border: 1px solid black;
-    padding: 1em;
+    border-radius: 4px;
+
+    // Corrects an odd visual bug with Chrome and border clipping
+    overflow: hidden;
+
     margin: 1em 0;
 
-    &.selected {
-      background: pink;
+    .history-header-row {
+      @extend .row;
+      padding: 1em 0 1em;
+
+      .event-time {
+        @extend .columns;
+        @extend .medium-3;
+        font-size: 85%;
+        font-variant: small-caps;
+      }
+
+      .event-recipe-title {
+        @extend .columns;
+        @extend .medium-6;
+        @extend .small-9;
+
+        @extend .medium-text-center;
+
+        h3 {
+          text-align: inherit;
+          margin: 0;
+          font-size: 1em;
+
+          font-weight: 200;
+          letter-spacing: 0.05em;
+        }
+      }
+
+      .event-type {
+        @extend .columns;
+        @extend .small-3;
+
+        text-align: right;
+
+        text-transform: lowercase;
+
+        font-size: 85%;
+        font-variant: small-caps;
+      }
     }
 
-    &.rejected {
-      background: blue;
-    }
-
-    &.rated {
-      background: green;
+    .confirmation {
+      padding: 1.5em 1em;
+      @extend .medium-text-center;
     }
   }
 }
+
+
+@mixin themeHistoryRows($name, $theme) {
+  $off-white: nth($theme, 1);
+  $light: nth($theme, 2);
+  $med: nth($theme, 3);
+  $dark: nth($theme, 4);
+
+  .history-row.#{$name} {
+    border-color: $dark;
+
+    .history-header-row {
+      background: $light;
+    }
+  }
+}
+
+@include themeHistoryRows('selected', $red-theme);
+@include themeHistoryRows('rejected', $green-theme);
+@include themeHistoryRows('rated', $blue-green-theme);

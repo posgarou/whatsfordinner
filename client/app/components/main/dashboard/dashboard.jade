@@ -12,5 +12,24 @@
     .histories-panel
         h2 History
         .history-row(ng-repeat='history in histories.data', ng-class='history.rowClass')
-            time-from-now.event-date(datetime='{{ history.eventDate }}')
-            h5 {{ history.recipe.title }}&mdash;{{history.eventType}}
+            .history-header-row
+                .event-time
+                    time-from-now.event-date(datetime='{{ history.eventDate }}')
+                .event-recipe-title
+                    h3 {{ history.recipe.title }}
+                .event-type {{ history.eventType }}
+            .history-details-row
+                .confirmation(ng-if='history.isSelected()', ng-controller='SelectionHistoryCtrl', ng-switch='selectionPanel')
+                    .been-confirmed(ng-switch-when='beenConfirmed')
+                        p
+                            strong Confirmed on:
+                            | {{ history.recipe.confirmationDate | date }}
+                    .just-confirmed(ng-switch-when='justConfirmed')
+                        p Thanks!  This will help us show you better suggestions in the future.
+                    .not-confirmed(ng-switch-when='notBeenConfirmed')
+                        p Did you end up making this?
+                        aside (This sort of information helps us a lot!)
+                        .button-row.set-off
+                            a.standard-btn.btn-easy(ng-click='confirmYes()') Yes!
+                            a.standard-btn.btn-no(ng-click='confirmNo()') Nope
+
