@@ -57,6 +57,14 @@ module API
         end
 
         params do
+          requires :rating, type: Integer, desc: 'Rating for a recipe (1=love, 0=meh, -1=dislike)'
+        end
+        desc 'Set the current user\'s rating for a recipe. Replaces current rating (if any).'
+        post :rate do
+
+        end
+
+        params do
           requires :event_date, type: DateTime, desc: 'DateTime the original selection took place (in Unix time).'
         end
         desc 'Confirm that a selected recipe was made'
