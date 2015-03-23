@@ -12,7 +12,19 @@
 
   .tabbable {
     @extend .columns;
-    @extend .medium-8
+    @extend .medium-8;
+
+
+
+    h3 {
+      @extend .medium-text-center;
+
+      margin: 0;
+      font-size: 1em;
+
+      font-weight: 200;
+      letter-spacing: 0.05em;
+    }
   }
 
   h5 {
@@ -45,15 +57,6 @@
         @extend .small-9;
 
         @extend .medium-text-center;
-
-        h3 {
-          text-align: inherit;
-          margin: 0;
-          font-size: 1em;
-
-          font-weight: 200;
-          letter-spacing: 0.05em;
-        }
       }
 
       .event-type {
