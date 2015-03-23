@@ -56,6 +56,24 @@ describe API::Users do
     end
   end
 
+  describe 'GET /api/users/:user_id/recipes/needs_rating' do
+    let(:needs_rating_resource_path) { resource_path + '/recipes/needs_rating' }
+
+    is_and_acts_like 'an authenticated resource', :user, :get, :needs_rating_resource_path, {}
+
+    before do
+      3.times { create(:recipe_selected, :with_nodes, from_node: user) }
+    end
+
+    it 'returns 3 recipes needing rating' do
+      get needs_rating_resource_path, nil, valid_headers(user)
+
+      expect_success
+      
+      expect(parse_response.length).to eq(3)
+    end
+  end
+
   describe 'GET /api/users/:user_id/recipes/concierge' do
     let(:concierge_resource_path) { resource_path + '/recipes/concierge' }
 

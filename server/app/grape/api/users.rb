@@ -50,6 +50,17 @@ module API
             render_all result.suggestions, root: 'recipes'
           end
 
+          desc 'Get recipes the user has selected in the past but not rated'
+          get 'needs_rating' do
+            result = Rating::NeedsRating.call(user: current_user.graph_user)
+
+            if result.success?
+              render_all result.recipes_needing_rating
+            else
+              error!(res.error, 400)
+            end
+          end
+
           desc 'Recent recipe interactions between this user and a given recipe'
           params do
             optional :recipe_id, 'Recipe id'
