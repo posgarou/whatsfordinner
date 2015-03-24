@@ -4,8 +4,11 @@ module MetaAnalysis
   # REQUIRES: node
   #
   # MODIFIES: centrality
+  #
+  # TODO Move this information over to models in terms of before/after callbacks. Though seems error-prone.
   class DetermineCentrality
     include Interactor
+    include InteractorParameters
 
     MODIFIES = %i(centrality)
 
@@ -19,12 +22,6 @@ module MetaAnalysis
           .match('start<--(node)')
           .return('count(node)')
           .first.values.first
-    end
-
-    def ensure_presence_of *args
-      args.each do |arg|
-        context.fail!(error: "#{arg.to_s.titleize} is required") unless context.send(arg).present?
-      end
     end
   end
 end
