@@ -46,7 +46,7 @@ class RecipeInstructions
   end
 
   def quantified_ingredients
-    [*recipe.ingredients_rels]
+    recipe.query_as(:rec).match('rec-[rel:made_with]->(in:Ingredient)').pluck(:rel)
   end
 
   def current_amount
