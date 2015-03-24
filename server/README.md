@@ -43,6 +43,12 @@ One of the great features about Grape is its easy compatibility with Swagger (an
 
 To view the Swagger documentation for the API, visit the relevant host at the route `/api/swagger`.  (You can also access the raw Swagger JSON at `/api/swagger_doc.json`.)
 
+# A Note about Workers
+
+For now, workers are set to run periodically. Once the app stabilizes, I plan on adding save callbacks on the various models that will only queue a worker as needed.
+
+Additionally, several of the workers are set to run as cron tasks. To enable this functionality, be sure to run `$ whenever -w` to write to the crontab.
+
 # Troubleshooting
 
 If you have problems accessing the database, visit localhost:7474 for development and localhost:7475 for testing.  If you do not see some sort of html response (a broken app is to be expected if installed via rake), then you need to start the neo4j server at that port using the commands above.

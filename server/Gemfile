@@ -34,6 +34,10 @@ source 'https://rubygems.org' do
   # Background Processing
   gem 'sidekiq'
 
+  # Cron integration
+  # NOTE: If ever deployed on Heroku, cron is incompatible with Heroku's model
+  gem 'whenever', require: false
+
   # Recommended by neo4j developers to improve performance
   gem 'oj'
   gem 'oj_mimic_json'
