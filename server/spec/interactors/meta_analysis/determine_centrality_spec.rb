@@ -18,7 +18,7 @@ describe MetaAnalysis::DetermineCentrality do
 
       it 'returns 0' do
         expect(res).to be_success
-        expect(res.centrality).to eq(0)
+        expect(res.centrality_query.first[:centrality]).to eq(0)
       end
     end
 
@@ -27,7 +27,7 @@ describe MetaAnalysis::DetermineCentrality do
 
       it 'returns 2 when node has 2 attached nodes' do
         expect(res).to be_success
-        expect(res.centrality).to eq(2)
+        expect(res.centrality_query.first[:centrality]).to eq(2)
       end
     end
   end
