@@ -27,6 +27,7 @@ FactoryGirl.define do
 
     trait :confirmed do
       date_confirmed { Date.today }
+      was_made 'y'
     end
   end
 
