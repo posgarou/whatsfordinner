@@ -4,6 +4,7 @@ module Graph
     include Grape::Entity::DSL
 
     property :name, index: :exact
+    property :centrality, type: Integer
 
     has_many :in, :recipes, rel_class: Graph::MadeWith, model_class: Graph::Recipe
 
