@@ -38,4 +38,29 @@ require_relative 'client/app'
 
 # Rack::Cascade sends all routes to the first Rack app, and if it responds with a 404
 # Rack passes the request on to the next Rack app.
-run Rack::Cascade.new [WFDinnerApp, WFDinnerServer::Application]
+
+cascaded_app = Rack::Cascade.new [WFDinnerApp, WFDinnerServer::Application]
+
+
+##########################
+#         STARTUP        #
+##########################
+
+# Rack::Cascade sends all routes to the first Rack app, and if it responds with a 404
+# Rack passes the request on to the next Rack app.
+
+if ENV['RACK_ENV'] == 'development'
+  ##########################
+  #    Sidekiq Interface   #
+  ##########################
+
+  # We only want the Sidekiq interface to appear in development
+
+  require 'sidekiq/web'
+
+  run Rack::URLMap.new('/' => cascaded_app, '/sidekiq' => Sidekiq::Web)
+else
+  # In all other environments, just launch the cascaded app
+  run cascaded_app
+end
+

@@ -1,5 +1,9 @@
 # Dependencies
 
+## Redis
+
+On OSX, simply `$ brew install redis`.  On other systems, consult the instructions at the [Redis Readme](https://github.com/antirez/redis).
+
 ## MongoDB
 
 Installation of MongoDB should be fairly straightforward.  Assuming you have npm installed, just run `$ npm install mongodb`
@@ -13,6 +17,13 @@ Thus, to install a (named) instance of neo4j, run `$ noglob bundle exec rake neo
 ### Starting Neo4j
 
 Run `$ noglob bundle exec rake neo4j:start['wfd-dev']`.
+
+# Starting the App
+
+* Ensure MongoDB is running
+* Ensure Neo4j is running in the appropriate environment
+* Ensure Redis is running
+* Ensure Sidekiq is running
 
 # Test Env Setup
 

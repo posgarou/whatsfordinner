@@ -37,5 +37,8 @@ module WFDinnerServer
       provider :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_SECRET']
       provider :google_oauth2, ENV['GOOGLE_APP_ID'], ENV['GOOGLE_SECRET']
     end
+
+    # For explanation, see https://github.com/neo4jrb/neo4j/issues/724#issuecomment-84990610
+    ENV['NEO4J_RETRY_COUNT'] ||= '25'
   end
 end

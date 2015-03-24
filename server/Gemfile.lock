@@ -14,6 +14,37 @@ GIT
       rack-mount
       virtus (>= 1.0.0)
 
+GIT
+  remote: git://github.com/neo4jrb/neo4j-core.git
+  revision: 5ed2ea999a10ab21c1faf65d0b86bd41dfdbf4ff
+  ref: 5ed2ea999a10ab21c1faf65d0b86bd41dfdbf4ff
+  specs:
+    neo4j-core (4.1.0)
+      activesupport
+      faraday (~> 0.9.0)
+      faraday_middleware (~> 0.9.1)
+      faraday_middleware-multi_json
+      httparty
+      httpclient
+      json
+      multi_json
+      net-http-persistent
+      os
+      zip
+
+GIT
+  remote: git://github.com/neo4jrb/neo4j.git
+  revision: 34a93a9a2cd40e319b7531eff8cf68e8a069f84d
+  ref: 34a93a9a2cd40e319b7531eff8cf68e8a069f84d
+  specs:
+    neo4j (5.0.0)
+      active_attr (~> 0.8)
+      activemodel (~> 4)
+      activesupport (~> 4)
+      neo4j-core (~> 4.1.0)
+      orm_adapter (~> 0.5.0)
+      railties (~> 4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -113,6 +144,9 @@ GEM
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.9.1)
       faraday (>= 0.7.4, < 0.10)
+    faraday_middleware-multi_json (0.0.6)
+      faraday_middleware
+      multi_json
     ffi (1.9.7)
     formatador (0.2.5)
     globalid (0.3.3)
@@ -198,23 +232,6 @@ GEM
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     nenv (0.2.0)
-    neo4j (4.1.4)
-      active_attr (~> 0.8)
-      activemodel (~> 4)
-      activesupport (~> 4)
-      neo4j-core (~> 4.0.0)
-      orm_adapter (~> 0.5.0)
-      railties (~> 4)
-    neo4j-core (4.0.4)
-      activesupport
-      faraday (~> 0.9.0)
-      faraday_middleware (~> 0.9.1)
-      httparty
-      httpclient
-      json
-      net-http-persistent
-      os
-      zip
     neo4j-will_paginate_redux (0.3.4)
       activesupport (~> 4.0)
       neo4j (> 3.0.2)
@@ -296,6 +313,9 @@ GEM
       ffi (>= 0.5.0)
     rb-readline (0.5.2)
     rdoc (4.2.0)
+    redis (3.2.1)
+    redis-namespace (1.5.1)
+      redis (~> 3.0, >= 3.0.4)
     ref (1.0.5)
     require_all (1.3.2)
     rspec (3.2.0)
@@ -330,6 +350,12 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     shellany (0.0.1)
+    sidekiq (3.3.3)
+      celluloid (>= 0.16.0)
+      connection_pool (>= 2.1.1)
+      json
+      redis (>= 3.0.6)
+      redis-namespace (>= 1.3.1)
     signed_multiset (0.2.1)
     simplecov (0.9.2)
       docile (~> 1.1.0)
@@ -391,48 +417,50 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  awesome_print!
-  better_errors!
-  binding_of_caller!
-  byebug!
-  capybara!
+  awesome_print
+  better_errors
+  binding_of_caller
+  byebug
+  capybara
   chronic_duration
   coffee-rails (~> 4.1.0)!
-  database_cleaner!
-  factory_girl_rails!
+  database_cleaner
+  factory_girl_rails
   grape!
   grape-entity
   grape-entity-matchers
   grape-swagger
   grape-swagger-ui
-  guard-rspec!
+  guard-rspec
   hashie_rails
-  highline!
+  highline
   interactor-rails
   jbuilder (~> 2.0)!
   jquery-rails!
   json (= 1.8.1)!
-  lumberjack!
+  lumberjack
   mongoid!
   neo4j!
-  neo4j-will_paginate_redux!
-  oj!
-  oj_mimic_json!
+  neo4j-core!
+  neo4j-will_paginate_redux
+  oj
+  oj_mimic_json
   omniauth
   omniauth-facebook
   omniauth-google-oauth2
-  pry!
+  pry
   pundit
   rails (= 4.2.0)!
   require_all
-  rspec (>= 3.2.0)!
-  rspec-rails!
+  rspec (>= 3.2.0)
+  rspec-rails
   sass-rails (~> 5.0)!
   sdoc (~> 0.4.0)!
-  simplecov!
+  sidekiq
+  simplecov
   slim-rails!
   therubyracer!
-  timecop!
+  timecop
   uglifier (>= 1.3.0)!
   unitwise
-  zeus!
+  zeus
