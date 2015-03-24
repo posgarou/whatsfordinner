@@ -22,6 +22,8 @@ module Graph
 
     has_many :out, :ingredients, rel_class: Graph::MadeWith, model_class: Graph::Ingredient
 
+    has_many :out, :associated_groups, rel_class: AssociatedWith, model_class: Graph::IngredientGroup
+
     has_many :out, :steps, type: :has_step, model_class: Graph::RecipeStep
 
     # User/Recipe relationships
