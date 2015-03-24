@@ -19,7 +19,11 @@ module Associations
       ensure_presence_of :recipe
 
       # Delete the old associations
-      recipe.associated_groups_rels.map(&:destroy)
+      count = recipe
+        .query_as(:rec)
+        .match('rec-[r:ASSOCIATED_WITH]->(group:IngredientGroup)')
+        .delete(:r)
+        .exec
 
       # Let +p+ be each path that leads (via made_with or group) to
       # an IngredientGroup +group+.
