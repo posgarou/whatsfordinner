@@ -21,7 +21,6 @@ module Graph
     property :meal_times, default: MEAL_TIMES.to_json
     serialize :meal_times
 
-
     has_many :out, :tags, type: :tagged_as, model_class: Graph::Tag
 
     # TODO Add has_many :out, :flavors and make the relationship in FlavorProfile polymorphic
@@ -55,6 +54,12 @@ module Graph
 
     def self.name
       'Recipe'
+    end
+
+    def self.difficulties_at_or_below difficulty
+      difficulty = difficulty.upcase
+
+      DIFFICULTIES.slice_after(difficulty).first
     end
 
     # Render a list of ingredients with quantities suitable for printing
