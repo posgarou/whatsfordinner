@@ -15,6 +15,8 @@ module Graph
 
     property :difficulty, type: String
 
+    property :similarities_updated_at, type: DateTime
+
 
     has_many :out, :tags, type: :tagged_as, model_class: Graph::Tag
 
@@ -30,6 +32,10 @@ module Graph
     has_many :in, :users_selecting, rel_class: Graph::RecipeInteractions::Selected, model_class: Graph::User
 
     has_many :out, :cuisines, type: :CLASSIFIED_AS, model_class: Graph::Cuisine
+
+    # Not bi-directional.  See Graph::SimilarTo for rationale.
+    MAXIMUM_SIMILARITIES = 7
+    has_many :out, :similar_recipes, rel_class: Graph::SimilarTo, model_class: Graph::Recipe
 
     validates :difficulty, inclusion: { in: DIFFICULTIES }, allow_nil: true
 
