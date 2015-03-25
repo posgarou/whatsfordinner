@@ -17,6 +17,10 @@ module Graph
 
     property :similarities_updated_at, type: DateTime
 
+    MEAL_TIMES = %w(BREAKFAST LUNCH DINNER SNACK)
+    property :meal_times, default: MEAL_TIMES.to_json
+    serialize :meal_times
+
 
     has_many :out, :tags, type: :tagged_as, model_class: Graph::Tag
 
