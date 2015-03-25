@@ -18,7 +18,7 @@ module API
     mount API::Auth
 
     add_swagger_documentation :format => :json,
-      :base_path => "http://#{ENV['ROOT_URL']}/api/",
+      :base_path => "http://#{ENV['ROOT_URL']}",
       :hide_documentation_path => true
   end
 end

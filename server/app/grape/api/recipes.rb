@@ -17,9 +17,6 @@ module API
           )
       end
 
-      params do
-        requires :recipe_id, type: String, desc: 'Recipe id'
-      end
       route_param :recipe_id do
         before do
           authenticate!

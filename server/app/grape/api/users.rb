@@ -42,10 +42,15 @@ module API
 
           desc 'Get recipe suggestions'
           params do
-            # Add here mealtime, difficulty, etc.
+            optional :meal_time, type: String, desc: 'Limit to this mealtime'
+            optional :difficulty, type: String, desc: 'Limit to at or below this difficulty'
           end
           get 'concierge' do
-            result = Concierge.(user: current_user)
+            result = Concierge.call(
+              user: current_user,
+              meal_time: params[:meal_time],
+              difficulty: params[:difficulty]
+            )
 
             render_all result.suggestions, root: 'recipes'
           end
@@ -63,7 +68,7 @@ module API
 
           desc 'Recent recipe interactions between this user and a given recipe'
           params do
-            optional :recipe_id, 'Recipe id'
+            requires :recipe_id, type: String, desc: 'Recipe id'
           end
           route_param :recipe_id do
             # /users/:user_id/recipes/:recipe_id

@@ -8,7 +8,7 @@ module API
     desc 'Handles application authorization via OmniAuth'
     namespace :auth do
 
-      desc 'OmniAuth for Facebook'
+      desc 'Attempts to validate token passed. Returns a new token if valid'
       get 'validate_token' do
         authenticate!
 
