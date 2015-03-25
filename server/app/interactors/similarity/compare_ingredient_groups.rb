@@ -14,7 +14,7 @@ module Similarity
   #
   # MODIFIES: significant_groups, group_similarity_factor
   #
-  class CompareSignificantIngredientGroups
+  class CompareIngredientGroups
     include Interactor
     include InteractorParameters
 
