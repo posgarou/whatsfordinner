@@ -30,6 +30,7 @@ module Similarity
 
         delete_old_similarities!
         create_new_similarities! similarity_profiles
+        recipe.update_attribute(:similarities_updated_at, Time.current)
       else
         base_error = "Unable to update similarities for Recipe #{recipe.uuid}."
         base_error += "/n#{res.error}" if res.error

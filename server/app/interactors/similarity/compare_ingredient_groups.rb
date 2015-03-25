@@ -29,11 +29,11 @@ module Similarity
       # the 50th percentile.
       context.significant_groups = recipes.map do |recipe|
         [recipe,
-        Neo4j::Session.query(
+        (Neo4j::Session.query(
           "MATCH (n:Recipe)-[r:ASSOCIATED_WITH]->(group:IngredientGroup) WITH percentileDisc(r.strength, 0.5) AS mid MATCH (n:Recipe { uuid: {uuid} })-[r1:ASSOCIATED_WITH]->(group:IngredientGroup) WHERE r1.strength >= mid RETURN group.name AS group_name",
           uuid: recipe.id
         )
-        .to_a.map(&:group_name)]
+        .to_a || []).map(&:group_name)]
       end.to_h
 
       context.group_similarity_factor = significance_factor context.significant_groups.values

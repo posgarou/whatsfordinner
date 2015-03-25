@@ -35,7 +35,11 @@ module Graph
 
     # Not bi-directional.  See Graph::SimilarTo for rationale.
     MAXIMUM_SIMILARITIES = 7
-    has_many :out, :similar_recipes, rel_class: Graph::SimilarTo, model_class: Graph::Recipe
+    has_many :out,
+      :similar_recipes,
+      rel_class: Graph::SimilarTo,
+      model_class: Graph::Recipe,
+      after: :update_similarities_updated_at
 
     validates :difficulty, inclusion: { in: DIFFICULTIES }, allow_nil: true
 

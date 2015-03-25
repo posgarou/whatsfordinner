@@ -24,41 +24,53 @@ module Similarity
       self.recipe = context.recipe
 
       context.possible_similarities = [*recipe.similar_recipes]
+
       stretch_out_from_current
       fill_in_the_gaps
-
-      # Tidy up the return data
-      context.possible_similarities = context.possible_similarities.first || []
     end
 
     protected
 
     def stretch_out_from_current
-      additional_possible = context.possible_similarities.map do |possible|
-        possible
-          .query_as(:recipe)
-          .match('(recipe)-[:SIMILAR_TO]->(rec2:Recipe)')
+      additional_possible = context.possible_similarities.flat_map do |possible|
+        res = possible
+          .query_as(:rec)
+          .match('(rec)-[:SIMILAR_TO]->(rec2:Recipe)')
           .where('rec2.uuid <> {original_uuid}')
           .params(original_uuid: recipe.id)
           .return('rec2, rand() as r')
           .order(:r)
-          .first
-          .map(&:rec2)
+          .to_a || []
+        res.empty? ? nil : res.map(&:rec2).first
       end
-      context.possible_similarities += additional_possible
-      context.possible_similarities.uniq!
+
+      context.possible_similarities += additional_possible.compact
+      context.possible_similarities = context.possible_similarities.uniq
     end
 
     def fill_in_the_gaps
       # We don't want any of the current recipes returned
       current_ids = context.possible_similarities.map(&:uuid)
+
       # Trying to fill out the list to length (n*2+3)
       limit = LIST_SIZE - current_ids.length
+
       if limit.nonzero?
         # find random recipes to fill it out
-        random_recipes = Neo4j::Session.query.match('(recipe:Recipe)').where('NOT recipe.uuid IN {vorboten_ids}').params(vorboten_ids: current_ids).return('recipe, rand() as r').order(:r).limit(limit).to_a.map(&:recipe)
+        random_recipes = begin
+          Neo4j::Session
+            .query
+            .match('(recipe:Recipe)')
+            .where('NOT recipe.uuid IN {vorboten_ids}')
+            .params(vorboten_ids: current_ids)
+            .return('recipe, rand() as r')
+            .order(:r)
+            .limit(limit)
+            .to_a.map(&:recipe)
+        end
+
         # and add the recipe itself to our list of possible similarities
-        context.possible_similarities << random_recipes
+        context.possible_similarities += random_recipes
       end
     end
   end
