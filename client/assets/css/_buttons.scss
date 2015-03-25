@@ -21,6 +21,13 @@
   &.centered {
     @extend .block-center;
   }
+
+  &.expanded {
+    @extend .block-center;
+    margin: 12vh auto;
+    width: 75%;
+    font-size: 200%;
+  }
 }
 
 .btn-easy {
@@ -55,6 +62,7 @@
 .button-row {
 
   &.set-off {
+    text-align: center;
     margin-top: 2em;
   }
 
