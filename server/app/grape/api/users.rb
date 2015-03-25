@@ -46,8 +46,8 @@ module API
             optional :difficulty, type: String, desc: 'Limit to at or below this difficulty'
           end
           get 'concierge' do
-            result = Concierge.call(
-              user: current_user,
+            result = Concierge::Concierge.call(
+              user: current_user.try(:graph_user),
               meal_time: params[:meal_time],
               difficulty: params[:difficulty]
             )

@@ -2,12 +2,17 @@ angular
   .module('whatsForDinnerApp')
   .service('SelectionService', ['$http', 'RecipeSummary', ($http, RecipeSummary) ->
     class SelectionService
-      constructor: (@userId)->
+      constructor: (@userId, @mealTime, @difficulty)->
         @suggestions = []
       load: ->
         $http.get(
           "/api/users/#{@userId}/recipes/concierge",
-          {recipeId: '@id'}
+          {
+            params: {
+              meal_time: @mealTime
+              difficulty: @difficulty
+            }
+          }
         ).success( (data) =>
           # clear the array
           @suggestions.length = 0
