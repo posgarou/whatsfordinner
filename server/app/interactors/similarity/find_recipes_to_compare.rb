@@ -50,7 +50,7 @@ module Similarity
 
     def fill_in_the_gaps
       # We don't want any of the current recipes returned
-      current_ids = context.possible_similarities.map(&:uuid)
+      current_ids = [*context.possible_similarities.map(&:uuid)]
 
       # Trying to fill out the list to length (n*2+3)
       limit = LIST_SIZE - current_ids.length
