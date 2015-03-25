@@ -25,20 +25,16 @@
             .cuisine(ng-repeat='cuisine in instructions.cuisines') {{ cuisine.name }}
         .tags
             .tag(ng-repeat='tag in instructions.tags') {{ tag.name }}
-        .difficulty(ng-class="instructions.difficulty") {{ instructions.difficulty }}
+        .difficulty(ng-class="instructions.difficulty.toLowerCase()") {{ instructions.difficulty }}
 
     .middle-instructions
         // Display in columns if there are 10 or more ingredients
         .ingredients-list.circled-star-list
-            h2.sr-only Ingredients List
-            ul(ng-class="{ columnized: instructions.ingredients.length >= 10 }")
+            h2 Ingredients
+            ul.columnized
                 li(ng-repeat='ingredient in instructions.ingredients') {{ ingredient.text }}
-        .timeframe-and-serve-with
-            .serve-with
-                h4 Try it with
-                ul.circled-star-list
-                    li(ng-repeat='suggestion in instructions.serveWith') {{ suggestion.name }}
     .row
+        h2 Steps
         .step-list
             ol.circled-number-list
                 .step(ng-repeat='step in instructions.steps', ng-include="'views/components/main/recipe/instructions/instructionStep.html'")
