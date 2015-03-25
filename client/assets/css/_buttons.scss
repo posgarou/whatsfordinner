@@ -61,6 +61,10 @@
 
 .button-row {
 
+  &.centered {
+    text-align: center;
+  }
+
   &.set-off {
     text-align: center;
     margin-top: 2em;
