@@ -38,7 +38,7 @@ module Similarity
     def significance_factor tags
       size_of_intersection = (tags[0] & tags[1]).length
       total = (tags[0].length + tags[1].length - size_of_intersection)
-      size_of_intersection.to_f/total
+      (size_of_intersection.to_f/total) / 3
     end
   end
 end

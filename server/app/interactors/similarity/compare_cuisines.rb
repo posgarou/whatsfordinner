@@ -38,7 +38,7 @@ module Similarity
     def significance_factor cuisines
       size_of_intersection = (cuisines[0] & cuisines[1]).length
       total = (cuisines[0].length + cuisines[1].length - size_of_intersection)
-      size_of_intersection.to_f/total
+      (size_of_intersection.to_f/total) / 2
     end
   end
 end
