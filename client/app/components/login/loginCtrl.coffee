@@ -7,7 +7,8 @@ angular
     '$location',
     '$routeSegment',
     'Router',
-   ($scope, AuthenticationService, $modal, $location, $routeSegment, Router) ->
+    'Themer',
+   ($scope, AuthenticationService, $modal, $location, $routeSegment, Router, Themer) ->
      $scope.authenticate = (provider) ->
        AuthenticationService.authenticate(provider)
 
@@ -31,4 +32,6 @@ angular
            data.errors[0] + '</div>'
        })
      )
+
+     Themer.setBodyClass 'login'
 ])

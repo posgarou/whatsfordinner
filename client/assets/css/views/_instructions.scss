@@ -78,18 +78,18 @@
 
   .ingredients-list {
     @extend .small-12;
-    @extend .medium-6;
     @extend .columns;
 
-    // Used normally
-    ul:not(.columnized) {
-      padding: 0 10%;
-      text-align: center;
-    }
-
-    // Used when there are lots of ingredients
     .columnized {
-      columns: 2;
+      @media #{$medium-up} {
+        -webkit-columns: 2;
+        columns: 2;
+        width: 75%;
+        margin: 0 auto;
+      }
+
+      li {
+      }
     }
   }
 
