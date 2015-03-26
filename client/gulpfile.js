@@ -159,7 +159,7 @@ gulp.task('images', function() {
     del.sync(outputPaths.get('images') + '/**/*.*');
 
     return gulp.src(paths.get('images'))
-        .pipe(gulpIf(config.get('shouldOptimizeImages'), imagemin({optimizationLevel: 5})))
+        .pipe(gulpIf(config.get('shouldOptimizeImages'), imagemin({optimizationLevel: 7, progressive: true})))
         .pipe(gulp.dest(outputPaths.get('images')));
 });
 
