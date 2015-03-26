@@ -21,6 +21,9 @@ module Graph
     property :meal_times, default: MEAL_TIMES.to_json
     serialize :meal_times
 
+    # population. 1 is extreme variance, 0 is unanimous agreement
+    property :rating_variance
+
     has_many :out, :tags, type: :tagged_as, model_class: Graph::Tag
 
     # TODO Add has_many :out, :flavors and make the relationship in FlavorProfile polymorphic
