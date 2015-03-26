@@ -9,7 +9,7 @@ angular
           @q = $q.when(@user)
           @q.then (response) =>
             # Once we receive a response, grab the id
-            @userId = response.id
+            @userId = response.id || response.uuid
             # API path
             resource_path = "/api/users/#{@userId}/recipes/history"
             # GET the resource
