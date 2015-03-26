@@ -67,7 +67,7 @@ module Graph
     # When included in a recipe, also include ingredient data
     entity :render, :required do
       expose :render, as: :text
-      expose :ingredient, using: Graph::Ingredient::Entity
+      expose :ingredient, using: 'Graph::Ingredient::Entity'
     end
 
     # TODO Write a render_scaled function

@@ -16,6 +16,10 @@ module Graph
       'Ingredient'
     end
 
+    class Entity
+      
+    end
+
     entity :id, :name
   end
 end

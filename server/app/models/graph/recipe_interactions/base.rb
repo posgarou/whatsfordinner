@@ -1,3 +1,6 @@
+# Otherwise Rails can at times complain about Graph::Recipe::Entity
+require_dependency 'graph/recipe'
+
 module Graph
   module RecipeInteractions
     # Superclass for User/Recipe interactions.
