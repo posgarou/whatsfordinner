@@ -20,7 +20,8 @@
 # Learn more: http://github.com/javan/whenever
 
 every 2.hours do
-  runner 'UpdateOutdatedRecipeSimilarities.perform_async'
+  runner 'RecipeWorkers::AssignAllRecipeRatingVariance.perform_async'
+  runner 'RecipeWorkers::UpdateOutdatedRecipeSimilarities.perform_async'
 end
 
 every 1.day do
