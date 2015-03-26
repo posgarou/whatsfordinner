@@ -4,7 +4,7 @@ module Graph
       neo_prof = profiles.map do |profile|
         Graph::FlavorProfile.find_or_create_by(name: profile)
       end
-      
+
       self.flavors << neo_prof
       self.save if persisted?
       self
@@ -90,6 +90,9 @@ end
 namespace :db do
   task populate: :environment do
     if HighLine.agree('This will delete all current data. Do you want to proceed? (y/n)')
+      # Monkey patching the classes up above messes with autoloading. Force the classes to load.
+      require_dependency 'graph/recipe'
+      require_dependency 'graph/ingredient'
 
       # Delete nodes and relationships
       Neo4j::Session.query('START n = node(*) WITH n OPTIONAL MATCH n-[r]-() DELETE n, r;')
@@ -254,6 +257,10 @@ namespace :db do
   end
 
   task add_random_recipes: :environment do
+    # Monkey patching the classes up above messes with autoloading. Force the classes to load.
+    require_dependency 'graph/recipe'
+    require_dependency 'graph/ingredient'
+
     num = HighLine.ask('How many random recipes should be added?', Integer)
 
     ingredients = Graph::Ingredient.all.to_a
