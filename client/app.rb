@@ -21,7 +21,7 @@ Bundler.require(:defaults, ENV['RACK_ENV'].to_sym)
 ##########################
 
 # In production, we should recompile the assets each time we rackup.
-if ENV['RACK_ENV'] == 'production'
+if ENV['RACK_ENV'] == 'production' && ENV['CASCADED'] != 'true'
   Process.spawn("cd #{File.dirname(__FILE__) } && gulp")
 end
 
