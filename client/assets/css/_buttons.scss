@@ -96,13 +96,46 @@
     line-height: 1.5;
     font-size: 2.5em;
 
+    transition: background-color 0.15s;
+
     &:hover, &:focus, &:active {
       background: transparentize(white, 0.25);
-      transition: background-color 0.15s;
     }
 
     .icon-arrow-down {
       padding: 0
     }
+  }
+}
+
+.btn-menu {
+  position: fixed;
+  top: 0.4em;
+  right: 0.4em;
+
+  height: 2.1em;
+  width: 2.1em;
+
+  padding: 0.3em;
+
+  border: 3px solid transparentize($matterhorn, 0.4);
+  border-radius: 3px;
+
+  background: transparentize(white, 0.2);
+
+  text-align: center;
+
+  color: $matterhorn;
+  font-size: 2em;
+
+  transition: background-color 0.15s, color 0.15s;
+
+  &:hover, &:focus, &:active {
+    background: transparentize($matterhorn, 0.25);
+    color: white;
+  }
+
+  .icon-menu {
+    padding: 0;
   }
 }

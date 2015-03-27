@@ -6,8 +6,21 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  height: 100%;
 }
 
+// Required to get Foundation off-canvas fullscreen
+.page {
+  height: 100%;
+}
+
+.off-canvas-wrap {
+  height: 100%;
+}
+
+.inner-wrap {
+  min-height: 100vh
+}
 
 h1 {
   text-align: center;
