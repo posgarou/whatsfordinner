@@ -62,8 +62,11 @@
   .tag, .cuisine, .difficulty {
     @extend .label;
     @extend .round;
-    padding: 0.8em 1.4em;
-    margin: 0.1em 0.2em;
+    padding: 0.6em 1.2em;
+    margin: 0.1em 0.4em;
+    
+    font-size: 0.8em;
+    letter-spacing: 0.05em;
   }
 
   .middle-instructions {

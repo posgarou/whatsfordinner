@@ -59,6 +59,16 @@
         background: $dark;
       }
     }
+
+    &.recipe .recipe-info-box {
+      .cuisine {
+        background-color: $dark;
+      }
+
+      .tag {
+        background: $med;
+      }
+    }
   }  // end %main-content
 
   .btn-#{$name} {
@@ -69,6 +79,7 @@
       background: $dark;
     }
   }
+
 }
 
 // THEME DEFINITIONS
