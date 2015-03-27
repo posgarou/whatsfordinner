@@ -38,11 +38,19 @@ h4 {
 
 hr {
   border: 0;
-  height: 1px;
-  background: gray;
-  width: 75%;
+  height: 5px;
+  background: transparentize(white, 0.7);
+  width: 60%;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 3em;
+}
+
+p {
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  word-spacing: 0.02em;
+  margin-bottom: 2.5em;
 }
 
 aside {

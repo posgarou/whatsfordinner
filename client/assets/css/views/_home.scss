@@ -10,24 +10,44 @@
   border-bottom: 10px solid white;
 
   h1 {
-    font-size: 4em;
     margin: 10vh 0 1em;
     padding: 0.5em;
     background: transparentize(white, 0.45);
   }
 
+  @media #{$large-up} {
+    h1 {
+      font-size: 4em;
+    }
+  }
+
   .content-row {
-    background: transparentize(white, 0.45);
-    margin-bottom: 1em;
+    background: transparentize(white, 0.06);
+    margin-bottom: 2em;
+    border: 3px solid transparentize(white, 0.8);
+    border-radius: 3px;
   }
 
   .hero-content-box {
     .inner {
       display: inline-block;
       padding: 0.5em;
+      width: 100%;
 
       text-align: center;
+
+      p {
+        max-width: 20em;
+        margin-left: auto;
+        margin-right: auto;
+      }
     }
+  }
+}
+
+%hero-unit:not(#splash) {
+  h2 {
+    margin-bottom: 0;
   }
 }
 
@@ -40,9 +60,13 @@
 .hero-content-box {
   @extend .columns;
   @extend .medium-6;
+
+  &.full {
+    @extend .medium-12;
+  }
 }
 
-.splash {
+#splash {
   @extend %hero-unit;
   background-image: url('/images/tea.jpg');
 
@@ -57,7 +81,7 @@
 
   .subheader-left {
     @extend .columns;
-    @extend .medium-6;
+    @extend .small-6;
     padding: 2em 0vw 0.5em;
 
     h2 { text-align: left; }
@@ -65,19 +89,40 @@
 
   .subheader-right {
     @extend .columns;
-    @extend .medium-6;
+    @extend .small-6;
     padding: 2em 0 0;
 
     h2 { text-align: right; }
   }
 }
 
-.below-the-fold {
+#the-problem {
   @extend %hero-unit;
 
   background-image: url('/images/pasta.jpg');
 }
 
-.how-it-works {
+#the-solution {
   @extend %hero-unit;
+
+  background-image: url('/images/mango-and-avocado.jpg');
+}
+
+#how-it-works {
+  @extend %hero-unit;
+  background-image: url('/images/raspberries.jpg');
+}
+
+#cook-eat-repeat {
+  @extend %hero-unit;
+  background-image: url('/images/cappuccino.jpg');
+}
+
+#relax {
+  @extend %hero-unit;
+  background-image: url('/images/cocktail.jpg');
+}
+#hungry {
+  @extend %hero-unit;
+  background-image: url('/images/knife-and-fork.jpg');
 }

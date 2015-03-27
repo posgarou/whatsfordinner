@@ -1,9 +1,8 @@
 .home
-    .splash
+    #splash
         .button-row.centered
-            //a.standard-btn(ng-click='logout()', ng-if='user.signedIn') Logout
-            //a.standard-btn(ng-click='showLogin()', ng-if='!user.signedIn') Login
-            a.standard-btn(ng-click='showConcierge()') Give it a spin
+            a.standard-btn(ng-click='showLogin()', ng-if='!user.signedIn') Login
+            a.standard-btn(ng-click='showConcierge()', ng-if='user.signedIn') Give it a spin
         h1 What's for Dinner?
         .row
             .subheader-left
@@ -11,7 +10,7 @@
             .subheader-right
                 h2 Simplify
         scroller(element-id='the-problem')
-    .below-the-fold#the-problem
+    #the-problem
         h1 The Problem
         .content-row
             .hero-content-box
@@ -26,6 +25,68 @@
                     hr
                     p You don't mind cooking, but you don't know what to make.
                     p Without ideas for dinner, it's probably going to be either delivery or takeout.
-        scroller(element-id='how-it-works')
-    .how-it-works#how-it-works
-        h1 How it Works
+        scroller(element-id='the-solution')
+    #the-solution
+        h1 You Want Simplicity
+        .content-row
+            .hero-content-box
+                .inner
+                    h2 f(what you like)
+                    hr
+                    p What's for Dinner? remembers what you make and what you say about it.
+                    p Like it? Not a fan? <em>Let us know.</em>
+            .hero-content-box
+                .inner
+                    h2
+                        | = what to eat
+                    hr
+                    p This information is fed to a hungry computer, and it finds three things you probably want to eat.
+                    p Select one, and we'll give you ingredients and instructions.
+        scroller(element-id='cook-eat-repeat')
+    #cook-eat-repeat
+        h1 4 Steps
+        .content-row
+            .hero-content-box
+                .inner
+                    h2 1. Cook it
+                    hr
+                    p (We can't do this part yet.)
+            .hero-content-box
+                .inner
+                    h2 2. Eat it
+                    hr
+                    p (Nom nom.)
+        .content-row
+            .hero-content-box
+                .inner
+                    h2 3. Rate it
+                    hr
+                    p Just pull up your dashboard, find the recipe, and give it a rating.
+            .hero-content-box
+                .inner
+                    h2 4. Repeat it
+                    hr
+                    p Whenever you're hungry, just pull up the concierge.
+        h1 Da Capo al Fine
+        scroller(element-id='relax')
+    #relax
+        h1 Oh yeah!
+        .content-row
+            .hero-content-box.full
+                .inner
+                    h2 5. Relax.
+                    hr
+                    p Leave the hard part to us.
+        scroller(element-id='hungry')
+    #hungry
+        h1 Hungry now?
+        .content-row
+            .hero-content-box.full
+                .inner
+                    h2 We were born for this
+                    hr
+                    p We will not rest until you are full.
+                    .button-row
+                        a.standard-btn(ng-click='showLogin()', ng-if='!user.signedIn') Login
+                        a.standard-btn(ng-click='showConcierge()', ng-if='user.signedIn') Give it a spin
+

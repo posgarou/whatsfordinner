@@ -45,13 +45,13 @@
   .difficulty {
 
     &.easy {
-      background: green;
+      background: $easy;
     }
     &.medium {
-      background: cornflowerblue;
+      background: $medium;
     }
     &.hard {
-      background: darkred;
+      background: $hard;
     }
   }
 
