@@ -11,15 +11,15 @@ body {
 
 // Required to get Foundation off-canvas fullscreen
 .page {
-  min-height: 100%;
+  min-height: 100vh;
 }
 
 .off-canvas-wrap {
-  height: 100%;
+  min-height: 100vh;
 }
 
 .inner-wrap {
-  min-height: 100vh
+  min-height: 100vh;
 }
 
 h1 {

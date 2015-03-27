@@ -2,6 +2,7 @@ angular
   .module(
     'whatsForDinnerApp',
     ['ngRoute',
+     'ngAnimate',
      'smoothScroll',
      'route-segment',
      'view-segment',

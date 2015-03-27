@@ -1,0 +1,13 @@
+.content, .main-content, .concierge-content {
+  &.ng-enter {
+    transition: opacity 1s;
+    opacity: 0;
+  }
+
+  &.ng-enter-active {
+    opacity: 1.0;
+  }
+  &.ng-leave {
+    display: none;
+  }
+}
