@@ -43,12 +43,15 @@ angular
 
      $scope.guessMealTime = MealTimeGuesserService.guess
 
-     $scope.selectMealTime = (mealTime)->
+     $scope.changeMealTime = (mealTime) ->
        # Update data
        $scope.conciergeData.mealTime = mealTime
        $scope.headerInfo.mealName = $scope.conciergeData.mealTime
        # Apply new theme
        $scope.reTheme mealTime
+
+     $scope.selectMealTime = (mealTime) ->
+       $scope.changeMealTime(mealTime)
        # Move on to the difficulty picker
        $scope.showDifficultyPicker()
 
@@ -82,7 +85,7 @@ angular
 
      $scope.skipToTheGoodStuff = ->
        # Apply defaults
-       $scope.conciergeData.mealTime = $scope.guessMealTime()
+       $scope.changeMealTime($scope.guessMealTime())
        $scope.conciergeData.difficulty = 'easy'
        # Skip to the selector
        $scope.showSelectionPicker()
