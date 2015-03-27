@@ -3,6 +3,9 @@ public/*
 
 tmp/
 
+assets/images/originals
+assets/images/unused
+
 # Generated via bower install
 bower_components
 
