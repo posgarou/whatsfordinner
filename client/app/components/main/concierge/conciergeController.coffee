@@ -95,5 +95,5 @@ angular
      # INITIALIZE
      setup()
      $scope.stylingInfo.outerClass = 'recipe-chooser'
-     $scope.reTheme 'dinner'
+     $scope.changeMealTime($scope.guessMealTime())
 ])
