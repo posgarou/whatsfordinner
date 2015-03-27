@@ -10,9 +10,6 @@ angular
       outerClass: ''
     }
 
-    $scope.currentUser = ->
-      AuthenticationService.validateUser()
-
     # For now this only resets the var, but it's here if we later decide to somehow animate the transition
     # from one theme to another.  (Or should this be done via CSS?  That's a lot of transitions.)
     $scope.reTheme = (newTheme)->

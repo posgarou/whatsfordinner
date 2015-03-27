@@ -10,7 +10,7 @@ angular
 
       # TODO Add ability to replace selection. This should send data to the server.
 
-      $scope.selector = new SelectionService ($scope.currentUser().id or $scope.currentUser().uuid), $scope.conciergeData.mealTime, $scope.conciergeData.difficulty
+      $scope.selector = new SelectionService ($scope.user.id or $scope.user.uuid), $scope.conciergeData.mealTime, $scope.conciergeData.difficulty
 
       $scope.selector.load()
       $scope.recipes = $scope.selector.suggestions
