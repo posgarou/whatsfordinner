@@ -1,6 +1,10 @@
-header
+a.right-off-canvas-toggle.btn-menu
+    icon(name='menu')
+aside.right-off-canvas-menu
     nav
-        ul
+        ul.off-canvas-list
+            li
+                a(ng-click='phoneHome()') Home
             li(ng-if='user.signedIn')
                 a(ng-click='showDashboard()') Dashboard
             li(ng-if='user.signedIn')
@@ -9,5 +13,3 @@ header
                 a(ng-click='logout()') Logout
             li(ng-if='!user.signedIn')
                 a(ng-click='showLogin()') Login
-    .home-icon
-        icon(name='home', ng-click='phoneHome()')

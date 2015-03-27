@@ -9,8 +9,6 @@ angular
      'Themer',
     ($scope,AuthenticationService, Router, Themer) ->
       $scope.phoneHome = Router.phoneHome
-#      $scope.showDashboard = Router.dashboard
-#      $scope.showLogin = Router.login
 
       $scope.stylingInfo = {}
 

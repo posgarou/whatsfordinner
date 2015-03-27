@@ -9,4 +9,10 @@ html
     script(type= 'text/javascript', src = '../js/#{templateJS}')
     script(type='text/javascript', src='../js/#{allJS}')
   body(ng-app="whatsForDinnerApp", ng-class='bodyClass')
-    .content(app-view-segment='0')
+    .page
+        .off-canvas-wrap
+            .inner-wrap
+                .menu(ng-controller='MenuCtrl')
+                    .menuInterior(ng-include='"views/components/shared/menu/menu.html"')
+                .content(app-view-segment='0')
+                a.exit-off-canvas
