@@ -16,8 +16,8 @@ angular
       $scope.showLogin = Router.login
       $scope.logout = AuthenticationService.logout
 
-      $scope.histories = new UserHistoryResource(AuthenticationService.validateUser()).resource
-      $scope.needsRating = new UserNeedsRatingResource(AuthenticationService.validateUser()).resource
+      $scope.histories = new UserHistoryResource($scope.currentUser()).resource
+      $scope.needsRating = new UserNeedsRatingResource($scope.currentUser()).resource
 
       $scope.setHeader 'Dashboard'
       $scope.stylingInfo.outerClass = 'dashboard-container'

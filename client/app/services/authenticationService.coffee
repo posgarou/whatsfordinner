@@ -43,6 +43,9 @@ angular
 
       logout: =>
         $auth.signOut()
+        $auth.user.signedIn = false
+        @user.data = null
+        @deferred = null
         Router.phoneHome()
 
       authenticate: (provider) =>
