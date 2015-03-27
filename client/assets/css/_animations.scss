@@ -1,6 +1,6 @@
 .content, .main-content, .concierge-content {
   &.ng-enter {
-    transition: opacity 1s;
+    transition: opacity 0.3s 0.2s;
     opacity: 0;
   }
 
