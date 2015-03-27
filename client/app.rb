@@ -33,7 +33,7 @@ class WFDinnerApp < Sinatra:: Base
   set :root, File.dirname(__FILE__)
 
   get '/' do
-    # TODO: This really should be set up with a cache.  It looks very possible to set up a shared memcached between Sinatra and Gulp/Node: https://github.com/3rd-Eden/node-memcached and https://github.com/mperham/dalli
+    # TODO: This really should be set up with a cache.  It looks very possible to set up a shared memcached between Sinatra and Gulp/Node: https://github.com/3rd-Eden/node-memcached and https://github.com/mperham/dalli. UPDATE ON TODO: Use redis (installed for sidekiq).
 
     # If there is a manifest file, it tells us where the current cached index.html is located.
     # Otherwise, we should load index.html

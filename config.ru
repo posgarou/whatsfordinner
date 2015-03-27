@@ -32,21 +32,7 @@ Bundler.require(:default, ENV['RACK_ENV'].to_sym)
 
 require_relative 'server/config/environment'
 
-# Automatically recompiles assets
 require_relative 'client/app'
-
-##########################
-#         SYMLINK        #
-##########################
-
-# To improve performance, enable nginx to serve as many static assets as possible
-
-# Delete current symlinks (if any) and reestablish symlinks to recompiled assets
-# Establish a symlink to all files in the client public dir
-
-if ENV['RACK_ENV'] == 'production'
-  Process.spawn("find public -type l | xargs rm && cd client && gulp && cd .. && ln -sf client/public/* public")
-end
 
 ##########################
 #         CASCADE        #
