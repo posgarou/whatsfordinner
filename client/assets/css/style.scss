@@ -1,6 +1,7 @@
 @import 'foundation-settings';
 @import '../../bower_components/foundation/scss/normalize';
-@import '../../bower_components/foundation/scss/foundation';
+@import 'foundation';
+@import 'animations';
 @import 'variables';
 @import 'list-styles';
 @import 'block-elements';
