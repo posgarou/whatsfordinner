@@ -20,6 +20,7 @@ angular
       $scope.needsRating = new UserNeedsRatingResource($scope.currentUser()).resource
 
       $scope.setHeader 'Dashboard'
+      $scope.headerInfo.mealName = ''
       $scope.stylingInfo.outerClass = 'dashboard-container'
       $scope.reTheme 'dashboard'
 
