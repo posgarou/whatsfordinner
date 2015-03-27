@@ -1,8 +1,7 @@
 .home
     #splash
         .button-row.centered
-            a.standard-btn(ng-click='showLogin()', ng-if='!user.signedIn') Login
-            a.standard-btn(ng-click='showConcierge()', ng-if='user.signedIn') Give it a spin
+            a.standard-btn(ng-click='user.signedIn ? showConcierge() : showLogin()') Give it a spin
         h1 What's for Dinner?
         .row
             .subheader-left
